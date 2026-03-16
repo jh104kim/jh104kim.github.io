@@ -1,0 +1,130 @@
+{
+  "source": "eJARN",
+  "collected_at": "2026-03-16T00:52:55.271569Z",
+  "items": [
+    {
+      "date": "2026-03-15",
+      "topic": "Ecoforest strengthens its low-GWP portfolio with new R290 and R454B heat pumps",
+      "summary": "에코포레스트(Ecoforest)는 유럽 시장에서 가장 포괄적인 저지구온난화(GWP) 히트펌프 포트폴리오를 개발하여 기술 주도 제조업 체로서의 입지를 강화하고, 규제 준수와 장기 지속 가능성에 대한 의지를 다지고 있다. 이 카탈로그는 두 가지 냉매 계열인 자연 R290(프로판)과 저GWP R454B를 중심으로 구성되어 있으며, 주거 및 상업용 애플리케이션에서 유럽과 미국의 요구 사항에 맞춘 제품을 제공한다.\n\nR290은 지구온난화 잠재력(GWP)이 약 3으로, R410A의 GWP의 약 0.14%에 해당한다. 뛰어난 열역학적 특성으로 인해 높은 성능계수(COP)와 계절적 성능계수(SCOP)를 자 랑하며, 최대 70°C의 유량 온도를 허용하여 라디에이터 기반 시스템의 보일러를 직접 대체할 수 있다. 또한, R290은 낮은 압력에서 작동해 압축기  스트레스를 줄이고, 안정적인 성능을 보장한다. 에코포레스트는 A3 분류 냉매의 실내 설치를 지원하기 위해 전용 안전 기술을 통합하고, 냉매 충전 량을 최적화해 에어소스 모델에서는 보통 1.75kg, 지하수원에서는 0.86kg에 이른다.\n\nR454B는 상업용 애플리케이션을 위한 고출력 범위로, 최대 510 kW 설치 수요를 충족하며, R410A보다 GWP가 약 78% 낮다. R454B는 안전과 성능의 균형을 이루어 북미 시장",
+      "link": "https://www.ejarn.com/article/detail/92868",
+      "source_topic": "",
+      "source_topic_url": "",
+      "related_titles": [],
+      "company": [],
+      "related_comp": [],
+      "product_type": [
+        "Compressor",
+        "HVAC",
+        "Component",
+        "Solution"
+      ],
+      "market_segment": [
+        "Residential",
+        "Commercial",
+        "Infrastructure"
+      ],
+      "refrigerant": [
+        "HFC/HFO",
+        "Natural",
+        "Low-GWP"
+      ],
+      "application": [
+        "Cooling",
+        "Heating"
+      ],
+      "technology": [
+        "Efficiency",
+        "Control/AI",
+        "Sustainability",
+        "Compact/Design",
+        "Manufacturing"
+      ],
+      "category": [
+        "Technology",
+        "Business",
+        "Manufacturing",
+        "Market"
+      ]
+    },
+    {
+      "date": "2026-03-15",
+      "topic": "Refra Heat Pumps: 16% Higher COP Enabled by Reduced Defrost Time  [1/2]",
+      "summary": "Refra의 공기-물(A2W) 열 펌프는 Siemens의 MVL702 자기 확장 밸브를 통해 경쟁 시스템에 비해 뛰어난 효율성을 제공한다고 밝혔습니다. 이 열 펌프는 두 개의 동일한 회로에서 각기 다른 밸브 기술, 즉 특허받은 Siemens 밸브와 전통적인 스테퍼 밸브를 사용하여 테스트되었습 니다. 결과적으로 MVL702 밸브가 16% 이상 높은 성능 계수를 달성하여 상업 및 산업용 열 펌프 사용자들에게 수천 파운드 또는 유로의 연간 에너지 비용 절감 효과를 가져올 수 있다는 점이 주목받고 있습니다. 이 시스템은 영국에서 \"최우수 상업용 열 펌프 제품\"으로 산업 공로를 인정받은 바 있습니다.\n\n높은 에너지 비용은 열 펌프 제조업체들이 더 효율적인 솔루션으로 포트폴리오를 혁신하게 만든 주요 요인입니다. Refra는 Lithuana의 HVACR 장비 제조업체로, Siemens의 MVL702 자기 확장 밸브를 통합해 reversible R290 열 펌프의 효율을 향상시켰습니다. 이 밸브는 증발기 내 액체 냉매의 양을 신속하고 정확하게 조절하여, 스테퍼 밸브를 사용하는 열 펌프보다 더 많은 난방 및 냉방 성능을 발휘할 수 있게 합니다. Siemens의 MVL702는 개방 위치로의 전환이 1초 이내에 이루어져 전통적인 스테퍼 밸브보다 10배 빠릅니다. \n\nMVL702의 성공적인 요소는 부하 변화에 즉각적으로 반응하여 과열값을 약 30% 줄일 수 있는 능력",
+      "link": "https://www.ejarn.com/article/detail/92867",
+      "source_topic": "",
+      "source_topic_url": "",
+      "related_titles": [],
+      "company": [
+        "Refra Heat Pumps"
+      ],
+      "related_comp": [],
+      "product_type": [
+        "Compressor",
+        "HVAC",
+        "Refrigeration",
+        "Component",
+        "Solution"
+      ],
+      "market_segment": [
+        "Commercial",
+        "Industrial"
+      ],
+      "refrigerant": [
+        "Natural"
+      ],
+      "application": [
+        "Cooling",
+        "Heating",
+        "Refrigeration"
+      ],
+      "technology": [
+        "Efficiency",
+        "Control/AI",
+        "Compact/Design",
+        "Manufacturing"
+      ],
+      "category": [
+        "Technology",
+        "Manufacturing",
+        "Market"
+      ]
+    },
+    {
+      "date": "2026-03-15",
+      "topic": "Shinhoo: Diverse High-Performance Pumps for Modern HVAC",
+      "summary": "신후는 난방, 냉각 및 온수 시스템을 위한 고효율 펌프를 포괄적으로 제공하며, 주거용부터 상업용까지 다양한 응용 분야에 적합합니다. 신후의 주력 제품인 Master SD 시리즈 순환 펌프는 새로운 효율 기준을 제시합니다. 적응형 PWM 제어 및 여러 속도 모드를 통해 시스템 요 구에 실시간으로 조정되며, 영구 자석 모터와 저소음 설계로 42 dB(A)로 조용한 작동을 유지합니다. 이 시리즈는 EEI ≤ 0.20을 달성하고 유럽의 A등급 인증을 받아 기존 펌프에 비해 에너지 사용을 20% 이상 절감합니다. 전구리 모터와 H급 절연으로 내구성이 높고, 바닥 난방, 라디에이터, 온수  순환 및 냉각 시스템에 적합한 CP/CS/PP 모드를 지원합니다. 선택적으로 부식에 강한 플라스틱 바디를 제공하며, 자동 공기 배출, 차단 방지 및 실 시간 유량/전력 표시 기능 등이 포함됩니다. 견고한 구조와 방수 설계는 긴 수명을 보장합니다.\n\nMega S 32-12F Pro는 컴팩트한 크기에서 높은 출력을 제공합니다. 네오디뮴 자석 동기 모터는 전통적인 페라이트 모터보다 5% 더 효율적이며 30-50% 더 작아 공간 절약이 가능합니다. 소음 수준은 38 dB(A)이며, 유지 관리가 필요 없는 습식 모터는 방수 보호를 갖추고 있으며 정밀 제어를 위한 자사 개발 PCBA를 사용합니다. 12개의 제어 모드( 상수 속도,",
+      "link": "https://www.ejarn.com/article/detail/92866",
+      "source_topic": "",
+      "source_topic_url": "",
+      "related_titles": [],
+      "company": [
+        "Shinhoo"
+      ],
+      "related_comp": [],
+      "product_type": [
+        "HVAC",
+        "Component"
+      ],
+      "market_segment": [
+        "Residential",
+        "Commercial"
+      ],
+      "refrigerant": [
+        "Natural"
+      ],
+      "application": [
+        "Cooling",
+        "Heating"
+      ],
+      "technology": [
+        "Efficiency",
+        "Control/AI",
+        "Compact/Design"
+      ],
+      "category": [
+        "Technology",
+        "Market"
+      ]
+    }
+  ]
+}

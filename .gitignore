@@ -15,5 +15,9 @@ __pycache__/
 # Output artifacts
 *.json
 
+# Keep result folder JSON files tracked
+!result/
+!result/*.json
+
 # Keep sample/config docs if needed
 !schema.example.json
