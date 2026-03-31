@@ -10,9 +10,10 @@ type Message = {
 };
 
 const starterQuestions = [
-  "BLDC 압축기 개발 경험을 요약해줘",
-  "AI Crew Leader로 어떤 자동화를 했나요?",
-  "연구/논문 이력 중 강점은 무엇인가요?",
+  "이 포트폴리오의 핵심 강점은?",
+  "압축기 개발 프로젝트 중 대표 성과는?",
+  "연구 이력은 어떤 방향으로 이어졌나?",
+  "AI Lab은 어떤 문제를 풀려고 하나?",
 ];
 
 export default function AiChat() {
@@ -61,6 +62,10 @@ export default function AiChat() {
         error?: string;
       };
 
+      if (!response.ok) {
+        throw new Error(data.error ?? "응답 생성 실패");
+      }
+
       setMessages((current) => [
         ...current,
         {
@@ -77,7 +82,7 @@ export default function AiChat() {
         {
           role: "assistant",
           content:
-            "네트워크 오류로 답변을 가져오지 못했습니다. 잠시 후 다시 시도해주세요.",
+            "현재 AI 응답이 제한되어 포트폴리오 요약 중심으로 안내합니다. 잠시 후 다시 시도해주세요.",
         },
       ]);
     } finally {
@@ -164,7 +169,7 @@ export default function AiChat() {
                 {loading ? (
                   <div className="flex justify-start">
                     <div className="rounded-3xl bg-white px-4 py-3 text-sm text-gray-500 shadow-sm">
-                      답변을 정리하고 있습니다...
+                      답변 생성 중... 포트폴리오 근거를 확인하고 있습니다.
                     </div>
                   </div>
                 ) : null}

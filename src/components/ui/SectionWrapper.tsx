@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { FadeInSection } from "@/components/ui/MotionPrimitives";
 
 interface SectionWrapperProps {
   children: ReactNode;
@@ -16,16 +16,12 @@ export default function SectionWrapper({
   className,
 }: SectionWrapperProps) {
   return (
-    <motion.section
+    <FadeInSection
       id={id}
       className={cn("py-24 px-4 md:px-8 lg:px-16", className)}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      viewport={{ once: true, margin: "-80px" }}
     >
       <div className="max-w-6xl mx-auto">{children}</div>
-    </motion.section>
+    </FadeInSection>
   );
 }
 

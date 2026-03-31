@@ -3,18 +3,21 @@ import SectionWrapper from "@/components/ui/SectionWrapper";
 const currentTracks = [
   {
     title: "AI Crew 자동화",
-    description:
-      "사업팀 업무를 분석해 반복 작업을 자동화하고, 실무 적용 가능한 AI 활용 패턴을 만드는 중입니다.",
+    input: "반복 보고/정리/공유 업무",
+    process: "요약, 분류, 자동 문서화 흐름 설계",
+    output: "시간 절감과 반복성 축소",
   },
   {
     title: "GT-Suite 시뮬레이션 자동화",
-    description:
-      "해석 준비, 실행, 결과 정리까지 이어지는 과정을 자동화해 엔지니어링 생산성을 높이고 있습니다.",
+    input: "해석 조건, 실행 스크립트, 결과 파일",
+    process: "자동 실행 및 결과 정리 파이프라인",
+    output: "엔지니어링 생산성 향상",
   },
   {
-    title: "Portfolio Q&A Chat",
-    description:
-      "이 사이트 자체를 포트폴리오 기반 AI 인터페이스로 확장해 기술 설명과 채용 대화를 돕습니다.",
+    title: "Portfolio Q&A 운영",
+    input: "채용/협업/기술 질의",
+    process: "포트폴리오 근거 기반 분류 응답",
+    output: "핵심 성과 중심 커뮤니케이션",
   },
 ];
 
@@ -36,7 +39,7 @@ export default function AiLab() {
           <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
             엔지니어링 시뮬레이션을 AI 플랫폼으로 확장하는 실험실
           </h2>
-          <p className="mt-4 text-base leading-8 text-white/70">
+          <p className="section-copy mt-4 text-base leading-8 text-white/70">
             이 섹션은 단순한 도구 사용 이력이 아니라, 압축기 개발 경험을
             바탕으로 Simulation + AI + Automation을 묶어내는 방향성을 보여주기
             위한 공간입니다.
@@ -56,12 +59,20 @@ export default function AiLab() {
           {currentTracks.map((item) => (
             <div
               key={item.title}
-              className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
+              className="ui-card border-white/10 bg-white/5 p-6 backdrop-blur-sm"
             >
               <p className="text-lg font-semibold">{item.title}</p>
-              <p className="mt-2 text-sm leading-7 text-white/70">
-                {item.description}
-              </p>
+              <div className="mt-3 space-y-2 text-sm leading-7 text-white/75">
+                <p>
+                  <span className="font-semibold text-white">입력:</span> {item.input}
+                </p>
+                <p>
+                  <span className="font-semibold text-white">처리:</span> {item.process}
+                </p>
+                <p>
+                  <span className="font-semibold text-white">결과:</span> {item.output}
+                </p>
+              </div>
             </div>
           ))}
 

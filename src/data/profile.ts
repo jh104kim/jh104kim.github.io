@@ -5,6 +5,7 @@ export const profile = {
   subtitle: "삼성전자 DA사업부 | AI Crew Leader | 26년 압축기 전문가",
   company: "Samsung Electronics DA Division",
   email: "jh104.kim@gmail.com",
+  github: "https://github.com/jh104kim",
   phone: "010-4740-3825",
   location: "수원시 매탄동, 삼성전자 DA사업부",
   notion: "https://www.notion.so/vita-0bc7ea7f5c5a83c882838195c39d45fd",

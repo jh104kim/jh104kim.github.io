@@ -25,6 +25,7 @@ export type CareerItem = {
   role: string;
   company: string;
   description: string;
+  roleType?: "engineering" | "quality" | "sales" | "ai" | "leadership";
   highlight?: string;
   isCurrent?: boolean;
 };
@@ -35,6 +36,7 @@ export const career: CareerItem[] = [
     role: "AI Crew Leader",
     company: "삼성전자 DA사업부",
     description: "AI 업무자동화 및 GT-Suite 시뮬레이션 자동화 추진",
+    roleType: "ai",
     highlight: "AI",
     isCurrent: true,
   },
@@ -43,6 +45,7 @@ export const career: CareerItem[] = [
     role: "C&M 개발그룹장",
     company: "삼성전자 DA사업부",
     description: "신모델 개발 로드맵 수립 및 실행, 외판 확대",
+    roleType: "leadership",
     highlight: "그룹장",
   },
   {
@@ -50,6 +53,7 @@ export const career: CareerItem[] = [
     role: "C&M 품질그룹장",
     company: "삼성전자 DA사업부",
     description: "내외부 품질 이슈 대응 및 시스템 안정화",
+    roleType: "quality",
     highlight: "그룹장",
   },
   {
@@ -57,6 +61,7 @@ export const career: CareerItem[] = [
     role: "Japan Sales Engineer",
     company: "SRJ (도쿄 롯본기/이이다바시)",
     description: "도시바 등 일본 주요 고객사 Sales Engineer 활동",
+    roleType: "sales",
     highlight: "360억",
   },
   {
@@ -64,6 +69,7 @@ export const career: CareerItem[] = [
     role: "R600a BLDC 최초개발",
     company: "삼성전자 DA사업부",
     description: "AC to BLDC 압축기 전환 국내 최초 개발",
+    roleType: "engineering",
     highlight: "최초",
   },
   {
@@ -71,6 +77,7 @@ export const career: CareerItem[] = [
     role: "R600a 최대배기량 개발",
     company: "삼성전자 DA사업부",
     description: "Global AC 최대 배기량(15cc) 압축기 개발",
+    roleType: "engineering",
     highlight: "Global 최대",
   },
   {
@@ -78,6 +85,7 @@ export const career: CareerItem[] = [
     role: "개발 엔지니어",
     company: "삼성전자 DA사업부",
     description: "압축기 기구설계 및 CAE 해석",
+    roleType: "engineering",
   },
 ];
 

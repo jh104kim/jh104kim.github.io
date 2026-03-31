@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Paper } from "@/data/research";
 import { ExternalLink } from "lucide-react";
+import { HoverCardMotion } from "@/components/ui/MotionPrimitives";
 
 interface PaperCardProps {
   paper: Paper;
@@ -16,20 +16,17 @@ const typeLabels: Record<Paper["type"], string> = {
 };
 
 export default function PaperCard({ paper, index = 0 }: PaperCardProps) {
+  const hostLabel = paper.venue.replace(" (IIR)", "").replace("학회", " Forum");
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.07 }}
-      viewport={{ once: true }}
-      className={`bg-white border rounded-xl p-5 ${
-        paper.status === "upcoming"
-          ? "border-[#1428a0]/30 bg-blue-50/30"
-          : "border-gray-100"
-      } hover:shadow-md transition-shadow duration-200`}
+    <HoverCardMotion
+      className={`ui-card p-5 ${paper.status === "upcoming" ? "border-[#1428a0]/30 bg-blue-50/30" : ""}`}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1">
+          <span className="inline-flex rounded-full border border-gray-200 bg-white px-2.5 py-1 text-[10px] font-semibold tracking-[0.14em] text-gray-500 uppercase">
+            {hostLabel}
+          </span>
           <div className="flex flex-wrap items-center gap-2 mb-2">
             <span
               className={`text-xs px-2 py-0.5 rounded-full font-medium ${
@@ -44,16 +41,18 @@ export default function PaperCard({ paper, index = 0 }: PaperCardProps) {
               {typeLabels[paper.type]}
             </span>
             <span className="text-xs text-gray-400">{paper.date}</span>
+            <span className="rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-xs text-gray-500">
+              {paper.country}
+            </span>
           </div>
 
           <h3 className="text-sm font-bold text-gray-900 leading-snug mb-1">
             {paper.title}
           </h3>
 
-          <div className="flex items-center gap-2 flex-wrap mt-2">
+          <div className="mt-2 flex items-center gap-2 flex-wrap">
             <span className="text-xs text-gray-500">{paper.venue}</span>
-            <span className="text-xs text-gray-300">·</span>
-            <span className="text-xs text-gray-500">{paper.country}</span>
+            <span className="text-xs text-gray-300">· index {index + 1}</span>
           </div>
         </div>
 
@@ -69,6 +68,6 @@ export default function PaperCard({ paper, index = 0 }: PaperCardProps) {
           </a>
         )}
       </div>
-    </motion.div>
+    </HoverCardMotion>
   );
 }

@@ -20,7 +20,7 @@ export default function Projects() {
           <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
             Compressor engineering 성과를 사업 임팩트로 연결한 프로젝트들
           </h2>
-          <p className="mt-4 text-base text-gray-600 leading-8">
+          <p className="section-copy mt-4 text-base text-gray-600 leading-8">
             친환경 냉매 대응, BLDC 전환, 일본 고객 대응, 조직 리딩, AI
             자동화까지 각 프로젝트를 카드 중심으로 정리했습니다.
           </p>
@@ -30,9 +30,9 @@ export default function Projects() {
           {metrics.map((metric) => (
             <div
               key={metric.label}
-              className="rounded-2xl border border-gray-100 bg-white px-4 py-4 text-center shadow-sm"
+              className="ui-card px-4 py-4 text-center"
             >
-              <p className="text-2xl font-bold text-[#1428a0]">
+              <p className="kpi-value font-bold text-[#1428a0]">
                 {metric.value}
               </p>
               <p className="mt-1 text-xs text-gray-500">{metric.label}</p>

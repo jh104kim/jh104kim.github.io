@@ -7,7 +7,6 @@ import {
   education,
   languages as languageSkills,
 } from "@/data/career";
-import { profile } from "@/data/profile";
 import { categoryLabels, skills } from "@/data/skills";
 
 export default function About() {
@@ -25,11 +24,22 @@ export default function About() {
               About
             </p>
             <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
-              기술 깊이와 AI 자동화를 함께 증명하는 엔지니어
+              엔지니어링과 자동화를 하나의 가치로 연결합니다
             </h2>
-            <p className="mt-4 text-base text-gray-600 leading-8">
-              {profile.summary}
-            </p>
+            <div className="section-copy mt-5 space-y-3 text-base leading-8 text-gray-600">
+              <p>
+                압축기 개발, 품질, 영업, 조직 리딩까지 이어지는 실무 경험으로 제품과
+                조직의 문제를 함께 해결해 왔습니다.
+              </p>
+              <p>
+                FSI와 GT-Suite 기반의 해석 역량, 국제 발표 경험을 통해 설계 판단의
+                근거를 데이터로 구조화해 왔습니다.
+              </p>
+              <p>
+                최근에는 AI Crew 리딩을 통해 반복 업무와 시뮬레이션 흐름을 자동화해
+                엔지니어링 생산성을 확장하고 있습니다.
+              </p>
+            </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
@@ -65,7 +75,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
+          <div className="ui-card p-6">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <p className="text-sm font-semibold text-gray-900">언어 역량</p>
@@ -97,7 +107,7 @@ export default function About() {
         </div>
 
         <div className="space-y-8">
-          <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
+          <div className="ui-card p-6">
             <div className="flex items-end justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold text-gray-900">

@@ -1,0 +1,12 @@
+[2026-03-31 19:10] START - 1~5단계 순차 고도화 작업 시작
+[2026-03-31 19:10] POLICY - GPT-5.3-Codex, OpenAI 실연결 제외, shadcn 대규모 리팩터링 보류, 배포 제외, 완주 우선
+[2026-03-31 19:10] DECISION - Hero 비주얼=엔지니어링 그리드, Projects 설명=2문장, Research 로고=텍스트 배지
+[2026-03-31 19:24] PHASE-B/C/D/E - Hero/About/Projects/Research/AI Lab/Contact/Footer/Chat/Route/README 대규모 개선 반영
+[2026-03-31 19:25] ISSUE - lint 경고(About.tsx unused import profile) 발견
+[2026-03-31 19:26] FIXED - About.tsx unused import 제거로 경고 해소
+[2026-03-31 19:27] ISSUE - Next build에서 workspace root 경고(상위 lockfile 감지) 발생
+[2026-03-31 19:28] FIXED - next.config.ts에 turbopack.root를 프로젝트 루트로 명시
+[2026-03-31 19:28] NOTE - OpenAI 실연결/DB 이력 저장/실배포는 정책에 따라 이번 사이클에서 제외하고 구조·콘텐츠·로컬챗 품질 개선까지 완료
+[2026-03-31 19:34] PHASE COMPLETE - 1~5단계(이번 범위) 구현 종료
+[2026-03-31 19:35] VERIFY - npm run lint 통과
+[2026-03-31 19:36] VERIFY - npm run build 통과

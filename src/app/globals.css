@@ -13,6 +13,9 @@
   --card: #ffffff;
   --card-foreground: #1a1a1a;
   --ring: #1428a0;
+  --radius-card: 22px;
+  --shadow-card: 0 6px 20px rgba(15, 23, 42, 0.05);
+  --shadow-card-hover: 0 16px 36px rgba(15, 23, 42, 0.12);
 }
 
 @theme inline {
@@ -69,4 +72,27 @@ body {
 /* Section offset for sticky navbar */
 section[id] {
   scroll-margin-top: 80px;
+}
+
+.kpi-value {
+  font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.section-copy {
+  max-width: 60ch;
+}
+
+.ui-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--card);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.ui-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
 }
