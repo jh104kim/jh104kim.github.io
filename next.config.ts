@@ -1,12 +1,19 @@
 import type { NextConfig } from "next";
 import path from "node:path";
 
-/** GitHub Pages 및 로컬 `next build` 모두 동일한 정적 산출물(`out/`)을 사용합니다. */
+/**
+ * - Vercel: `VERCEL=1`이면 기본 Next 빌드(`.next`) → 루트 `/`가 정상 서빙됨.
+ * - GitHub Pages·로컬 정적 미리보기: export로 `out/` 생성.
+ */
+const isVercel = Boolean(process.env.VERCEL);
+
 const nextConfig: NextConfig = {
-  output: "export",
-  images: {
-    unoptimized: true,
-  },
+  ...(!isVercel
+    ? {
+        output: "export" as const,
+        images: { unoptimized: true },
+      }
+    : {}),
   turbopack: {
     root: path.resolve(__dirname),
   },
