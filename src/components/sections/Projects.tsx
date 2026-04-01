@@ -15,7 +15,7 @@ export default function Projects() {
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold tracking-[0.22em] text-[#1428a0] uppercase">
-            Projects
+            프로젝트
           </p>
           <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
             Compressor engineering 성과를 사업 임팩트로 연결한 프로젝트들

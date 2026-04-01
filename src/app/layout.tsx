@@ -22,6 +22,11 @@ export const metadata: Metadata = {
     description: "삼성전자 DA사업부 AI Crew Leader. 기술 + AI 융합 전문가.",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "김정현 | Compressor & AI Engineering Portfolio",
+    description: "압축기 도메인 × AI 자동화로 실무 성과를 만드는 포트폴리오",
+  },
 };
 
 export default function RootLayout({

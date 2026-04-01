@@ -1,5 +1,6 @@
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { profile } from "@/data/profile";
+import { Download, ExternalLink } from "lucide-react";
 
 const contactLinks = [
   {
@@ -8,6 +9,16 @@ const contactLinks = [
     href: `mailto:${profile.email}`,
     description: "프로젝트, 협업, 채용 관련 문의",
   },
+  ...(profile.linkedin.trim().length
+    ? [
+        {
+          label: "LinkedIn",
+          value: "Profile",
+          href: profile.linkedin,
+          description: "커리어 요약 및 네트워크",
+        },
+      ]
+    : []),
   {
     label: "Notion",
     value: "Portfolio Notes",
@@ -60,9 +71,18 @@ export default function Contact() {
             </div>
             <a
               href={`mailto:${profile.email}`}
-              className="mt-8 inline-flex rounded-xl bg-[#1428a0] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0f207d]"
+              className="tap-target mt-8 inline-flex items-center gap-2 rounded-xl bg-[#1428a0] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0f207d]"
             >
+              <ExternalLink size={18} />
               메일 보내기
+            </a>
+            <a
+              href={profile.resumePdfPath}
+              className="tap-target ml-3 mt-8 inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
+              download
+            >
+              <Download size={18} />
+              이력서 PDF
             </a>
           </div>
 

@@ -7,6 +7,11 @@ export type EducationItem = {
 
 export const education: EducationItem[] = [
   {
+    period: "~1992.02",
+    school: "상산고등학교 (9회 졸업)",
+    degree: "홍성대 수학경시대회 2등 수상",
+  },
+  {
     period: "~1999.02",
     school: "전북대학교",
     degree: "정밀기계공학과 (GPA 4.35)",

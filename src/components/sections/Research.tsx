@@ -1,6 +1,9 @@
+"use client";
+
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import PaperCard from "@/components/ui/PaperCard";
 import { papers } from "@/data/research";
+import { useMemo, useState } from "react";
 
 const researchAxes = [
   { title: "Valve Dynamics", badge: "RESEARCH AXIS 01" },
@@ -9,6 +12,17 @@ const researchAxes = [
 ];
 
 export default function Research() {
+  const [showAll, setShowAll] = useState(false);
+
+  const { featured, rest } = useMemo(() => {
+    const publishedPapers = papers.filter((paper) => paper.status === "published");
+    const upcomingPapers = papers.filter((paper) => paper.status === "upcoming");
+    const featuredPapers = publishedPapers.slice(0, 3);
+    const remaining = [...publishedPapers.slice(3), ...upcomingPapers];
+
+    return { featured: featuredPapers, rest: remaining };
+  }, []);
+
   const published = papers.filter(
     (paper) => paper.status === "published",
   ).length;
@@ -19,7 +33,7 @@ export default function Research() {
       <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
         <div>
           <p className="text-sm font-semibold tracking-[0.22em] text-[#1428a0] uppercase">
-            Research
+            연구
           </p>
           <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
             FSI, GT-Suite, 시스템 해석을 바탕으로 축적한 연구 자산
@@ -63,10 +77,37 @@ export default function Research() {
           </div>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {papers.map((paper, index) => (
-            <PaperCard key={paper.id} paper={paper} index={index} />
-          ))}
+        <div>
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <p className="text-sm font-semibold text-gray-900">대표 발표</p>
+              <p className="mt-1 text-sm text-gray-500">
+                채용 담당자가 빠르게 확인하기 위한 상위 3개
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowAll((v) => !v)}
+              className="rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
+            >
+              {showAll ? "전체 접기" : "전체 보기"}
+            </button>
+          </div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {featured.map((paper, index) => (
+              <PaperCard key={paper.id} paper={paper} index={index} />
+            ))}
+            {showAll
+              ? rest.map((paper, index) => (
+                  <PaperCard
+                    key={paper.id}
+                    paper={paper}
+                    index={featured.length + index}
+                  />
+                ))
+              : null}
+          </div>
         </div>
       </div>
     </SectionWrapper>

@@ -3,6 +3,7 @@
 import { FormEvent, useMemo, useState } from "react";
 import { Bot, MessageSquare, Send, Sparkles, X } from "lucide-react";
 import { profile } from "@/data/profile";
+import { localPortfolioAnswer } from "@/lib/portfolio-chat-local";
 
 type Message = {
   role: "user" | "assistant";
@@ -51,31 +52,9 @@ export default function AiChat() {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: nextMessages }),
-      });
-
-      const data = (await response.json()) as {
-        answer?: string;
-        error?: string;
-      };
-
-      if (!response.ok) {
-        throw new Error(data.error ?? "응답 생성 실패");
-      }
-
-      setMessages((current) => [
-        ...current,
-        {
-          role: "assistant",
-          content:
-            data.answer ??
-            data.error ??
-            "답변을 생성하는 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.",
-        },
-      ]);
+      await new Promise((r) => setTimeout(r, 60));
+      const answer = localPortfolioAnswer(prompt);
+      setMessages([...nextMessages, { role: "assistant", content: answer }]);
     } catch {
       setMessages((current) => [
         ...current,
@@ -95,11 +74,11 @@ export default function AiChat() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-3 rounded-full bg-[#1428a0] px-5 py-3 text-sm font-semibold text-white shadow-xl shadow-[#1428a0]/25 transition hover:-translate-y-0.5 hover:bg-[#0f207d]"
+        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-3 rounded-full border border-gray-200 bg-white/90 px-4 py-3 text-sm font-semibold text-gray-700 shadow-lg backdrop-blur transition hover:-translate-y-0.5 hover:bg-white"
         aria-label="포트폴리오 AI 채팅 열기"
       >
         <Bot size={18} />
-        AI에게 물어보기
+        AI Q&A (선택)
       </button>
 
       {open ? (

@@ -27,6 +27,10 @@ npm run lint
 npm run build
 ```
 
+## 이력서 PDF
+
+- `public/resume.pdf`를 추가하면 사이트의 “이력서 PDF” 버튼이 다운로드로 동작합니다.
+
 ## 환경 변수 (선택)
 
 OpenAI 실연결 시에만 필요합니다.

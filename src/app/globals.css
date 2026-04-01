@@ -74,6 +74,11 @@ section[id] {
   scroll-margin-top: 80px;
 }
 
+.tap-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
 .kpi-value {
   font-size: clamp(1.8rem, 2.5vw, 2.6rem);
   line-height: 1.05;

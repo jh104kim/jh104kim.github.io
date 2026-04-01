@@ -5,11 +5,13 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#research", label: "Research" },
+  { href: "#impact", label: "핵심 성과" },
+  { href: "#about", label: "소개" },
+  { href: "#projects", label: "프로젝트" },
+  { href: "#research", label: "연구" },
   { href: "#ai-lab", label: "AI Lab" },
-  { href: "#contact", label: "Contact" },
+  { href: "#leadership", label: "리더십" },
+  { href: "#resume", label: "이력서" },
 ];
 
 export default function Navbar() {
@@ -70,7 +72,7 @@ export default function Navbar() {
               href="mailto:jh104.kim@gmail.com"
               className="ml-2 px-4 py-2 text-sm font-medium bg-[#1428a0] text-white rounded-lg hover:bg-[#1428a0]/90 transition-colors"
             >
-              Contact
+              연락하기
             </a>
           </li>
         </ul>
