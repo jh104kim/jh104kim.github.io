@@ -10,7 +10,3 @@
 [2026-03-31 19:34] PHASE COMPLETE - 1~5단계(이번 범위) 구현 종료
 [2026-03-31 19:35] VERIFY - npm run lint 통과
 [2026-03-31 19:36] VERIFY - npm run build 통과
-[2026-04-01] SYNC - GitHub 단일 소스 정리: .github/workflows/nextjs.yml 추가(GitHub Pages), README·PLAN.md 정리, 공식 URL 명시
-[2026-04-01] STATIC - next.config에 output:export + images.unoptimized로 Pages와 로컬 빌드 일치; configure-pages의 next 자동 주입은 제거(설정 중복 방지)
-[2026-04-01] CHAT - 정적 호환: app/api/chat 제거, 응답 로직을 src/lib/portfolio-chat-local.ts로 이전 후 AiChat에서 호출; openai 패키지 의존성 제거
-[2026-04-01] VERCEL - next.config: VERCEL 환경변수일 때 output export 비활성화로 Vercel 기본 Next 서빙; vercel.json(framework nextjs) 추가; README에 Root Directory·index 미추가 이유 안내
