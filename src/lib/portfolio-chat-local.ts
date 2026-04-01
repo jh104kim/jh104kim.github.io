@@ -1,15 +1,4 @@
-import OpenAI from "openai";
-import { NextResponse } from "next/server";
-import {
-  chatResponseRules,
-  portfolioContext,
-  portfolioKnowledge,
-} from "@/data/portfolio-context";
-
-type ChatMessage = {
-  role: "user" | "assistant";
-  content: string;
-};
+import { portfolioKnowledge } from "@/data/portfolio-context";
 
 function classifyQuestion(question: string) {
   const normalized = question.toLowerCase();
@@ -52,7 +41,8 @@ function classifyQuestion(question: string) {
   return "summary";
 }
 
-function localPortfolioAnswer(question: string) {
+/** GitHub Pages 등 정적 호스팅에서 사용하는 포트폴리오 기반 로컬 응답 */
+export function localPortfolioAnswer(question: string): string {
   const questionType = classifyQuestion(question);
 
   if (questionType === "project") {
@@ -72,59 +62,4 @@ function localPortfolioAnswer(question: string) {
   }
 
   return "김정현님은 26년간 압축기 개발, 품질, 영업, 조직 리딩을 경험한 뒤 현재 AI Crew를 리딩하고 있습니다. 핵심 성과는 R600a BLDC 최초 개발, 일본 Sales 360억, 그리고 GT-Suite 기반 자동화 확장입니다. 필요하신 주제를 말씀해 주시면 프로젝트, 연구, AI Lab 중 해당 영역 중심으로 자세히 안내드리겠습니다.";
-}
-
-export async function POST(request: Request) {
-  try {
-    const body = (await request.json()) as { messages?: ChatMessage[] };
-    const messages = body.messages ?? [];
-    const latestUserMessage = [...messages]
-      .reverse()
-      .find((message) => message.role === "user");
-    const question = latestUserMessage?.content?.trim();
-
-    if (!question) {
-      return NextResponse.json(
-        { error: "질문이 비어 있습니다." },
-        { status: 400 },
-      );
-    }
-
-    if (!process.env.OPENAI_API_KEY) {
-      return NextResponse.json({
-        answer: localPortfolioAnswer(question),
-        source: "local",
-      });
-    }
-
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-    const response = await client.chat.completions.create({
-      model: process.env.OPENAI_MODEL || "gpt-4.1-mini",
-      max_tokens: 420,
-      messages: [
-        {
-          role: "system",
-          content: `${portfolioContext}\n\n응답 규칙:\n- 톤: ${chatResponseRules.tone}\n- 문장 수: 최대 ${chatResponseRules.maxSentences}문장\n- 범위: ${chatResponseRules.scope}\n- 예외: ${chatResponseRules.fallback}`,
-        },
-        ...messages.slice(-6).map((message) => ({
-          role: message.role,
-          content: message.content,
-        })),
-      ],
-    });
-
-    const answer =
-      response.choices[0]?.message?.content?.trim() ||
-      localPortfolioAnswer(question);
-
-    return NextResponse.json({ answer, source: "openai" });
-  } catch {
-    return NextResponse.json(
-      {
-        answer:
-          "현재 AI 응답이 제한되어 포트폴리오 요약으로 안내합니다. 질문을 다시 보내시면 해당 영역 중심으로 답변드리겠습니다.",
-      },
-      { status: 200 },
-    );
-  }
 }

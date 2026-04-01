@@ -3,6 +3,7 @@
 import { FormEvent, useMemo, useState } from "react";
 import { Bot, MessageSquare, Send, Sparkles, X } from "lucide-react";
 import { profile } from "@/data/profile";
+import { localPortfolioAnswer } from "@/lib/portfolio-chat-local";
 
 type Message = {
   role: "user" | "assistant";
@@ -51,38 +52,16 @@ export default function AiChat() {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: nextMessages }),
-      });
-
-      const data = (await response.json()) as {
-        answer?: string;
-        error?: string;
-      };
-
-      if (!response.ok) {
-        throw new Error(data.error ?? "응답 생성 실패");
-      }
-
-      setMessages((current) => [
-        ...current,
-        {
-          role: "assistant",
-          content:
-            data.answer ??
-            data.error ??
-            "답변을 생성하는 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.",
-        },
-      ]);
+      await new Promise((r) => setTimeout(r, 60));
+      const answer = localPortfolioAnswer(prompt);
+      setMessages([...nextMessages, { role: "assistant", content: answer }]);
     } catch {
-      setMessages((current) => [
-        ...current,
+      setMessages([
+        ...nextMessages,
         {
           role: "assistant",
           content:
-            "현재 AI 응답이 제한되어 포트폴리오 요약 중심으로 안내합니다. 잠시 후 다시 시도해주세요.",
+            "답변을 생성하는 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.",
         },
       ]);
     } finally {
