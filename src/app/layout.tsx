@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { STATIC_EXIT_KEY } from "@/lib/static-hobby-exit";
 
 export const metadata: Metadata = {
   title: "김정현 | Compressor & AI Engineering Portfolio",
@@ -29,6 +30,20 @@ export const metadata: Metadata = {
   },
 };
 
+const bfcacheReloadSnippet = `
+(function(){
+  var k=${JSON.stringify(STATIC_EXIT_KEY)};
+  window.addEventListener("pageshow",function(e){
+    var fromStatic=false;
+    try{
+      fromStatic=sessionStorage.getItem(k)==="1";
+      if(fromStatic)sessionStorage.removeItem(k);
+    }catch(x){}
+    if(e.persisted||fromStatic)window.location.reload();
+  });
+})();
+`.trim();
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,6 +52,9 @@ export default function RootLayout({
   return (
     <html lang="ko" className="antialiased">
       <body className="min-h-screen">
+        <script
+          dangerouslySetInnerHTML={{ __html: bfcacheReloadSnippet }}
+        />
         <Navbar />
         <main>{children}</main>
         <Footer />

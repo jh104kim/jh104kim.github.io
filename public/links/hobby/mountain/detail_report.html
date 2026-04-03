@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>등산 거리·시간 효율 리포트</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: #f5f6f8; margin: 0; padding: 24px; color: #333; }
+    h1 { color: #1F4E79; }
+    .sub { color: #666; font-size: 14px; }
+    .cross-nav { margin: 8px 0 16px; font-size: 14px; }
+    .cross-nav a { color: #1F4E79; font-weight: 600; text-decoration: none; }
+    .cross-nav a:hover { text-decoration: underline; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }
+    .kpi-cards { display: flex; flex-wrap: wrap; gap: 16px; margin: 20px 0; }
+    .card { background: #fff; border-radius: 8px; padding: 16px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); flex: 1; min-width: 180px; }
+    .card strong { font-size: 22px; color: #1F4E79; }
+    section { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+    h2 { color: #1F4E79; font-size: 16px; margin-top: 0; }
+    table { border-collapse: collapse; width: 100%; margin-top: 8px; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; }
+    th { background: #f0f3f7; color: #1F4E79; }
+    canvas { max-height: 320px; }
+  </style>
+</head>
+<body>
+  <h1>등산 거리·시간 효율 리포트</h1>
+  <p class="sub">26년 4월 기준 | 24년 1월 부터 시작</p>
+  <p class="cross-nav">
+    <a href="dashboard.html" target="_blank" rel="noopener noreferrer">대시보드</a>
+    <span style="color:#ccc;margin:0 8px">|</span>
+    <a href="summary.html" target="_blank" rel="noopener noreferrer">요약</a>
+  </p>
+  <div class="kpi-cards">
+    <div class="card">총 이동거리<br><strong>957.8 km</strong></div>
+    <div class="card">총 산행 시간<br><strong>505.9 h</strong></div>
+    <div class="card">전체 평균 속도<br><strong>1.89 km/h</strong></div>
+  </div>
+  <div class="grid2">
+    <section><h2>1. 루트유형별 평균 이동거리 (km)</h2><canvas id="chartCat"></canvas></section>
+    <section><h2>2. 난이도별 평균 속도 (km/h)</h2><canvas id="chartGrade"></canvas></section>
+  </div>
+  <section>
+    <h2>3. 계절별 건수 및 평균 거리 (막대: 건수, 선: 평균 km)</h2>
+    <canvas id="chartDisc"></canvas>
+  </section>
+       <div class="grid2">
+    <section>
+      <h2>4. 산(등산명) Top 10 — 총 이동거리</h2>
+      <table><thead><tr><th>산</th><th>총 거리(km)</th></tr></thead><tbody>
+<tr><td>지리산</td><td>35.0</td></tr>
+<tr><td>치악산</td><td>22.6</td></tr>
+<tr><td>속리산</td><td>21.0</td></tr>
+<tr><td>오대산</td><td>20.7</td></tr>
+<tr><td>소백산</td><td>19.2</td></tr>
+<tr><td>백두산</td><td>18.3</td></tr>
+<tr><td>한라산 성판악</td><td>18.0</td></tr>
+<tr><td>내장산/백양산</td><td>16.0</td></tr>
+<tr><td>아사히다케</td><td>15.3</td></tr>
+<tr><td>중국 태항산</td><td>14.4</td></tr>
+</tbody></table></section><section><h2>4. 산(등산명) Bottom 10 — 총 이동거리</h2>
+      <table><thead><tr><th>산</th><th>총 거리(km)</th></tr></thead><tbody>
+<tr><td>장성 방장산</td><td>6.0</td></tr>
+<tr><td>보은 구병산</td><td>6.0</td></tr>
+<tr><td>마니산</td><td>6.0</td></tr>
+<tr><td>월영산, 자지산</td><td>6.0</td></tr>
+<tr><td>용궐산</td><td>6.0</td></tr>
+<tr><td>무봉산</td><td>6.0</td></tr>
+<tr><td>동두천 소요산</td><td>6.0</td></tr>
+<tr><td>가까운두타산</td><td>6.0</td></tr>
+<tr><td>춘천 검봉산</td><td>6.0</td></tr>
+<tr><td>황악산</td><td>6.0</td></tr>
+</tbody></table></section></div>
+<section><h2>5. 산별 ABC (거리 누적)</h2>
+<table><thead><tr><th>산</th><th>총 거리(km)</th><th>누적비율</th><th>등급</th></tr></thead><tbody>
+<tr><td>지리산</td><td>35.0</td><td>3.7%</td><td>A</td></tr>
+<tr><td>치악산</td><td>22.6</td><td>6.0%</td><td>A</td></tr>
+<tr><td>속리산</td><td>21.0</td><td>8.2%</td><td>A</td></tr>
+<tr><td>오대산</td><td>20.7</td><td>10.4%</td><td>A</td></tr>
+<tr><td>소백산</td><td>19.2</td><td>12.4%</td><td>A</td></tr>
+<tr><td>백두산</td><td>18.3</td><td>14.3%</td><td>A</td></tr>
+<tr><td>한라산 성판악</td><td>18.0</td><td>16.2%</td><td>A</td></tr>
+<tr><td>내장산/백양산</td><td>16.0</td><td>17.8%</td><td>A</td></tr>
+<tr><td>아사히다케</td><td>15.3</td><td>19.4%</td><td>A</td></tr>
+<tr><td>중국 태항산</td><td>14.4</td><td>20.9%</td><td>A</td></tr>
+<tr><td>관악산</td><td>12.0</td><td>22.2%</td><td>A</td></tr>
+<tr><td>설악산</td><td>11.4</td><td>23.4%</td><td>A</td></tr>
+<tr><td>대야산 (용추계곡)</td><td>11.0</td><td>24.5%</td><td>A</td></tr>
+<tr><td>월악산</td><td>11.0</td><td>25.7%</td><td>A</td></tr>
+<tr><td>서산 팔봉산</td><td>11.0</td><td>26.8%</td><td>A</td></tr>
+<tr><td>발왕산</td><td>11.0</td><td>28.0%</td><td>A</td></tr>
+<tr><td>덕유산</td><td>10.8</td><td>29.1%</td><td>A</td></tr>
+<tr><td>계방산</td><td>10.5</td><td>30.2%</td><td>A</td></tr>
+<tr><td>함백산</td><td>10.5</td><td>31.3%</td><td>A</td></tr>
+<tr><td>단양 도락산</td><td>10.4</td><td>32.4%</td><td>A</td></tr>
+<tr><td>태백산</td><td>10.4</td><td>33.5%</td><td>A</td></tr>
+<tr><td>가리왕산</td><td>10.4</td><td>34.5%</td><td>A</td></tr>
+<tr><td>양각산</td><td>10.4</td><td>35.6%</td><td>A</td></tr>
+<tr><td>지리산 (노고단)</td><td>10.0</td><td>36.7%</td><td>A</td></tr>
+<tr><td>도봉산</td><td>10.0</td><td>37.7%</td><td>A</td></tr>
+<tr><td>장성 축령산</td><td>10.0</td><td>38.8%</td><td>A</td></tr>
+<tr><td>남덕유산</td><td>10.0</td><td>39.8%</td><td>A</td></tr>
+<tr><td>가평 화악산·석룡산</td><td>9.8</td><td>40.8%</td><td>A</td></tr>
+</tbody></table></section>
+<script>
+const chartCat = new Chart(document.getElementById('chartCat'), {
+  type: 'bar',
+  data: {
+    labels: ["단일지점", "연계산행", "원점회귀", "정보부족", "편도/통과"],
+    datasets: [{ label: '평균 거리(km)', data: [7.75, 7.6, 7.02, 7.11, 8.88], backgroundColor: '#1F4E79' }]
+  },
+  options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } } }
+});
+const chartGrade = new Chart(document.getElementById('chartGrade'), {
+  type: 'bar',
+  data: {
+    labels: ["상", "중", "중상", "중하", "하"],
+    datasets: [{ label: '평균 속도(km/h)', data: [2.33, 1.85, 2.09, 1.81, 1.82], backgroundColor: '#2E75B6' }]
+  },
+  options: { responsive: true, plugins: { legend: { display: false } } }
+});
+const chartDisc = new Chart(document.getElementById('chartDisc'), {
+  type: 'bar',
+  data: {
+    labels: ["가을", "겨울", "봄", "여름"],
+    datasets: [
+      { type: 'bar', label: '건수', data: [27, 34, 31, 29], yAxisID: 'y', backgroundColor: '#8FAADC' },
+      { type: 'line', label: '평균거리(km)', data: [7.79, 8.17, 6.67, 9.07], yAxisID: 'y1', borderColor: '#C55A11', tension: 0.2 }
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: { position: 'left', title: { display: true, text: '건수' } },
+      y1: { position: 'right', title: { display: true, text: 'km' }, grid: { drawOnChartArea: false } }
+    }
+  }
+});
+</script>
+</body>
+</html>

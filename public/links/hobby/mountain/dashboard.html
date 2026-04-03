@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>등산 활동 대시보드</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root { --navy: #1F4E79; --bg: #f0f2f5; }
+    body { font-family: 'Apple SD Gothic Neo', sans-serif; background: var(--bg); margin: 0; padding: 24px; }
+    .page-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 16px; margin-bottom: 8px; }
+    .page-head h1 { color: var(--navy); margin: 0; font-size: clamp(1.25rem, 4vw, 1.75rem); }
+    .page-head-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .page-head-actions a, .page-head-actions button {
+      font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 8px; cursor: pointer;
+      text-decoration: none; border: none; font-family: inherit;
+    }
+    .page-head-actions a { background: #fff; color: var(--navy); border: 1px solid #c5d4e4; }
+    .page-head-actions a:hover { background: #e8eef5; }
+    .page-head-actions button#openDetail { background: var(--navy); color: #fff; }
+    .page-head-actions button#openDetail:hover { filter: brightness(1.05); }
+    .kpi { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 20px 0; }
+    .kpi .card { background: #fff; border-left: 4px solid var(--navy); border-radius: 6px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+    .kpi .card strong { font-size: 24px; color: var(--navy); }
+    .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .tables { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 24px; }
+    @media (max-width: 900px) { .charts, .tables { grid-template-columns: 1fr; } }
+    table { width: 100%; border-collapse: collapse; background: #fff; }
+    th { background: var(--navy); color: #fff; padding: 8px; text-align: left; }
+    td { padding: 8px; border-bottom: 1px solid #ddd; }
+    canvas { max-height: 280px; }
+
+    #detailModal { display: none; position: fixed; inset: 0; z-index: 9999; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; }
+    #detailModal.is-open { display: flex; }
+    #detailModal .modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.45); }
+    #detailModal .modal-panel {
+      position: relative; z-index: 1; width: min(960px, 100%); height: min(88vh, 820px); background: #fff; border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.2); display: flex; flex-direction: column; overflow: hidden;
+    }
+    #detailModal .modal-toolbar {
+      flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+      padding: 10px 12px; border-bottom: 1px solid #e0e0e0; background: #f8fafc;
+    }
+    #detailModal .modal-toolbar .left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    #detailModal .modal-toolbar button {
+      font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; cursor: pointer; border: 1px solid #ccc; background: #fff; font-family: inherit;
+    }
+    #detailModal .modal-toolbar button:hover { background: #f0f0f0; }
+    #detailModal .modal-toolbar button#modalOpenTab { background: var(--navy); color: #fff; border-color: var(--navy); }
+    #detailModal .modal-toolbar button#modalOpenTab:hover { filter: brightness(1.06); }
+    #detailModal .modal-body { flex: 1; min-height: 0; position: relative; background: #fff; }
+    #detailModal .modal-body iframe { width: 100%; height: 100%; border: 0; display: block; }
+    #detailModal .iframe-loading {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #666; background: #fff;
+    }
+    #detailModal .iframe-loading.hidden { display: none; }
+  </style>
+</head>
+<body>
+  <header class="page-head">
+    <h1>등산 활동 대시보드</h1>
+    <div class="page-head-actions">
+      <a href="summary.html" target="_blank" rel="noopener noreferrer">Summary</a>
+      <button type="button" id="openDetail">Detail</button>
+    </div>
+  </header>
+  <p>26년 4월 기준 | 24년 1월 부터 시작</p>
+  <div class="kpi">
+    <div class="card"><div>총 이동거리</div><strong>957.8 km</strong><div style="font-size:13px;color:#c62828">최근월 전월 대비 ▼ 12.4%</div></div>
+    <div class="card"><div>평균 산행 속도</div><strong>1.89 km/h</strong><div style="font-size:12px;color:#666">전체 합계 기준</div></div>
+    <div class="card"><div>정보부족 루트 비율</div><strong>13.2%</strong><div style="font-size:12px;color:#666">정보부족 16건 / 121건</div></div>
+    <div class="card"><div>총 산행 건수</div><strong>121건</strong></div>
+  </div>
+  <div class="charts">
+    <div><h3 style="color:var(--navy)">월별 총 이동거리</h3><canvas id="lineM"></canvas></div>
+    <div><h3 style="color:var(--navy)">계절별 거리 비중</h3><canvas id="donutC"></canvas></div>
+  </div>
+  <div class="tables">
+    <div><h4 style="color:var(--navy)">Top 5 산악회 (거리)</h4><table><tr><th>산악회</th><th>km</th></tr>
+<tr><td>개인</td><td>359.6</td></tr>
+<tr><td>동탄산악</td><td>94.7</td></tr>
+<tr><td>동탄제일</td><td>79.6</td></tr>
+<tr><td>산다솜</td><td>73.5</td></tr>
+<tr><td>동탄명품</td><td>66.8</td></tr>
+</table></div><div><h4 style="color:var(--navy)">Top 5 산 (거리 합)</h4><table><tr><th>산</th><th>km</th></tr>
+<tr><td>지리산</td><td>35.0</td></tr>
+<tr><td>치악산</td><td>22.6</td></tr>
+<tr><td>속리산</td><td>21.0</td></tr>
+<tr><td>오대산</td><td>20.7</td></tr>
+<tr><td>소백산</td><td>19.2</td></tr>
+</table></div><div><h4 style="color:var(--navy)">계절 Top 5</h4><table><tr><th>계절</th><th>km</th></tr>
+<tr><td>겨울</td><td>277.7</td></tr>
+<tr><td>여름</td><td>263.0</td></tr>
+<tr><td>가을</td><td>210.4</td></tr>
+<tr><td>봄</td><td>206.7</td></tr>
+</table></div></div>
+
+  <div id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailModalTitle">
+    <div class="modal-backdrop" id="detailModalBackdrop"></div>
+    <div class="modal-panel">
+      <div class="modal-toolbar">
+        <span id="detailModalTitle" style="font-weight:700;color:var(--navy);font-size:14px">상세 리포트 미리보기</span>
+        <div class="left">
+          <button type="button" id="modalOpenTab">새 탭에서 전체 보기</button>
+          <button type="button" id="detailModalClose">닫기</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="iframe-loading" id="iframeLoading">불러오는 중…</div>
+        <iframe id="detailFrame" title="등산 거리·시간 효율 리포트" src="about:blank"></iframe>
+      </div>
+    </div>
+  </div>
+
+<script>
+new Chart(document.getElementById('lineM'), {
+  type: 'line',
+  data: {
+    labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+    datasets: [{ label: '총 거리(km)', data: [78.8, 118.3, 116.9, 50.4, 39.4, 84.3, 101.8, 76.9, 52.4, 66.0, 92.0, 80.6], borderColor: '#1F4E79', fill: false, tension: 0.2 }]
+  },
+  options: { responsive: true }
+});
+new Chart(document.getElementById('donutC'), {
+  type: 'doughnut',
+  data: {
+    labels: ["가을", "겨울", "봄", "여름"],
+    datasets: [{ data: [210.4, 277.7, 206.7, 263.0], backgroundColor: ['#1F4E79','#2E75B6','#8FAADC','#C55A11','#70AD47'] }]
+  },
+  options: { responsive: true }
+});
+
+(function () {
+  const modal = document.getElementById('detailModal');
+  const openBtn = document.getElementById('openDetail');
+  const closeBtn = document.getElementById('detailModalClose');
+  const backdrop = document.getElementById('detailModalBackdrop');
+  const frame = document.getElementById('detailFrame');
+  const loading = document.getElementById('iframeLoading');
+  const openTabBtn = document.getElementById('modalOpenTab');
+  const detailUrl = new URL('detail_report.html', window.location.href).href;
+
+  function openModal() {
+    modal.classList.add('is-open');
+    loading.classList.remove('hidden');
+    frame.src = detailUrl;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modal.classList.remove('is-open');
+    frame.src = 'about:blank';
+    document.body.style.overflow = '';
+  }
+  frame.addEventListener('load', function () {
+    if (modal.classList.contains('is-open')) loading.classList.add('hidden');
+  });
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  openTabBtn.addEventListener('click', function () {
+    window.open(detailUrl, '_blank', 'noopener,noreferrer');
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+})();
+</script>
+</body></html>
