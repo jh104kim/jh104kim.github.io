@@ -113,6 +113,25 @@ export const projects: Project[] = [
     year: "2021",
   },
   {
+    id: "dev-workflow-auto",
+    title: "개발자 워크플로우 자동화 파이프라인",
+    titleEn: "Developer Workflow Automation Pipeline",
+    achievement: "Claude Code 기반 커밋·리뷰 자동화 파이프라인 구축",
+    challenge:
+      "사내망 제약(API 콘솔 차단) 환경에서 AI 자동화 도구를 실제 개발 워크플로우에 연결해야 했습니다.",
+    description:
+      "git diff → Claude API → Conventional Commits 메시지 자동 생성, prepare-commit-msg 훅 및 슬래시 커맨드(/commit-msg, /code-review)로 CI/CD 이전 단계를 자동화. fail-safe 설계로 키 없이도 커밋을 막지 않습니다.",
+    role: "설계 / 구현",
+    contribution: 100,
+    startDate: "2026.06",
+    endDate: "현재",
+    impact: "커밋 품질 향상 + 코드 리뷰 자동화",
+    technologies: ["Python", "Claude Code", "Git Hooks", "Conventional Commits", "GitHub"],
+    category: "ai",
+    highlight: "✔ AI 워크플로우 자동화 구축",
+    year: "2026",
+  },
+  {
     id: "ai-crew",
     title: "사업팀 AI Crew Leader",
     titleEn: "AI Crew Leader",

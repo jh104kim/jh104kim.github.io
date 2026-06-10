@@ -51,7 +51,7 @@ export default function Footer() {
           <p className="text-xs text-gray-400">
             ⓒ 2026 김정현 All rights reserved.
           </p>
-          <p className="mt-2 text-xs text-gray-400">Built with Next.js + OpenAI</p>
+          <p className="mt-2 text-xs text-gray-400">Built with Next.js + Claude Code</p>
         </div>
       </div>
     </footer>

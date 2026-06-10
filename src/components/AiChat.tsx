@@ -95,7 +95,7 @@ export default function AiChat() {
                       Portfolio AI Chat
                     </p>
                     <p className="text-xs text-gray-500">
-                      {profile.name} · AI Assistant
+                      {profile.name} · 포트폴리오 기반 정적 응답
                     </p>
                   </div>
                 </div>

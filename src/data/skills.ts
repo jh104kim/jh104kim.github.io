@@ -8,6 +8,24 @@ export type Skill = {
 export const skills: Skill[] = [
   // AI Tools
   {
+    name: "Claude Code",
+    level: 5,
+    category: "ai-tool",
+    description: "AI 에이전트 자동화, 슬래시 커맨드, 워크플로우 구성",
+  },
+  {
+    name: "Python",
+    level: 4,
+    category: "ai-tool",
+    description: "자동화 스크립트, 데이터 처리, Anthropic SDK 연동",
+  },
+  {
+    name: "GitHub Actions",
+    level: 3,
+    category: "ai-tool",
+    description: "CI/CD 파이프라인, 자동 배포, PR 자동화",
+  },
+  {
     name: "ChatGPT",
     level: 5,
     category: "ai-tool",

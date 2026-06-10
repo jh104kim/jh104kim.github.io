@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import { STATIC_EXIT_KEY } from "@/lib/static-hobby-exit";
 
 export const metadata: Metadata = {
@@ -55,6 +56,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{ __html: bfcacheReloadSnippet }}
         />
+        <ScrollProgress />
         <Navbar />
         <main>{children}</main>
         <Footer />
