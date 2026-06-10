@@ -5,7 +5,18 @@ import { Zap, Cpu, GitBranch, ArrowRight, CheckCircle2 } from "lucide-react";
 
 // ── 데이터 ─────────────────────────────────────────────────────────────────
 
-const currentTracks = [
+type Track = {
+  Icon: React.ComponentType<{ size?: number; className?: string }>;
+  title: string;
+  input: string;
+  process: string;
+  output: string;
+  tag: string;
+  /** 뱃지 스타일: Tailwind 동적 클래스 대신 inline style로 처리(JIT 스캔 누락 방지) */
+  tagStyle: React.CSSProperties;
+};
+
+const currentTracks: Track[] = [
   {
     Icon: Zap,
     title: "AI Crew 자동화",
@@ -13,7 +24,11 @@ const currentTracks = [
     process: "요약, 분류, 자동 문서화 흐름 설계",
     output: "시간 절감과 반복성 축소",
     tag: "운영 중",
-    tagClass: "bg-emerald-400/15 text-emerald-300 border border-emerald-400/25",
+    tagStyle: {
+      background: "rgba(52,211,153,0.15)",
+      color: "rgb(110,231,183)",
+      border: "1px solid rgba(52,211,153,0.25)",
+    },
   },
   {
     Icon: Cpu,
@@ -22,7 +37,11 @@ const currentTracks = [
     process: "자동 실행 및 결과 정리 파이프라인",
     output: "엔지니어링 생산성 향상",
     tag: "운영 중",
-    tagClass: "bg-emerald-400/15 text-emerald-300 border border-emerald-400/25",
+    tagStyle: {
+      background: "rgba(52,211,153,0.15)",
+      color: "rgb(110,231,183)",
+      border: "1px solid rgba(52,211,153,0.25)",
+    },
   },
   {
     Icon: GitBranch,
@@ -31,7 +50,11 @@ const currentTracks = [
     process: "Claude Code 기반 커밋 메시지·코드 리뷰 자동화",
     output: "개발 속도 및 코드 품질 향상",
     tag: "구축 중",
-    tagClass: "bg-blue-400/15 text-blue-300 border border-blue-400/25",
+    tagStyle: {
+      background: "rgba(96,165,250,0.15)",
+      color: "rgb(147,197,253)",
+      border: "1px solid rgba(96,165,250,0.25)",
+    },
   },
 ];
 
@@ -48,21 +71,74 @@ const metrics = [
   { v: "26년", l: "도메인 경험" },
 ];
 
+// ── 재사용 인라인 스타일 상수 ─────────────────────────────────────────────
+// bg-white/[0.xx] 소수점 임의값은 Tailwind v4 JIT에서 스캔 누락 가능 → 모두 inline style 대체
+
+const CARD_STYLE: React.CSSProperties = {
+  background: "rgba(255,255,255,0.05)",
+  border: "1px solid rgba(255,255,255,0.09)",
+  borderRadius: "16px",
+  backdropFilter: "blur(8px)",
+  WebkitBackdropFilter: "blur(8px)",
+};
+
+const INFO_BOX_STYLE: React.CSSProperties = {
+  background: "rgba(255,255,255,0.04)",
+  border: "1px solid rgba(255,255,255,0.09)",
+  borderRadius: "16px",
+};
+
+const FORWARD_PLAN_STYLE: React.CSSProperties = {
+  background: "rgba(59,130,246,0.07)",
+  border: "1px solid rgba(99,102,241,0.2)",
+  borderRadius: "16px",
+};
+
+const ICON_WRAP_STYLE: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: 32,
+  height: 32,
+  flexShrink: 0,
+  borderRadius: "8px",
+  background: "rgba(59,130,246,0.2)",
+};
+
+const PIPELINE_CELL_STYLE: React.CSSProperties = {
+  background: "rgba(255,255,255,0.06)",
+  borderRadius: "12px",
+  padding: "12px",
+};
+
+const STEP_BADGE_STYLE: React.CSSProperties = {
+  flexShrink: 0,
+  borderRadius: "4px",
+  background: "rgba(59,130,246,0.25)",
+  color: "rgb(147,197,253)",
+  fontFamily: "monospace",
+  fontSize: "10px",
+  fontWeight: 700,
+  padding: "1px 6px",
+  marginTop: "1px",
+};
+
 // ── 컴포넌트 ───────────────────────────────────────────────────────────────
 
 export default function AiLab() {
   return (
-    // ⚠️  내부 카드는 절대로 .ui-card 클래스를 쓰지 않는다.
-    //     globals.css 의 .ui-card 가 background: var(--card)(=white)를 강제해
-    //     dark 섹션에서 white-on-white 가 되는 버그를 유발하기 때문.
+    // ⚠️  내부 카드에 .ui-card 클래스 사용 금지.
+    //     globals.css 의 .ui-card { background: var(--card) } 가 white를 강제해
+    //     dark 섹션에서 white-on-white 버그를 유발함.
+    //     투명 배경이 필요한 모든 요소는 inline style 사용 (Tailwind v4 JIT 스캔 우회).
     <SectionWrapper
       id="ai-lab"
       className="relative overflow-hidden bg-gray-950 text-white"
     >
-      {/* 배경 ambient glow — 디자인 키 포인트: dark 섹션 깊이감 */}
+      {/* 배경 ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute -top-32 left-1/3 h-80 w-80 rounded-full bg-blue-600/10 blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-indigo-600/[0.08] blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-indigo-600/10 blur-3xl" />
       </div>
 
       <div className="relative grid gap-12 lg:grid-cols-[1fr_1.1fr]">
@@ -89,8 +165,8 @@ export default function AiLab() {
             ))}
           </div>
 
-          {/* 왜 차별화되는가 — 명시적 dark 스타일링 (ui-card 없음) */}
-          <div className="mt-8 rounded-2xl border border-white/[0.09] bg-white/[0.04] p-6">
+          {/* 왜 차별화되는가 */}
+          <div className="mt-8 p-6" style={INFO_BOX_STYLE}>
             <p className="text-sm font-semibold text-white">왜 차별화되는가</p>
             <p className="mt-3 text-sm leading-7 text-white/60">
               대부분의 AI 포트폴리오가 모델 중심이라면, 이 포트폴리오는 실제
@@ -99,8 +175,8 @@ export default function AiLab() {
             </p>
           </div>
 
-          {/* Forward Plan — 번호가 있는 step */}
-          <div className="mt-5 rounded-2xl border border-blue-500/20 bg-blue-600/[0.07] p-6">
+          {/* Forward Plan */}
+          <div className="mt-5 p-6" style={FORWARD_PLAN_STYLE}>
             <div className="mb-4 flex items-center gap-2">
               <CheckCircle2 size={14} className="text-blue-300" />
               <p className="text-sm font-semibold text-blue-200">Forward Plan</p>
@@ -108,9 +184,7 @@ export default function AiLab() {
             <div className="space-y-3">
               {roadmap.map(({ step, text }) => (
                 <div key={step} className="flex items-start gap-3">
-                  <span className="mt-px shrink-0 rounded bg-blue-500/25 px-1.5 py-0.5 font-mono text-[10px] font-bold text-blue-300">
-                    {step}
-                  </span>
+                  <span style={STEP_BADGE_STYLE}>{step}</span>
                   <p className="text-sm leading-6 text-white/65">{text}</p>
                 </div>
               ))}
@@ -121,22 +195,19 @@ export default function AiLab() {
         {/* ── 오른쪽 컬럼 — 트랙 카드 ── */}
         <div className="space-y-4">
           {currentTracks.map(
-            ({ Icon, title, input, process, output, tag, tagClass }) => (
-              <div
-                key={title}
-                // glassmorphism dark card — ui-card 클래스 미사용
-                className="rounded-2xl border border-white/[0.09] bg-white/[0.05] p-5 backdrop-blur-sm"
-              >
+            ({ Icon, title, input, process, output, tag, tagStyle }) => (
+              <div key={title} className="p-5" style={CARD_STYLE}>
                 {/* 카드 헤더 */}
                 <div className="mb-4 flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-500/20">
+                    <span style={ICON_WRAP_STYLE}>
                       <Icon size={15} className="text-blue-300" />
                     </span>
                     <p className="text-sm font-semibold text-white">{title}</p>
                   </div>
                   <span
-                    className={`shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${tagClass}`}
+                    className="shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-semibold"
+                    style={tagStyle}
                   >
                     {tag}
                   </span>
@@ -160,8 +231,11 @@ export default function AiLab() {
                         className="mx-auto mt-4 shrink-0 text-white/25"
                       />
                     ) : (
-                      <div key={i} className="rounded-xl bg-white/[0.06] p-3">
-                        <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-white/35">
+                      <div key={i} style={PIPELINE_CELL_STYLE}>
+                        <p
+                          className="mb-1 text-[10px] font-semibold uppercase tracking-wider"
+                          style={{ color: "rgba(255,255,255,0.35)" }}
+                        >
                           {col.label}
                         </p>
                         <p className="text-xs leading-5 text-white/80">
