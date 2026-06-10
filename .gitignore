@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Python automation
+__pycache__/
+*.pyc
+.venv/
+venv/
+automation/.env
+
+# Claude Code 로컬 설정(머신별 권한 등)
+.claude/settings.local.json
