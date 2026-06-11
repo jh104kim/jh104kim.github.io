@@ -37,7 +37,7 @@ export type CareerItem = {
 
 export const career: CareerItem[] = [
   {
-    period: "2024.02 ~ 현재",
+    period: "2024.09 ~ 현재",
     role: "AI Crew Leader",
     company: "삼성전자 DA사업부",
     description: "AI 업무자동화 및 GT-Suite 시뮬레이션 자동화 추진",
@@ -46,7 +46,7 @@ export const career: CareerItem[] = [
     isCurrent: true,
   },
   {
-    period: "2021.02 ~ 2023.12",
+    period: "2022.01 ~ 2024.08",
     role: "C&M 개발그룹장",
     company: "삼성전자 DA사업부",
     description: "신모델 개발 로드맵 수립 및 실행, 외판 확대",

@@ -12,7 +12,7 @@ export const leadershipStories: LeadershipStory[] = [
   {
     id: "cm-dev-lead",
     title: "C&M 개발그룹장 — 로드맵 실행과 외판 확대",
-    period: "2021.02 ~ 2023.12",
+    period: "2022.01 ~ 2024.08",
     scope: "개발 일정/성능 목표/사업 확장 요구를 동시에 만족하는 조직 운영",
     actions: [
       "신모델 개발 우선순위를 재정렬하고 리소스를 재배치",
