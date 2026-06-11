@@ -4,12 +4,23 @@ import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { ChevronDown } from "lucide-react";
 import { useLang } from "@/lib/i18n";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
 
-const stats = [
-  { value: "26년", valueEn: "26 yrs", label: "경력", labelEn: "Experience" },
-  { value: "7편", valueEn: "7", label: "발표", labelEn: "Papers" },
-  { value: "360억", valueEn: "₩36B", label: "Sales", labelEn: "Sales" },
-  { value: "AI Crew", valueEn: "AI Crew", label: "리딩", labelEn: "Leading" },
+type CounterStat = {
+  type: "counter";
+  ko: { target: number; suffix?: string; prefix?: string };
+  en: { target: number; suffix?: string; prefix?: string };
+  labelKo: string;
+  labelEn: string;
+};
+type TextStat = { type: "text"; ko: string; en: string; labelKo: string; labelEn: string };
+type Stat = CounterStat | TextStat;
+
+const stats: Stat[] = [
+  { type: "counter", ko: { target: 26, suffix: "년" },  en: { target: 26, suffix: " yrs" }, labelKo: "경력",  labelEn: "Experience" },
+  { type: "counter", ko: { target: 7,  suffix: "편" },  en: { target: 7  },                  labelKo: "발표",  labelEn: "Papers" },
+  { type: "counter", ko: { target: 360, suffix: "억" }, en: { target: 36, prefix: "₩", suffix: "B" }, labelKo: "Sales", labelEn: "Sales" },
+  { type: "text",    ko: "AI Crew",                     en: "AI Crew",                       labelKo: "리딩",  labelEn: "Leading" },
 ];
 
 const techGrid = [
@@ -114,16 +125,26 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.52 }}
             className="mt-12 grid max-w-2xl grid-cols-2 gap-4 md:grid-cols-4"
           >
-            {stats.map(({ value, valueEn, label, labelEn }) => (
-              <div key={label} className="ui-card bg-white/80 px-4 py-4 backdrop-blur-sm">
-                <div className="kpi-value font-extrabold text-[#1428a0]">
-                  {lang === "en" ? valueEn : value}
+            {stats.map((stat) => {
+              const labelText = lang === "en" ? stat.labelEn : stat.labelKo;
+              return (
+                <div key={stat.labelKo} className="ui-card bg-white/80 px-4 py-4 backdrop-blur-sm">
+                  <div className="kpi-value font-extrabold text-[#1428a0]">
+                    {stat.type === "counter" ? (
+                      <AnimatedCounter
+                        target={lang === "en" ? stat.en.target : stat.ko.target}
+                        suffix={lang === "en" ? stat.en.suffix : stat.ko.suffix}
+                        prefix={lang === "en" ? stat.en.prefix : stat.ko.prefix}
+                        duration={1800}
+                      />
+                    ) : (
+                      lang === "en" ? stat.en : stat.ko
+                    )}
+                  </div>
+                  <div className="mt-1 text-xs text-gray-500">{labelText}</div>
                 </div>
-                <div className="mt-1 text-xs text-gray-500">
-                  {lang === "en" ? labelEn : label}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </motion.div>
 
           <motion.p
