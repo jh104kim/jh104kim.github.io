@@ -13,7 +13,7 @@ export const papers: Paper[] = [
   {
     id: "p1",
     title: "Acoustic prediction for recipro comp",
-    url: "http://nosion.io",
+    url: "https://www.notion.so/vita-0bc7ea7f5c5a83c882838195c39d45fd",
     date: "2006.02",
     country: "한국",
     venue: "GIST 졸업논문",
@@ -23,7 +23,7 @@ export const papers: Paper[] = [
   {
     id: "p2",
     title: "Journal bearing tribology design",
-    url: "https://www.instagram.com/nosion.notion/",
+    url: "https://www.notion.so/vita-0bc7ea7f5c5a83c882838195c39d45fd",
     date: "2008.06",
     country: "미국",
     venue: "기계학회",
@@ -33,7 +33,7 @@ export const papers: Paper[] = [
   {
     id: "p3",
     title: "FSI for valve dynamics",
-    url: "http://nosion.io",
+    url: "https://www.notion.so/vita-0bc7ea7f5c5a83c882838195c39d45fd",
     date: "2010.07",
     country: "체코",
     venue: "Purdue (IIR)",

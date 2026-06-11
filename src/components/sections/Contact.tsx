@@ -1,6 +1,9 @@
+"use client";
+
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { profile } from "@/data/profile";
 import { Download, ExternalLink } from "lucide-react";
+import { useLang } from "@/lib/i18n";
 
 const contactLinks = [
   {
@@ -41,6 +44,8 @@ const inquiryTypes = [
 ];
 
 export default function Contact() {
+  const { tr } = useLang();
+
   return (
     <SectionWrapper
       id="contact"
@@ -53,11 +58,16 @@ export default function Contact() {
               Contact
             </p>
             <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
-              기술 대화가 필요한 곳에 바로 연결됩니다
+              {tr(
+                "기술 대화가 필요한 곳에 바로 연결됩니다",
+                "A direct line for technical conversations",
+              )}
             </h2>
             <p className="section-copy mt-4 text-base text-gray-600 leading-8">
-              압축기 엔지니어링, AI 자동화, 시뮬레이션 기반 개발 협업에 대해
-              이야기할 수 있습니다. 채용, 발표, 기술 교류 제안 모두 환영합니다.
+              {tr(
+                "압축기 엔지니어링, AI 자동화, 시뮬레이션 기반 개발 협업에 대해 이야기할 수 있습니다. 채용, 발표, 기술 교류 제안 모두 환영합니다.",
+                "Open to discussing compressor engineering, AI automation, and simulation-driven development. Hiring, speaking, and technical exchange inquiries are all welcome.",
+              )}
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               {inquiryTypes.map((type) => (

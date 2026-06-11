@@ -1,3 +1,5 @@
+"use client";
+
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import SkillBar from "@/components/ui/SkillBar";
 import Timeline from "@/components/ui/Timeline";
@@ -8,8 +10,10 @@ import {
   languages as languageSkills,
 } from "@/data/career";
 import { categoryLabels, skills } from "@/data/skills";
+import { useLang } from "@/lib/i18n";
 
 export default function About() {
+  const { tr } = useLang();
   const groupedSkills = Object.entries(categoryLabels).map(([key, label]) => ({
     label,
     items: skills.filter((skill) => skill.category === key),
@@ -24,7 +28,10 @@ export default function About() {
               About
             </p>
             <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
-              엔지니어링과 자동화를 하나의 가치로 연결합니다
+              {tr(
+                "엔지니어링과 자동화를 하나의 가치로 연결합니다",
+                "Linking engineering and automation into a single value",
+              )}
             </h2>
             <div className="section-copy mt-5 space-y-3 text-base leading-8 text-gray-600">
               <p>

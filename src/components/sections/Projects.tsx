@@ -1,6 +1,9 @@
+"use client";
+
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import ProjectCard from "@/components/ui/ProjectCard";
 import { projects } from "@/data/projects";
+import { useLang } from "@/lib/i18n";
 
 const metrics = [
   { label: "대표 프로젝트", value: "6" },
@@ -10,6 +13,8 @@ const metrics = [
 ];
 
 export default function Projects() {
+  const { tr } = useLang();
+
   return (
     <SectionWrapper id="projects" className="bg-gray-50">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -18,11 +23,16 @@ export default function Projects() {
             프로젝트
           </p>
           <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
-            Compressor engineering 성과를 사업 임팩트로 연결한 프로젝트들
+            {tr(
+              "Compressor engineering 성과를 사업 임팩트로 연결한 프로젝트들",
+              "Projects that turned compressor engineering into business impact",
+            )}
           </h2>
           <p className="section-copy mt-4 text-base text-gray-600 leading-8">
-            친환경 냉매 대응, BLDC 전환, 일본 고객 대응, 조직 리딩, AI
-            자동화까지 각 프로젝트를 카드 중심으로 정리했습니다.
+            {tr(
+              "친환경 냉매 대응, BLDC 전환, 일본 고객 대응, 조직 리딩, AI 자동화까지 각 프로젝트를 카드 중심으로 정리했습니다.",
+              "From eco-friendly refrigerants and the BLDC transition to Japanese accounts, team leadership, and AI automation — organized as project cards.",
+            )}
           </p>
         </div>
 

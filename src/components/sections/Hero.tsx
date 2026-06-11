@@ -3,12 +3,13 @@
 import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { ChevronDown } from "lucide-react";
+import { useLang } from "@/lib/i18n";
 
 const stats = [
-  { value: "26년", label: "경력" },
-  { value: "7편", label: "발표" },
-  { value: "360억", label: "Sales" },
-  { value: "AI Crew", label: "리딩" },
+  { value: "26년", valueEn: "26 yrs", label: "경력", labelEn: "Experience" },
+  { value: "7편", valueEn: "7", label: "발표", labelEn: "Papers" },
+  { value: "360억", valueEn: "₩36B", label: "Sales", labelEn: "Sales" },
+  { value: "AI Crew", valueEn: "AI Crew", label: "리딩", labelEn: "Leading" },
 ];
 
 const techGrid = [
@@ -24,6 +25,8 @@ const techGrid = [
 ];
 
 export default function Hero() {
+  const { lang, tr } = useLang();
+
   return (
     <section
       id="hero"
@@ -79,7 +82,10 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.28 }}
             className="section-copy mt-5 text-base text-gray-600 md:text-lg"
           >
-            26년 압축기 개발 경험을 AI 자동화와 연결해 실무 성과로 전환하는 엔지니어입니다.
+            {tr(
+              "26년 압축기 개발 경험을 AI 자동화와 연결해 실무 성과로 전환하는 엔지니어입니다.",
+              "An engineer turning 26 years of compressor development into real-world results through AI automation.",
+            )}
           </motion.p>
 
           <motion.div
@@ -92,13 +98,13 @@ export default function Hero() {
               href="#projects"
               className="rounded-xl bg-[#1428a0] px-7 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1428a0]/90 hover:shadow-lg hover:shadow-[#1428a0]/20"
             >
-              프로젝트 보기
+              {tr("프로젝트 보기", "View Projects")}
             </a>
             <a
               href="#contact"
               className="rounded-xl border border-gray-200 px-7 py-3 text-sm font-semibold text-gray-700 transition-all hover:-translate-y-0.5 hover:border-gray-300 hover:bg-gray-50"
             >
-              연락하기
+              {tr("연락하기", "Contact")}
             </a>
           </motion.div>
 
@@ -108,10 +114,14 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.52 }}
             className="mt-12 grid max-w-2xl grid-cols-2 gap-4 md:grid-cols-4"
           >
-            {stats.map(({ value, label }) => (
+            {stats.map(({ value, valueEn, label, labelEn }) => (
               <div key={label} className="ui-card bg-white/80 px-4 py-4 backdrop-blur-sm">
-                <div className="kpi-value font-extrabold text-[#1428a0]">{value}</div>
-                <div className="mt-1 text-xs text-gray-500">{label}</div>
+                <div className="kpi-value font-extrabold text-[#1428a0]">
+                  {lang === "en" ? valueEn : value}
+                </div>
+                <div className="mt-1 text-xs text-gray-500">
+                  {lang === "en" ? labelEn : label}
+                </div>
               </div>
             ))}
           </motion.div>
@@ -122,7 +132,12 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.7 }}
             className="mt-10 text-sm italic text-gray-400"
           >
-            &ldquo;{profile.quote}&rdquo;
+            &ldquo;
+            {tr(
+              profile.quote,
+              "I divide the world to draw its boundaries; AI stitches the solutions between them.",
+            )}
+            &rdquo;
           </motion.p>
         </div>
 

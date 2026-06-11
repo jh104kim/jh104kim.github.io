@@ -10,6 +10,21 @@ type Message = {
   content: string;
 };
 
+// Cloudflare Worker 배포 후 빌드 시 주입 (예: https://portfolio-chat.<account>.workers.dev)
+const CHAT_API_URL = process.env.NEXT_PUBLIC_CHAT_API_URL ?? "";
+
+async function remoteAnswer(history: Message[]): Promise<string> {
+  const res = await fetch(CHAT_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ messages: history }),
+  });
+  if (!res.ok) throw new Error(`chat api ${res.status}`);
+  const data = (await res.json()) as { answer?: string };
+  if (!data.answer) throw new Error("empty answer");
+  return data.answer;
+}
+
 const starterQuestions = [
   "이 포트폴리오의 핵심 강점은?",
   "압축기 개발 프로젝트 중 대표 성과는?",
@@ -52,8 +67,16 @@ export default function AiChat() {
     setLoading(true);
 
     try {
-      await new Promise((r) => setTimeout(r, 60));
-      const answer = localPortfolioAnswer(prompt);
+      let answer: string;
+      if (CHAT_API_URL) {
+        // 원격 LLM(Workers AI) 우선, 실패 시 로컬 응답으로 자동 폴백
+        answer = await remoteAnswer(nextMessages).catch(() =>
+          localPortfolioAnswer(prompt),
+        );
+      } else {
+        await new Promise((r) => setTimeout(r, 60));
+        answer = localPortfolioAnswer(prompt);
+      }
       setMessages([...nextMessages, { role: "assistant", content: answer }]);
     } catch {
       setMessages((current) => [
@@ -95,7 +118,10 @@ export default function AiChat() {
                       Portfolio AI Chat
                     </p>
                     <p className="text-xs text-gray-500">
-                      {profile.name} · 포트폴리오 기반 정적 응답
+                      {profile.name} ·{" "}
+                      {CHAT_API_URL
+                        ? "Workers AI 실시간 응답"
+                        : "포트폴리오 기반 정적 응답"}
                     </p>
                   </div>
                 </div>

@@ -4,8 +4,12 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import { STATIC_EXIT_KEY } from "@/lib/static-hobby-exit";
+import { LanguageProvider } from "@/lib/i18n";
+
+const SITE_URL = "https://jh104kim.github.io";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "김정현 | Compressor & AI Engineering Portfolio",
   description:
     "삼성전자 DA사업부 AI Crew Leader. 26년 압축기 엔지니어링 + AI 자동화 전문가. R600a BLDC 최초 개발, 일본 Sales 360억 달성.",
@@ -23,12 +27,46 @@ export const metadata: Metadata = {
     title: "김정현 | Compressor & AI Engineering Portfolio",
     description: "삼성전자 DA사업부 AI Crew Leader. 기술 + AI 융합 전문가.",
     type: "website",
+    url: SITE_URL,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "김정현 — Compressor Engineering + AI Automation",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "김정현 | Compressor & AI Engineering Portfolio",
     description: "압축기 도메인 × AI 자동화로 실무 성과를 만드는 포트폴리오",
+    images: ["/og-image.png"],
   },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "김정현",
+  alternateName: "Junghyun Kim",
+  jobTitle: "AI Crew Leader",
+  worksFor: {
+    "@type": "Organization",
+    name: "Samsung Electronics DA Division",
+  },
+  url: SITE_URL,
+  email: "mailto:jh104.kim@gmail.com",
+  sameAs: [
+    "https://github.com/jh104kim",
+    "https://www.notion.so/vita-0bc7ea7f5c5a83c882838195c39d45fd",
+  ],
+  knowsAbout: [
+    "Compressor Engineering",
+    "GT-Suite Simulation",
+    "Fluid-Structure Interaction",
+    "AI Automation",
+  ],
 };
 
 const bfcacheReloadSnippet = `
@@ -56,10 +94,16 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{ __html: bfcacheReloadSnippet }}
         />
-        <ScrollProgress />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <LanguageProvider>
+          <ScrollProgress />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

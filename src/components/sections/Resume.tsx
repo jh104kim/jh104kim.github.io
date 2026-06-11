@@ -3,9 +3,11 @@
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { profile } from "@/data/profile";
 import { Download, Mail, ExternalLink } from "lucide-react";
+import { useLang } from "@/lib/i18n";
 
 export default function Resume() {
   const hasLinkedIn = profile.linkedin.trim().length > 0;
+  const { tr } = useLang();
 
   return (
     <SectionWrapper id="resume" className="bg-white">
@@ -16,11 +18,16 @@ export default function Resume() {
               Resume
             </p>
             <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
-              이력서/요약 자료를 한 번에 확인할 수 있습니다
+              {tr(
+                "이력서/요약 자료를 한 번에 확인할 수 있습니다",
+                "Resume and summary materials in one place",
+              )}
             </h2>
             <p className="section-copy mt-4 text-base text-gray-600 leading-8">
-              채용 담당자 관점에서 빠르게 검토할 수 있도록 PDF 다운로드와 핵심
-              요약을 제공합니다. 협업 문의는 이메일로 바로 연결됩니다.
+              {tr(
+                "채용 담당자 관점에서 빠르게 검토할 수 있도록 PDF 다운로드와 핵심 요약을 제공합니다. 협업 문의는 이메일로 바로 연결됩니다.",
+                "A PDF download and key summary for quick recruiter review. Collaboration inquiries go straight to email.",
+              )}
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">

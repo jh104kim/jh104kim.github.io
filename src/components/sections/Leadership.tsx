@@ -2,8 +2,11 @@
 
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { leadershipStories } from "@/data/leadership";
+import { useLang } from "@/lib/i18n";
 
 export default function Leadership() {
+  const { tr } = useLang();
+
   return (
     <SectionWrapper id="leadership" className="bg-gray-50">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -12,11 +15,16 @@ export default function Leadership() {
             Leadership
           </p>
           <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
-            조직 운영과 실행력을 성과로 연결한 리더십
+            {tr(
+              "조직 운영과 실행력을 성과로 연결한 리더십",
+              "Leadership that converts organizational execution into results",
+            )}
           </h2>
           <p className="section-copy mt-4 text-base text-gray-600 leading-8">
-            프로젝트(기술 성과)와 별개로, 일정/품질/조직 운영을 안정화한 리더십
-            사례를 요약했습니다.
+            {tr(
+              "프로젝트(기술 성과)와 별개로, 일정/품질/조직 운영을 안정화한 리더십 사례를 요약했습니다.",
+              "Beyond technical achievements — leadership cases stabilizing schedules, quality, and team operations.",
+            )}
           </p>
         </div>
       </div>

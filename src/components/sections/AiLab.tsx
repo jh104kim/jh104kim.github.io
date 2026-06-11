@@ -2,6 +2,8 @@
 
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { Zap, Cpu, GitBranch, LayoutDashboard, PieChart, ArrowRight, CheckCircle2, GitFork, ExternalLink } from "lucide-react";
+import { useLang } from "@/lib/i18n";
+import SurrogateDemo from "@/components/ui/SurrogateDemo";
 
 // ── 데이터 ─────────────────────────────────────────────────────────────────
 
@@ -171,6 +173,8 @@ const LINK_BTN_STYLE: React.CSSProperties = {
 // ── 컴포넌트 ───────────────────────────────────────────────────────────────
 
 export default function AiLab() {
+  const { tr } = useLang();
+
   return (
     <SectionWrapper
       id="ai-lab"
@@ -189,11 +193,16 @@ export default function AiLab() {
             AI Lab
           </p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
-            엔지니어링 시뮬레이션을 AI 플랫폼으로 확장하는 실험실
+            {tr(
+              "엔지니어링 시뮬레이션을 AI 플랫폼으로 확장하는 실험실",
+              "A lab extending engineering simulation into an AI platform",
+            )}
           </h2>
           <p className="mt-4 max-w-[56ch] text-base leading-8 text-white/65">
-            압축기 개발 경험을 바탕으로 Simulation + AI + Automation을
-            묶어내는 방향성을 보여주기 위한 공간입니다.
+            {tr(
+              "압축기 개발 경험을 바탕으로 Simulation + AI + Automation을 묶어내는 방향성을 보여주기 위한 공간입니다.",
+              "A space showing how compressor-domain experience binds Simulation + AI + Automation together.",
+            )}
           </p>
 
           {/* 미니 지표 */}
@@ -308,6 +317,11 @@ export default function AiLab() {
             ),
           )}
         </div>
+      </div>
+
+      {/* Surrogate Modeling 인터랙티브 데모 */}
+      <div className="relative mt-10">
+        <SurrogateDemo />
       </div>
     </SectionWrapper>
   );

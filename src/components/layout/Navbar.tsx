@@ -1,18 +1,19 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { STATIC_EXIT_KEY } from "@/lib/static-hobby-exit";
+import { useLang } from "@/lib/i18n";
 
 const navLinks = [
-  { href: "#impact", label: "핵심 성과" },
-  { href: "#about", label: "소개" },
-  { href: "#projects", label: "프로젝트" },
-  { href: "#research", label: "연구" },
-  { href: "#ai-lab", label: "AI Lab" },
-  { href: "#leadership", label: "리더십" },
-  { href: "#resume", label: "이력서" },
+  { href: "#impact", ko: "핵심 성과", en: "Highlights" },
+  { href: "#about", ko: "소개", en: "About" },
+  { href: "#projects", ko: "프로젝트", en: "Projects" },
+  { href: "#research", ko: "연구", en: "Research" },
+  { href: "#ai-lab", ko: "AI Lab", en: "AI Lab" },
+  { href: "#leadership", ko: "리더십", en: "Leadership" },
+  { href: "#resume", ko: "이력서", en: "Resume" },
 ];
 
 export default function Navbar() {
@@ -22,6 +23,8 @@ export default function Navbar() {
   const [mobileHobbyOpen, setMobileHobbyOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const hobbyRef = useRef<HTMLLIElement>(null);
+  const { lang, setLang, tr } = useLang();
+  const toggleLang = () => setLang(lang === "ko" ? "en" : "ko");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -104,13 +107,13 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <ul className="hidden md:flex items-center gap-1">
-            {navLinks.map(({ href, label }) => (
+            {navLinks.map(({ href, ko, en }) => (
               <li key={href}>
                 <a
                   href={href}
                   className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#1428a0] hover:bg-[#1428a0]/5 rounded-lg transition-colors"
                 >
-                  {label}
+                  {tr(ko, en)}
                 </a>
               </li>
             ))}
@@ -167,11 +170,22 @@ export default function Navbar() {
               )}
             </li>
             <li>
+              <button
+                type="button"
+                onClick={toggleLang}
+                className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#1428a0] hover:bg-[#1428a0]/5 rounded-lg transition-colors"
+                aria-label={tr("영어로 전환", "Switch to Korean")}
+              >
+                <Globe size={14} />
+                {lang === "ko" ? "EN" : "KO"}
+              </button>
+            </li>
+            <li>
               <a
                 href="mailto:jh104.kim@gmail.com"
                 className="ml-2 px-4 py-2 text-sm font-medium bg-[#1428a0] text-white rounded-lg hover:bg-[#1428a0]/90 transition-colors"
               >
-                연락하기
+                {tr("연락하기", "Contact")}
               </a>
             </li>
           </ul>
@@ -190,17 +204,27 @@ export default function Navbar() {
         {mobileOpen && (
           <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
             <ul className="flex flex-col py-2">
-              {navLinks.map(({ href, label }) => (
+              {navLinks.map(({ href, ko, en }) => (
                 <li key={href}>
                   <a
                     href={href}
                     onClick={handleLinkClick}
                     className="block px-6 py-3 text-sm font-medium text-gray-700 hover:text-[#1428a0] hover:bg-gray-50 transition-colors"
                   >
-                    {label}
+                    {tr(ko, en)}
                   </a>
                 </li>
               ))}
+              <li>
+                <button
+                  type="button"
+                  onClick={toggleLang}
+                  className="flex w-full items-center gap-2 px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  <Globe size={14} />
+                  {lang === "ko" ? "English" : "한국어"}
+                </button>
+              </li>
               <li>
                 <button
                   type="button"
@@ -248,7 +272,7 @@ export default function Navbar() {
                   onClick={handleLinkClick}
                   className="block w-full text-center px-4 py-2.5 text-sm font-medium bg-[#1428a0] text-white rounded-lg"
                 >
-                  이메일 보내기
+                  {tr("이메일 보내기", "Send Email")}
                 </a>
               </li>
             </ul>

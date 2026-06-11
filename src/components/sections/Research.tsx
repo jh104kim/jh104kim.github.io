@@ -4,6 +4,7 @@ import SectionWrapper from "@/components/ui/SectionWrapper";
 import PaperCard from "@/components/ui/PaperCard";
 import { papers } from "@/data/research";
 import { useMemo, useState } from "react";
+import { useLang } from "@/lib/i18n";
 
 const researchAxes = [
   { title: "Valve Dynamics", badge: "RESEARCH AXIS 01" },
@@ -13,6 +14,7 @@ const researchAxes = [
 
 export default function Research() {
   const [showAll, setShowAll] = useState(false);
+  const { tr } = useLang();
 
   const { featured, rest } = useMemo(() => {
     const publishedPapers = papers.filter((paper) => paper.status === "published");
@@ -36,12 +38,16 @@ export default function Research() {
             연구
           </p>
           <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
-            FSI, GT-Suite, 시스템 해석을 바탕으로 축적한 연구 자산
+            {tr(
+              "FSI, GT-Suite, 시스템 해석을 바탕으로 축적한 연구 자산",
+              "Research assets built on FSI, GT-Suite, and system-level analysis",
+            )}
           </h2>
           <p className="section-copy mt-4 text-base text-gray-600 leading-8">
-            GIST 연구부터 Purdue, ANSYS, ATIS까지 이어지는 발표 이력은
-            시뮬레이션 역량이 현업 프로젝트와 직접 연결돼 있다는 점을
-            보여줍니다.
+            {tr(
+              "GIST 연구부터 Purdue, ANSYS, ATIS까지 이어지는 발표 이력은 시뮬레이션 역량이 현업 프로젝트와 직접 연결돼 있다는 점을 보여줍니다.",
+              "Publications spanning GIST, Purdue, ANSYS, and ATIS show that simulation capability connects directly to production projects.",
+            )}
           </p>
 
           <div className="mt-6 space-y-3">

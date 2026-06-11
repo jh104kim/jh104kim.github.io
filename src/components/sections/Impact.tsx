@@ -2,8 +2,11 @@
 
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { highlights, narrativeSummary } from "@/data/highlights";
+import { useLang } from "@/lib/i18n";
 
 export default function Impact() {
+  const { tr } = useLang();
+
   return (
     <SectionWrapper id="impact" className="bg-white">
       <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
@@ -12,7 +15,10 @@ export default function Impact() {
             Highlights
           </p>
           <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
-            도메인 전문성과 AI 자동화를 하나의 강점으로 연결합니다
+            {tr(
+              "도메인 전문성과 AI 자동화를 하나의 강점으로 연결합니다",
+              "Connecting domain expertise and AI automation into one strength",
+            )}
           </h2>
           <div className="section-copy mt-4 space-y-3 text-base leading-8 text-gray-600">
             {narrativeSummary.map((line) => (

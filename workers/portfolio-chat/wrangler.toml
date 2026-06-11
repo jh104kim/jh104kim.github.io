@@ -1,0 +1,7 @@
+name = "portfolio-chat"
+main = "src/index.js"
+compatibility_date = "2026-06-01"
+
+# Workers AI 바인딩 (무료 티어로 Llama 3.1 8B 사용 가능)
+[ai]
+binding = "AI"

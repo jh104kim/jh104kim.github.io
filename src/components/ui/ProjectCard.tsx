@@ -3,6 +3,7 @@
 import { Project, categoryColors, categoryLabels } from "@/data/projects";
 import { HoverCardMotion } from "@/components/ui/MotionPrimitives";
 import { Lock, ExternalLink, GitFork } from "lucide-react";
+import { useLang } from "@/lib/i18n";
 
 interface ProjectCardProps {
   project: Project;
@@ -10,6 +11,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+  const { lang } = useLang();
   const colors = categoryColors[project.category];
   const hasLinks = project.githubUrl || project.demoUrl;
 
@@ -35,7 +37,7 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
 
       <div>
         <h3 className="text-lg font-bold text-gray-900 leading-snug mb-1">
-          {project.title}
+          {lang === "en" ? project.titleEn : project.title}
         </h3>
         <p className="text-sm font-semibold text-[#1428a0]">{project.achievement}</p>
       </div>
@@ -53,7 +55,7 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       <div className="pt-2 border-t border-gray-50 space-y-2">
         <div>
           <div className="flex items-center justify-between mb-1">
-            <span className="text-xs text-gray-400">기여도</span>
+            <span className="text-xs text-gray-400">기여도 (담당 파트 기준)</span>
             <span className="text-xs font-semibold text-gray-700">
               {project.contribution}%
             </span>

@@ -61,6 +61,8 @@ jobs:
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
+          # Pages가 아직 Actions 모드로 활성화되지 않은 경우 자동 활성화 시도
+          enablement: true
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -75,6 +77,9 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        env:
+          # 레포 Variables에 NEXT_PUBLIC_CHAT_API_URL 설정 시 Workers AI 챗봇 활성화
+          NEXT_PUBLIC_CHAT_API_URL: ${{ vars.NEXT_PUBLIC_CHAT_API_URL }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
