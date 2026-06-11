@@ -85,7 +85,7 @@ export const skills: Skill[] = [
     name: "6 Sigma BB",
     level: 5,
     category: "engineering",
-    description: "소음 불량률 3.2%→0.4% · 원가 12억 절감",
+    description: "BLDC 신규 부품 적합성 평가 · 원가 12억 절감",
   },
   // Office
   {
@@ -115,8 +115,4 @@ export const categoryLabels: Record<Skill["category"], string> = {
   office: "Office / 협업",
 };
 
-export const languages = [
-  { name: "한국어", level: 5, note: "Native" },
-  { name: "영어", level: 4, note: "Purdue · ICSV Conference 발표" },
-  { name: "일본어", level: 4, note: "JLPT 1급 · 北大 교환학생 · SEJ 근무" },
-];
+// languages 데이터는 src/data/career.ts에서 단일 관리 (About 섹션에서 사용)

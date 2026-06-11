@@ -49,13 +49,13 @@ export const projects: Project[] = [
     challenge:
       "기존 AC 플랫폼에서 효율과 제어 안정성을 동시에 확보하며 BLDC 전환을 완수해야 했습니다.",
     description:
-      "개발 멤버로 전환 핵심 이슈를 해결하며 시스템 안정성과 효율을 함께 고도화했습니다. 차세대 냉매 대응 플랫폼의 기술적 기반을 마련했습니다.",
+      "개발 멤버로 전환 핵심 이슈를 해결하며 시스템 안정성과 효율을 함께 고도화했습니다. 이후 6 Sigma BB 과제로 개발 단계별 신규 부품 적합성 평가를 수행해 소음 불량률 3.2%→0.4%, 원가 12억 절감, 시장 불량 3000ppm 개선을 달성했습니다.",
     role: "개발 멤버 — 전환 핵심 파트 전담",
     contribution: 100,
     startDate: "2007.08",
     endDate: "2008.11",
     impact: "AC to BLDC 최초 전환 완료",
-    technologies: ["BLDC", "System Integration", "Performance Tuning"],
+    technologies: ["BLDC", "System Integration", "6 Sigma"],
     category: "engineering",
     highlight: "✔ BLDC 압축기 최초 개발",
     year: "2007",
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     challenge:
       "기술 요구가 높은 일본 고객사와의 커뮤니케이션에서 영업과 기술 기준을 동시에 충족해야 했습니다.",
     description:
-      "도쿄 SRJ 근무 기간 동안 고객별 요구사항을 기술 언어로 정리해 의사결정 속도를 높였습니다. 영업 성과와 기술 신뢰를 동시에 확보하며 장기 거래 기반을 강화했습니다.",
+      "SEJ(도쿄 롯폰기·이이다바시) 근무 기간 동안 도시바·미츠비시·샤프와의 탑미팅을 주도하며 신규 Sales를 개시했습니다. 고객 요구사항을 기술 언어로 정리해 의사결정 속도를 높였고, 영업 성과와 기술 신뢰를 동시에 확보하며 큰 인정을 받았습니다.",
     role: "리더 / 영업",
     contribution: 80,
     startDate: "2015.04",
@@ -83,17 +83,17 @@ export const projects: Project[] = [
     id: "cm-quality",
     title: "C&M 품질그룹장",
     titleEn: "C&M Quality Group Leader",
-    achievement: "소음 불량률 3.2%→0.4% 개선, 원가 절감 12억, 시장 불량 3000ppm 개선",
+    achievement: "내외부 품질 대응 프로세스 안정화",
     challenge:
       "복합 이슈 대응과 재발 방지 체계를 동시에 구축해 조직 전체의 품질 신뢰도를 끌어올려야 했습니다.",
     description:
-      "6 Sigma BB 프로젝트로 냉장고 압축기 소음 불량률을 3.2%에서 0.4%로 낮추고 원가 12억을 절감했습니다. 신규 부품 적용 시 시장 불량 3000ppm을 개선하며 품질 안정화 문화를 정착시켰습니다.",
+      "품질 대응 체계를 표준화해 이슈 처리 리드타임을 단축하고 대응 일관성을 높였습니다. 조직 운영 관점에서 품질 안정화 문화를 정착시켰습니다.",
     role: "리더 / 품질",
     contribution: 100,
     startDate: "2019.03",
     endDate: "2021.12",
     impact: "내외부 품질대응 / 안정화",
-    technologies: ["Quality Management", "Root Cause Analysis", "6 Sigma"],
+    technologies: ["Quality Management", "Root Cause Analysis", "Process Standardization"],
     category: "quality",
     highlight: "✔ 품질 안정화 완수",
     year: "2019",

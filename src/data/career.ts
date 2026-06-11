@@ -64,8 +64,8 @@ export const career: CareerItem[] = [
   {
     period: "2015.04 ~ 2018.06",
     role: "Japan Sales Engineer",
-    company: "SRJ (도쿄 롯본기/이이다바시)",
-    description: "도시바 등 일본 주요 고객사 Sales Engineer 활동",
+    company: "SEJ (도쿄 롯폰기·이이다바시)",
+    description: "도시바·미츠비시·샤프 탑미팅 주도, 신규 Sales 개시",
     roleType: "sales",
     highlight: "360억",
   },
@@ -102,8 +102,27 @@ export const certifications = [
   "Data Science Lv.2 (사내)",
 ];
 
-export const languages = [
+export type Language = {
+  name: string;
+  level: number;
+  note: string;
+  detail?: string;
+};
+
+export const languages: Language[] = [
   { name: "한국어", level: 5, note: "Native" },
-  { name: "영어", level: 4, note: "IM High" },
-  { name: "일본어", level: 4, note: "SJPT 2급" },
+  {
+    name: "영어",
+    level: 4,
+    note: "IM High · Purdue 3회 발표",
+    detail:
+      "Purdue Conference 3회 발표를 통해 글로벌 연구 인맥을 쌓고, 실전 영어 역량을 크게 끌어올렸습니다.",
+  },
+  {
+    name: "일본어",
+    level: 4,
+    note: "JLPT 1급 · 北海道大 교환학생",
+    detail:
+      "SEJ(도쿄 롯폰기·이이다바시) 근무, 도시바·미츠비시·샤프 탑미팅 주도 — 시모노세키부터 아오모리까지 일본 전역 고객 대응.",
+  },
 ];

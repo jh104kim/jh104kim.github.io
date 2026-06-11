@@ -107,6 +107,11 @@ export default function About() {
                     </span>
                   </p>
                   <p className="mt-1 text-xs text-gray-500">{language.note}</p>
+                  {language.detail && (
+                    <p className="mt-2 text-xs leading-5 text-gray-500">
+                      {language.detail}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
