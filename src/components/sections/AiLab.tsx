@@ -70,6 +70,7 @@ const currentTracks: Track[] = [
       border: "1px solid rgba(96,165,250,0.25)",
     },
     githubUrl: "https://github.com/jh104kim/dashboard-junghyoun",
+    demoUrl: "https://sapporo-polar.vercel.app/",
   },
   {
     Icon: PieChart,
@@ -84,6 +85,7 @@ const currentTracks: Track[] = [
       border: "1px solid rgba(52,211,153,0.25)",
     },
     githubUrl: "https://github.com/jh104kim/pension-private-after-retirements",
+    demoUrl: "https://pension-private-after-retirements.vercel.app/",
   },
 ];
 
