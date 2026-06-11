@@ -172,6 +172,7 @@ export const projects: Project[] = [
     highlight: "✔ Personal Life OS 구축",
     year: "2026",
     githubUrl: "https://github.com/jh104kim/dashboard-junghyoun",
+    demoUrl: "https://sapporo-polar.vercel.app/",
     isPrivate: true,
   },
   {
@@ -193,6 +194,7 @@ export const projects: Project[] = [
     highlight: "✔ 연금 절세 시뮬레이터",
     year: "2026",
     githubUrl: "https://github.com/jh104kim/pension-private-after-retirements",
+    demoUrl: "https://pension-private-after-retirements.vercel.app/",
   },
 ];
 
