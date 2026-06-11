@@ -23,9 +23,9 @@ const currentTracks: Track[] = [
   {
     Icon: Zap,
     title: "AI Crew 자동화",
-    input: "반복 보고/정리/공유 업무",
-    process: "요약, 분류, 자동 문서화 흐름 설계",
-    output: "시간 절감과 반복성 축소",
+    input: "주간 보고·회의록·이슈 정리 원문",
+    process: "Claude/ChatGPT API 기반 자동 요약·분류·양식화 플로우",
+    output: "보고서 작성 시간 단축 + 내용 일관성·가독성 향상",
     tag: "운영 중",
     tagStyle: {
       background: "rgba(52,211,153,0.15)",
@@ -36,9 +36,9 @@ const currentTracks: Track[] = [
   {
     Icon: Cpu,
     title: "GT-Suite 시뮬레이션 자동화",
-    input: "해석 조건, 실행 스크립트, 결과 파일",
-    process: "자동 실행 및 결과 정리 파이프라인",
-    output: "엔지니어링 생산성 향상",
+    input: "해석 조건 파일(.gtp), 파라미터 배열, 운전 조건 범위",
+    process: "Python 스크립트로 자동 실행 → 결과 파싱 → CSV/Excel 정리",
+    output: "반복 해석 공수 절감 + 결과 보고서 자동 생성",
     tag: "운영 중",
     tagStyle: {
       background: "rgba(52,211,153,0.15)",

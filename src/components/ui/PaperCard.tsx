@@ -50,9 +50,14 @@ export default function PaperCard({ paper, index = 0 }: PaperCardProps) {
             {paper.title}
           </h3>
 
+          {paper.contribution && (
+            <p className="mt-1.5 text-xs leading-5 text-gray-500">
+              {paper.contribution}
+            </p>
+          )}
+
           <div className="mt-2 flex items-center gap-2 flex-wrap">
             <span className="text-xs text-gray-500">{paper.venue}</span>
-            <span className="text-xs text-gray-300">· index {index + 1}</span>
           </div>
         </div>
 
