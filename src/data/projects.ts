@@ -14,6 +14,9 @@ export type Project = {
   category: "engineering" | "leadership" | "ai" | "quality";
   highlight: string;
   year: string;
+  demoUrl?: string;
+  githubUrl?: string;
+  isPrivate?: boolean;
 };
 
 export const projects: Project[] = [
@@ -149,6 +152,47 @@ export const projects: Project[] = [
     category: "ai",
     highlight: "✔ AI Crew 자동화 추진",
     year: "2024",
+  },
+  {
+    id: "life-os-dashboard",
+    title: "Personal Life OS Dashboard",
+    titleEn: "Personal Life OS Dashboard",
+    achievement: "건강·자산·투자·소비를 하나의 화면에서 5초 내 파악",
+    challenge:
+      "Samsung Galaxy 기반 개인 데이터를 Supabase RLS로 안전하게 통합 관리하면서, 스크롤 없는 단일 뷰포트에 모든 핵심 지표를 담아야 했습니다.",
+    description:
+      "Next.js 15 + ECharts + Supabase 기반 개인 운영체계(Life OS). 건강(Samsung Health), 자산, 투자, 소비, 연금, 세금을 Two-Zone 대시보드로 통합. CSV fallback → Supabase 3단계 데이터 추상화 설계.",
+    role: "설계 / 구현",
+    contribution: 100,
+    startDate: "2026.05",
+    endDate: "현재",
+    impact: "Life OS 단일 화면 — 5초 상태 인지",
+    technologies: ["Next.js 15", "React 19", "ECharts", "Supabase", "TypeScript", "Tailwind"],
+    category: "ai",
+    highlight: "✔ Personal Life OS 구축",
+    year: "2026",
+    githubUrl: "https://github.com/jh104kim/dashboard-junghyoun",
+    isPrivate: true,
+  },
+  {
+    id: "pension-analyzer",
+    title: "은퇴 연금 분석 웹앱",
+    titleEn: "Retirement Pension Analyzer",
+    achievement: "9개 연금 상품 × 55~90세 절세 시나리오 통합 분석",
+    challenge:
+      "세금·건보료 계산 로직과 4개 절세 시나리오를 단일 뷰포트에서 실시간 비교하고, AI 챗봇으로 결과를 자연어로 해석할 수 있게 해야 했습니다.",
+    description:
+      "Vite + React 18 + Recharts 기반 은퇴 후 연금 수령 전략 분석 앱 (MVP 완성). IRP 분산 수령·국민연금 지연 수령 등 4개 시나리오 비교, 건보료 슬라이더 시뮬레이터, Cloudflare Workers AI 챗봇 탑재.",
+    role: "설계 / 구현",
+    contribution: 100,
+    startDate: "2026.06",
+    endDate: "현재",
+    impact: "연금 절세 시나리오 즉시 비교 가능",
+    technologies: ["Vite", "React 18", "Recharts", "Cloudflare Pages", "Workers AI", "Tailwind"],
+    category: "ai",
+    highlight: "✔ 연금 절세 시뮬레이터",
+    year: "2026",
+    githubUrl: "https://github.com/jh104kim/pension-private-after-retirements",
   },
 ];
 
