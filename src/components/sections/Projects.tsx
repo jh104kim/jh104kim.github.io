@@ -45,7 +45,9 @@ export default function Projects() {
               <p className="kpi-value font-bold text-[#1428a0]">
                 {metric.value}
               </p>
-              <p className="mt-1 text-xs text-gray-500">{metric.label}</p>
+              <p className="mt-1 text-xs whitespace-nowrap text-gray-500">
+                {metric.label}
+              </p>
             </div>
           ))}
         </div>

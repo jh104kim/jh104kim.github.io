@@ -50,6 +50,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   line-height: 1.7;
+  /* 한글이 단어 중간에서 줄바꿈되지 않도록 (어절 단위 줄바꿈) */
+  word-break: keep-all;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -80,9 +82,11 @@ section[id] {
 }
 
 .kpi-value {
-  font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
+  /* KPI 숫자("360억" 등)가 카드 안에서 두 줄로 꺾이지 않도록 */
+  white-space: nowrap;
 }
 
 .section-copy {
