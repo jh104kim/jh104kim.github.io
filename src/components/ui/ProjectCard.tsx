@@ -2,6 +2,7 @@
 
 import { Project, categoryColors, categoryLabels } from "@/data/projects";
 import { HoverCardMotion } from "@/components/ui/MotionPrimitives";
+import { Lock, ExternalLink, GitFork } from "lucide-react";
 
 interface ProjectCardProps {
   project: Project;
@@ -10,15 +11,25 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const colors = categoryColors[project.category];
+  const hasLinks = project.githubUrl || project.demoUrl;
 
   return (
     <HoverCardMotion className="ui-card flex h-full flex-col gap-4 p-6">
+      {/* 헤더: 카테고리 배지 + Private 배지 + 연도 */}
       <div className="flex items-start justify-between gap-2">
-        <span
-          className={`inline-block px-2.5 py-1 text-xs font-medium rounded-full border ${colors.bg} ${colors.text} ${colors.border}`}
-        >
-          {categoryLabels[project.category]}
-        </span>
+        <div className="flex items-center gap-2 flex-wrap">
+          <span
+            className={`inline-block px-2.5 py-1 text-xs font-medium rounded-full border ${colors.bg} ${colors.text} ${colors.border}`}
+          >
+            {categoryLabels[project.category]}
+          </span>
+          {project.isPrivate && (
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full border bg-gray-100 text-gray-500 border-gray-200">
+              <Lock size={10} />
+              Private
+            </span>
+          )}
+        </div>
         <span className="text-xs text-gray-400 shrink-0">{project.year}</span>
       </div>
 
@@ -72,6 +83,34 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             </span>
           ))}
         </div>
+
+        {/* GitHub / Demo 링크 버튼 */}
+        {hasLinks && (
+          <div className="flex gap-2 pt-2">
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition-colors"
+              >
+                <GitFork size={12} />
+                GitHub
+              </a>
+            )}
+            {project.demoUrl && (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-[#1428a0]/20 bg-[#1428a0]/5 text-[#1428a0] hover:bg-[#1428a0]/10 transition-colors"
+              >
+                <ExternalLink size={12} />
+                Live Demo
+              </a>
+            )}
+          </div>
+        )}
       </div>
 
       <span className="sr-only">index: {index}</span>
