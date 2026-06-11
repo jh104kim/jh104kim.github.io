@@ -1,7 +1,7 @@
 "use client";
 
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import { Zap, Cpu, GitBranch, LayoutDashboard, PieChart, ArrowRight, CheckCircle2, GitFork, ExternalLink } from "lucide-react";
+import { Zap, Cpu, GitBranch, ArrowRight, CheckCircle2 } from "lucide-react";
 
 // ── 데이터 ─────────────────────────────────────────────────────────────────
 
@@ -12,9 +12,8 @@ type Track = {
   process: string;
   output: string;
   tag: string;
+  /** 뱃지 스타일: Tailwind 동적 클래스 대신 inline style로 처리(JIT 스캔 누락 방지) */
   tagStyle: React.CSSProperties;
-  githubUrl?: string;
-  demoUrl?: string;
 };
 
 const currentTracks: Track[] = [
@@ -57,34 +56,6 @@ const currentTracks: Track[] = [
       border: "1px solid rgba(96,165,250,0.25)",
     },
   },
-  {
-    Icon: LayoutDashboard,
-    title: "Personal Life OS Dashboard",
-    input: "건강·자산·투자·소비 데이터",
-    process: "Next.js 15 + ECharts + Supabase Two-Zone 대시보드",
-    output: "5초 내 삶 전체 상태 인지",
-    tag: "개발 중",
-    tagStyle: {
-      background: "rgba(96,165,250,0.15)",
-      color: "rgb(147,197,253)",
-      border: "1px solid rgba(96,165,250,0.25)",
-    },
-    githubUrl: "https://github.com/jh104kim/dashboard-junghyoun",
-  },
-  {
-    Icon: PieChart,
-    title: "은퇴 연금 분석 웹앱",
-    input: "9개 연금 상품 수령 데이터",
-    process: "4개 절세 시나리오 비교 + 건보료 시뮬레이터",
-    output: "세후 실수령액 최적화 전략",
-    tag: "MVP 완성",
-    tagStyle: {
-      background: "rgba(52,211,153,0.15)",
-      color: "rgb(110,231,183)",
-      border: "1px solid rgba(52,211,153,0.25)",
-    },
-    githubUrl: "https://github.com/jh104kim/pension-private-after-retirements",
-  },
 ];
 
 const roadmap = [
@@ -95,12 +66,13 @@ const roadmap = [
 ];
 
 const metrics = [
-  { v: "5", l: "자동화 트랙" },
+  { v: "3", l: "자동화 트랙" },
   { v: "4", l: "Forward Plan" },
   { v: "26년", l: "도메인 경험" },
 ];
 
 // ── 재사용 인라인 스타일 상수 ─────────────────────────────────────────────
+// bg-white/[0.xx] 소수점 임의값은 Tailwind v4 JIT에서 스캔 누락 가능 → 모두 inline style 대체
 
 const CARD_STYLE: React.CSSProperties = {
   background: "rgba(255,255,255,0.05)",
@@ -151,25 +123,14 @@ const STEP_BADGE_STYLE: React.CSSProperties = {
   marginTop: "1px",
 };
 
-const LINK_BTN_STYLE: React.CSSProperties = {
-  display: "inline-flex",
-  alignItems: "center",
-  gap: "4px",
-  padding: "3px 10px",
-  borderRadius: "6px",
-  fontSize: "11px",
-  fontWeight: 500,
-  background: "rgba(255,255,255,0.07)",
-  border: "1px solid rgba(255,255,255,0.12)",
-  color: "rgba(255,255,255,0.65)",
-  textDecoration: "none",
-  transition: "background 0.15s",
-};
-
 // ── 컴포넌트 ───────────────────────────────────────────────────────────────
 
 export default function AiLab() {
   return (
+    // ⚠️  내부 카드에 .ui-card 클래스 사용 금지.
+    //     globals.css 의 .ui-card { background: var(--card) } 가 white를 강제해
+    //     dark 섹션에서 white-on-white 버그를 유발함.
+    //     투명 배경이 필요한 모든 요소는 inline style 사용 (Tailwind v4 JIT 스캔 우회).
     <SectionWrapper
       id="ai-lab"
       className="relative overflow-hidden bg-gray-950 text-white"
@@ -234,7 +195,7 @@ export default function AiLab() {
         {/* ── 오른쪽 컬럼 — 트랙 카드 ── */}
         <div className="space-y-4">
           {currentTracks.map(
-            ({ Icon, title, input, process, output, tag, tagStyle, githubUrl, demoUrl }) => (
+            ({ Icon, title, input, process, output, tag, tagStyle }) => (
               <div key={title} className="p-5" style={CARD_STYLE}>
                 {/* 카드 헤더 */}
                 <div className="mb-4 flex items-start justify-between gap-3">
@@ -284,24 +245,6 @@ export default function AiLab() {
                     ),
                   )}
                 </div>
-
-                {/* 링크 버튼 (있을 때만) */}
-                {(githubUrl || demoUrl) && (
-                  <div className="mt-3 flex gap-2">
-                    {githubUrl && (
-                      <a href={githubUrl} target="_blank" rel="noopener noreferrer" style={LINK_BTN_STYLE}>
-                        <GitFork size={11} />
-                        GitHub
-                      </a>
-                    )}
-                    {demoUrl && (
-                      <a href={demoUrl} target="_blank" rel="noopener noreferrer" style={LINK_BTN_STYLE}>
-                        <ExternalLink size={11} />
-                        Live Demo
-                      </a>
-                    )}
-                  </div>
-                )}
               </div>
             ),
           )}
