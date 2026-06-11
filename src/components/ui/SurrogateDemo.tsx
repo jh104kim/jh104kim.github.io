@@ -100,8 +100,8 @@ export default function SurrogateDemo() {
           </p>
           <p className="mt-1 text-xs leading-5 text-white/50">
             {tr(
-              "GT-Suite 해석(수 분~수 시간)을 밀리초 단위 근사로 대체하는 Surrogate 개념 시연 — 간이 물리 모델 기반, 학습형 모델로 확장 예정",
-              "Concept demo replacing GT-Suite runs (minutes–hours) with millisecond approximation — physics-based, to be extended with learned models",
+              "GT-Suite 해석(수 분~수 시간)을 밀리초 단위 근사로 대체하는 Surrogate 개념 시연",
+              "Concept demo replacing GT-Suite runs (minutes–hours) with millisecond approximation",
             )}
           </p>
         </div>
@@ -114,6 +114,38 @@ export default function SurrogateDemo() {
           }}
         >
           {tr("실시간 데모", "Live Demo")}
+        </span>
+      </div>
+
+      {/* 모델 단계 구분 — 현재 vs 확장 계획 */}
+      <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px]">
+        <span
+          className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-semibold"
+          style={{
+            background: "rgba(52,211,153,0.15)",
+            color: "rgb(110,231,183)",
+            border: "1px solid rgba(52,211,153,0.25)",
+          }}
+        >
+          <span
+            className="h-1.5 w-1.5 rounded-full"
+            style={{ background: "rgb(52,211,153)" }}
+          />
+          {tr("현재 — Physics-based Model (간이 물리 모델)", "Now — Physics-based Model (simplified)")}
+        </span>
+        <span className="text-white/30">→</span>
+        <span
+          className="inline-flex items-center rounded-full px-2.5 py-1 font-medium"
+          style={{
+            background: "rgba(255,255,255,0.05)",
+            color: "rgba(255,255,255,0.45)",
+            border: "1px dashed rgba(255,255,255,0.2)",
+          }}
+        >
+          {tr(
+            "다음 — GT-Suite 데이터 학습 Surrogate (확장 예정)",
+            "Next — Learned Surrogate from GT-Suite dataset (planned)",
+          )}
         </span>
       </div>
 
