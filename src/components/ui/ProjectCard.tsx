@@ -47,6 +47,17 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         <p>{project.description}</p>
       </div>
 
+      {project.domainLink && (
+        <div className="rounded-xl border border-[#1428a0]/10 bg-[#1428a0]/5 px-3 py-2.5">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#1428a0]/60">
+            엔지니어링 연결
+          </p>
+          <p className="mt-1 text-xs leading-5 text-[#1428a0]">
+            {project.domainLink}
+          </p>
+        </div>
+      )}
+
       <div className="rounded-xl border border-gray-100 bg-gray-50 px-3 py-3">
         <p className="text-xs text-gray-400">결과 / 숫자</p>
         <p className="mt-1 text-sm font-semibold text-gray-800">{project.impact}</p>

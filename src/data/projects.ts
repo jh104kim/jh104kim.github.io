@@ -17,6 +17,8 @@ export type Project = {
   demoUrl?: string;
   githubUrl?: string;
   isPrivate?: boolean;
+  /** 이 프로젝트가 본업(엔지니어링 자동화) 역량을 어떻게 증명하는지 한 줄 */
+  domainLink?: string;
 };
 
 export const projects: Project[] = [
@@ -133,6 +135,8 @@ export const projects: Project[] = [
     category: "ai",
     highlight: "✔ AI 워크플로우 자동화 구축",
     year: "2026",
+    domainLink:
+      "GT-Suite 자동화에 적용한 파이프라인 설계 원칙(자동 실행·fail-safe·결과 정리)을 개발 워크플로우로 확장한 사례",
   },
   {
     id: "ai-crew",
@@ -174,6 +178,8 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/jh104kim/dashboard-junghyoun",
     demoUrl: "https://sapporo-polar.vercel.app/",
     isPrivate: true,
+    domainLink:
+      "시뮬레이션 결과 대시보드와 동일한 구조 — 다중 소스 데이터 수집→정규화→단일 화면 시각화 파이프라인을 단독 설계·배포한 증거",
   },
   {
     id: "pension-analyzer",
@@ -195,6 +201,8 @@ export const projects: Project[] = [
     year: "2026",
     githubUrl: "https://github.com/jh104kim/pension-private-after-retirements",
     demoUrl: "https://pension-private-after-retirements.vercel.app/",
+    domainLink:
+      "수치 모델링(세금·건보료 계산)과 시나리오 비교 설계 — GT-Suite 파라미터 스터디와 같은 사고방식의 생활 도메인 응용",
   },
 ];
 
