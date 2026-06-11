@@ -83,11 +83,11 @@ export const projects: Project[] = [
     id: "cm-quality",
     title: "C&M 품질그룹장",
     titleEn: "C&M Quality Group Leader",
-    achievement: "내외부 품질 대응 프로세스 안정화",
+    achievement: "소음 불량률 3.2%→0.4% 개선, 원가 절감 12억, 시장 불량 3000ppm 개선",
     challenge:
       "복합 이슈 대응과 재발 방지 체계를 동시에 구축해 조직 전체의 품질 신뢰도를 끌어올려야 했습니다.",
     description:
-      "품질 대응 체계를 표준화해 이슈 처리 리드타임을 단축하고 대응 일관성을 높였습니다. 조직 운영 관점에서 품질 안정화 문화를 정착시켰습니다.",
+      "6 Sigma BB 프로젝트로 냉장고 압축기 소음 불량률을 3.2%에서 0.4%로 낮추고 원가 12억을 절감했습니다. 신규 부품 적용 시 시장 불량 3000ppm을 개선하며 품질 안정화 문화를 정착시켰습니다.",
     role: "리더 / 품질",
     contribution: 100,
     startDate: "2019.03",

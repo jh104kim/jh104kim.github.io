@@ -85,7 +85,7 @@ export const skills: Skill[] = [
     name: "6 Sigma BB",
     level: 5,
     category: "engineering",
-    description: "Black Belt 자격 보유",
+    description: "소음 불량률 3.2%→0.4% · 원가 12억 절감",
   },
   // Office
   {
@@ -117,6 +117,6 @@ export const categoryLabels: Record<Skill["category"], string> = {
 
 export const languages = [
   { name: "한국어", level: 5, note: "Native" },
-  { name: "영어", level: 4, note: "IM High" },
-  { name: "일본어", level: 4, note: "SJPT 2급" },
+  { name: "영어", level: 4, note: "Purdue · ICSV Conference 발표" },
+  { name: "일본어", level: 4, note: "JLPT 1급 · 北大 교환학생 · SEJ 근무" },
 ];

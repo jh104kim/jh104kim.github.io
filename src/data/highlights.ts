@@ -34,11 +34,12 @@ export const highlights: Highlight[] = [
   },
   {
     id: "quality-stabilize",
-    title: "품질 대응 체계 안정화(그룹장)",
+    title: "6 Sigma BB — 압축기 소음 품질 개선",
     situation: "복합 이슈 대응과 재발 방지 체계를 동시에 구축해야 했습니다.",
-    action: "대응 프로세스를 표준화해 리드타임·일관성을 개선했습니다.",
-    result: "조직 운영 관점에서 품질 안정화 문화를 정착시켰습니다.",
-    tags: ["Quality", "Leadership"],
+    action: "6 Sigma 방법론으로 소음 불량 원인을 분석하고 신규 부품 적용 기준을 표준화했습니다.",
+    result: "소음 불량률 3.2%→0.4%, 원가 12억 절감, 시장 불량 3000ppm 개선.",
+    kpis: ["불량률 3.2%→0.4%", "원가 12억 절감", "3000ppm 개선"],
+    tags: ["Quality", "6 Sigma", "BB"],
   },
   {
     id: "ai-automation",
