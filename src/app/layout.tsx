@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import { STATIC_EXIT_KEY } from "@/lib/static-hobby-exit";
-import { LanguageProvider } from "@/lib/i18n";
+import { Providers } from "@/components/ui/Providers";
 
 const SITE_URL = "https://jh104kim.github.io";
 
@@ -89,7 +89,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="antialiased">
+    <html lang="ko" className="antialiased" suppressHydrationWarning>
       <body className="min-h-screen">
         <script
           dangerouslySetInnerHTML={{ __html: bfcacheReloadSnippet }}
@@ -98,12 +98,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-        <LanguageProvider>
+        <Providers>
           <ScrollProgress />
           <Navbar />
           <main>{children}</main>
           <Footer />
-        </LanguageProvider>
+        </Providers>
       </body>
     </html>
   );

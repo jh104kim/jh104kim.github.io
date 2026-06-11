@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, ChevronDown, Globe } from "lucide-react";
+import { Menu, X, ChevronDown, Globe, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { STATIC_EXIT_KEY } from "@/lib/static-hobby-exit";
 import { useLang } from "@/lib/i18n";
@@ -25,6 +26,8 @@ export default function Navbar() {
   const hobbyRef = useRef<HTMLLIElement>(null);
   const { lang, setLang, tr } = useLang();
   const toggleLang = () => setLang(lang === "ko" ? "en" : "ko");
+  const { theme, setTheme } = useTheme();
+  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -168,6 +171,16 @@ export default function Navbar() {
                   </li>
                 </ul>
               )}
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="inline-flex items-center justify-center w-9 h-9 text-gray-600 hover:text-[#1428a0] hover:bg-[#1428a0]/5 rounded-lg transition-colors"
+                aria-label={theme === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환"}
+              >
+                {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+              </button>
             </li>
             <li>
               <button
