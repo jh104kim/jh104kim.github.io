@@ -28,21 +28,30 @@ const stats: Stat[] = [
     detailKo: "개발/품질그룹장",
     detailEn: "Dev/Quality Lead",
   },
-  { type: "counter", ko: { target: 7,  suffix: "편" },  en: { target: 7  },                  labelKo: "발표",  labelEn: "Papers" },
+  {
+    type: "counter",
+    ko: { target: 7, suffix: "편" },
+    en: { target: 7 },
+    labelKo: "발표",
+    labelEn: "Papers",
+    detailKo: "[Purdue, ICSV外]",
+    detailEn: "[Purdue, ICSV+]",
+  },
   { type: "counter", ko: { target: 360, suffix: "억" }, en: { target: 36, prefix: "₩", suffix: "B" }, labelKo: "Sales", labelEn: "Sales" },
   { type: "text",    ko: "AI Crew",                     en: "AI Crew",                       labelKo: "리딩",  labelEn: "Leading" },
 ];
 
-const techGrid = [
-  "Compressor",
-  "BLDC",
-  "FSI",
-  "GT-Suite",
-  "Automation",
-  "RAG",
-  "Purdue",
-  "Quality",
-  "Sales",
+const techGrid: { label: string; sublabel?: string; wide?: boolean }[] = [
+  { label: "Compressor" },
+  { label: "BLDC" },
+  { label: "FSI" },
+  { label: "GT-Suite" },
+  { label: "Automation" },
+  { label: "RAG" },
+  { label: "Purdue" },
+  { label: "Quality" },
+  { label: "Sales" },
+  { label: "Agentic workflow", sublabel: "loop engineering", wide: true },
 ];
 
 export default function Hero() {
@@ -138,9 +147,15 @@ export default function Hero() {
             {stats.map((stat) => {
               const labelText = lang === "en" ? stat.labelEn : stat.labelKo;
               return (
-                <div key={stat.labelKo} className="ui-card bg-white/80 px-4 py-4 backdrop-blur-sm">
-                  <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                    <div className="kpi-value font-extrabold text-[#1428a0]">
+                <div key={stat.labelKo} className="ui-card min-w-0 bg-white/80 px-4 py-4 backdrop-blur-sm">
+                  <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-1">
+                    <div
+                      className={
+                        stat.type === "counter"
+                          ? "kpi-value font-extrabold text-[#1428a0]"
+                          : "max-w-full text-[1.45rem] font-extrabold leading-tight text-[#1428a0] md:text-[1.35rem] xl:text-[1.55rem]"
+                      }
+                    >
                       {stat.type === "counter" ? (
                         <AnimatedCounter
                           target={lang === "en" ? stat.en.target : stat.ko.target}
@@ -192,8 +207,10 @@ export default function Hero() {
             <div className="mt-4 grid grid-cols-3 gap-3">
               {techGrid.map((item, idx) => (
                 <div
-                  key={item}
+                  key={`${item.label}-${item.sublabel ?? ""}`}
                   className={`rounded-xl border px-3 py-4 text-center text-xs font-semibold ${
+                    item.wide ? "col-span-3" : ""
+                  } ${
                     idx % 3 === 0
                       ? "border-blue-200 bg-blue-50 text-blue-700"
                       : idx % 3 === 1
@@ -201,7 +218,12 @@ export default function Hero() {
                         : "border-indigo-200 bg-indigo-50 text-indigo-700"
                   }`}
                 >
-                  {item}
+                  <span>{item.label}</span>
+                  {item.sublabel ? (
+                    <span className="ml-1 text-[10px] font-bold opacity-70">
+                      ({item.sublabel})
+                    </span>
+                  ) : null}
                 </div>
               ))}
             </div>
