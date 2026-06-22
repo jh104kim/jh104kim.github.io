@@ -5,6 +5,7 @@ import { profile } from "@/data/profile";
 import { ChevronDown } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
+import HeroShaderBackground from "@/components/ui/HeroShaderBackground";
 
 type CounterStat = {
   type: "counter";
@@ -41,17 +42,12 @@ const stats: Stat[] = [
   { type: "text",    ko: "AI Crew",                     en: "AI Crew",                       labelKo: "리딩",  labelEn: "Leading" },
 ];
 
-const techGrid: { label: string; sublabel?: string; wide?: boolean }[] = [
-  { label: "Compressor" },
-  { label: "BLDC" },
-  { label: "FSI" },
-  { label: "GT-Suite" },
-  { label: "Automation" },
-  { label: "RAG" },
-  { label: "Purdue" },
-  { label: "Quality" },
-  { label: "Sales" },
-  { label: "Agentic workflow", sublabel: "loop engineering", wide: true },
+const loopStages = [
+  { label: "Domain", detail: "Compressor", x: "4%", y: "8%" },
+  { label: "Simulation", detail: "GT-Suite / FSI", x: "56%", y: "8%" },
+  { label: "AI Agent", detail: "RAG / Reasoning", x: "64%", y: "47%" },
+  { label: "Automation", detail: "Scripts / Actions", x: "28%", y: "67%" },
+  { label: "Quality Loop", detail: "Decision feedback", x: "2%", y: "46%" },
 ];
 
 export default function Hero() {
@@ -71,6 +67,7 @@ export default function Hero() {
           backgroundSize: "48px 48px",
         }}
       />
+      <HeroShaderBackground />
 
       <div className="absolute top-1/4 left-1/4 h-72 w-72 rounded-full bg-[#1428a0]/5 blur-3xl" />
       <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-[#2d6fff]/5 blur-3xl" />
@@ -200,32 +197,62 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="relative hidden lg:block"
         >
-          <div className="rounded-[28px] border border-[#1428a0]/20 bg-white/70 p-6 backdrop-blur-sm">
+          <div className="rounded-[28px] border border-[#1428a0]/20 bg-white/75 p-6 backdrop-blur-sm">
             <p className="text-xs font-semibold tracking-[0.2em] text-[#1428a0] uppercase">
-              Engineering Grid
+              Loop Engineering
             </p>
-            <div className="mt-4 grid grid-cols-3 gap-3">
-              {techGrid.map((item, idx) => (
-                <div
-                  key={`${item.label}-${item.sublabel ?? ""}`}
-                  className={`rounded-xl border px-3 py-4 text-center text-xs font-semibold ${
-                    item.wide ? "col-span-3" : ""
-                  } ${
-                    idx % 3 === 0
-                      ? "border-blue-200 bg-blue-50 text-blue-700"
-                      : idx % 3 === 1
-                        ? "border-gray-200 bg-gray-50 text-gray-700"
-                        : "border-indigo-200 bg-indigo-50 text-indigo-700"
+            <p className="mt-2 text-sm font-semibold text-gray-900">
+              Agentic workflow <span className="text-[#ff5a5f]">(loop engineering)</span>
+            </p>
+            <div className="relative mt-5 h-[285px] overflow-hidden rounded-3xl border border-gray-100 bg-white/80 p-4">
+              <svg
+                viewBox="0 0 520 285"
+                className="absolute inset-0 h-full w-full"
+                aria-hidden="true"
+              >
+                <path
+                  d="M95 62 C215 6 392 28 420 86 C456 162 364 230 246 234 C118 238 58 178 72 104 C75 88 82 74 95 62"
+                  fill="none"
+                  stroke="rgba(20,40,160,0.12)"
+                  strokeWidth="2"
+                />
+                <motion.path
+                  d="M95 62 C215 6 392 28 420 86 C456 162 364 230 246 234 C118 238 58 178 72 104 C75 88 82 74 95 62"
+                  fill="none"
+                  stroke="#ff5a5f"
+                  strokeLinecap="round"
+                  strokeWidth="3"
+                  initial={false}
+                  animate={{ pathLength: [0.08, 0.48, 0.92] }}
+                  transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
+                />
+              </svg>
+
+              {loopStages.map((stage, idx) => (
+                <motion.div
+                  key={stage.label}
+                  className={`absolute w-[138px] rounded-2xl border px-3 py-3 shadow-sm ${
+                    idx === 2
+                      ? "border-[#ff5a5f]/40 bg-[#ff5a5f]/8 text-[#b4232b]"
+                      : "border-[#1428a0]/15 bg-white text-[#1428a0]"
                   }`}
+                  style={{ left: stage.x, top: stage.y }}
+                  initial={false}
+                  animate={{ y: idx === 2 ? [0, -4, 0] : 0 }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <span>{item.label}</span>
-                  {item.sublabel ? (
-                    <span className="ml-1 text-[10px] font-bold opacity-70">
-                      ({item.sublabel})
-                    </span>
-                  ) : null}
-                </div>
+                  <p className="text-xs font-extrabold leading-4">{stage.label}</p>
+                  <p className="mt-1 text-[10px] font-semibold leading-4 text-gray-500">
+                    {stage.detail}
+                  </p>
+                </motion.div>
               ))}
+
+              <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-[#1428a0]/10 bg-[#1428a0]/5 px-4 py-3">
+                <p className="text-[11px] font-bold text-[#1428a0]">
+                  Problem → Model → Agent → Action → Learning
+                </p>
+              </div>
             </div>
 
             <div className="mt-5 rounded-2xl border border-gray-100 bg-white p-4">

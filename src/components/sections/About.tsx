@@ -14,6 +14,7 @@ import { useLang } from "@/lib/i18n";
 
 export default function About() {
   const { tr } = useLang();
+  const loopSteps = ["Problem", "Model", "Agent", "Action", "Learning"];
   const groupedSkills = Object.entries(categoryLabels).map(([key, label]) => ({
     label,
     items: skills.filter((skill) => skill.category === key),
@@ -29,23 +30,23 @@ export default function About() {
             </p>
             <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
               {tr(
-                "Domain × AI Impact",
-                "Domain × AI Impact",
+                "Loop Engineering Impact",
+                "Loop Engineering Impact",
               )}
             </h2>
             <div className="section-copy mt-5 space-y-3 text-base leading-8 text-gray-600">
               {[
                 {
-                  keyword: "26년 도메인",
-                  text: "압축기 개발·품질·영업·조직 리딩 경험",
+                  keyword: "Problem",
+                  text: "압축기 개발·품질·영업 현장의 문제 정의",
                 },
                 {
-                  keyword: "해석 기반 의사결정",
-                  text: "FSI·GT-Suite·국제 발표로 설계 판단 근거 구조화",
+                  keyword: "Model",
+                  text: "FSI·GT-Suite·국제 발표 기반 판단 근거 구조화",
                 },
                 {
-                  keyword: "AI 자동화 실행",
-                  text: "반복 업무와 시뮬레이션 흐름을 생산성 자산으로 전환",
+                  keyword: "Agent → Action → Learning",
+                  text: "AI Crew 자동화로 실행·검증·개선 루프 운영",
                 },
               ].map((item) => (
                 <p key={item.keyword} className="flex gap-3">
@@ -59,6 +60,27 @@ export default function About() {
                   </span>
                 </p>
               ))}
+            </div>
+            <div className="mt-5 rounded-2xl border border-[#1428a0]/10 bg-[#1428a0]/5 px-4 py-4">
+              <p className="text-xs font-extrabold tracking-[0.16em] text-[#1428a0] uppercase">
+                Loop Engineering
+              </p>
+              <div className="mt-3 flex flex-wrap items-center gap-2 text-xs font-bold text-gray-600">
+                {loopSteps.map((step, index) => (
+                  <span key={step} className="inline-flex items-center gap-2">
+                    <span className="rounded-full bg-white px-3 py-1 text-[#1428a0] ring-1 ring-[#1428a0]/10">
+                      {step}
+                    </span>
+                    {index < loopSteps.length - 1 ? (
+                      <span className="text-[#ff5a5f]">→</span>
+                    ) : null}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-3 text-sm leading-6 text-gray-600">
+                도메인 문제를 모델로 구조화하고, AI Agent가 실행·검증·학습을 반복해
+                엔지니어링 생산성으로 연결합니다.
+              </p>
             </div>
           </div>
 
