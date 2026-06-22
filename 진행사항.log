@@ -10,3 +10,6 @@
 [2026-03-31 19:34] PHASE COMPLETE - 1~5단계(이번 범위) 구현 종료
 [2026-03-31 19:35] VERIFY - npm run lint 통과
 [2026-03-31 19:36] VERIFY - npm run build 통과
+[2026-06-22 11:21] PHASE COMPLETE - UI/UX 개선 26.06월: 프로젝트 카드 키워드화, Private Access, 기술스택 정리 커밋 완료
+[2026-06-22 11:45] PHASE - 프로젝트 카드 전문 이미지 에셋 추가, 관련 MD 문서 업데이트 진행
+[2026-06-22 11:55] VERIFY - npm run lint / npm run build / E2E(private access + project images) 통과

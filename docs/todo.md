@@ -7,6 +7,8 @@
 
 - [x] **01. Impact Counter 애니메이션** — Hero KPI 카운트업 (i18n 대응) ✅
 - [x] **02. Career Timeline** — About 섹션 Timeline.tsx 적용 완료
+- [x] **13. 프로젝트 카드 이미지 보강** — 주제별 전문 이미지 로컬 에셋 적용 ✅
+- [x] **14. Private Access 게이트** — 연금/자산/건강 앱 비밀번호 인증 진입 적용 ✅
 - [ ] **03. LinkedIn URL** — 계정 생성 후 `src/data/profile.ts`의 `linkedin: ""` 필드에 URL 입력
   - 입력 즉시 Contact 링크 + Resume 헤더에 자동 노출 (코드 수정 불필요)
   - 빌드/배포: `npm run build` → `git push` 만 하면 됨
@@ -25,11 +27,12 @@
 - [x] **10. OG 이미지 / SEO 메타** — og-image.png + sitemap + robots 완료
 - [x] **11. 다크/라이트 모드 토글** — next-themes + Moon/Sun 버튼 + CSS 다크 재정의 ✅
 - [x] **12. Sitemap + robots.txt** — 완료
+- [ ] **15. 서버급 인증 전환** — 실제 민감 데이터는 Vercel/Supabase/Auth0 등 서버 인증으로 보호
 
 ---
 
 | 완료 | 진행 중 | 대기 |
 |------|---------|------|
-| 11 / 12 | 0 / 12 | 1 / 12 |
+| 13 / 15 | 0 / 15 | 2 / 15 |
 
-_업데이트: 2026-06-12_
+_업데이트: 2026-06-22_

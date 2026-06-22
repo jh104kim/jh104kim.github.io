@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Project, categoryColors, categoryLabels } from "@/data/projects";
 import { HoverCardMotion } from "@/components/ui/MotionPrimitives";
 import { Lock, ExternalLink, GitFork } from "lucide-react";
@@ -20,7 +21,19 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
     : undefined;
 
   return (
-    <HoverCardMotion className="ui-card flex h-full flex-col gap-4 p-6">
+    <HoverCardMotion className="ui-card flex h-full flex-col gap-4 overflow-hidden p-6">
+      <div className="-mx-6 -mt-6 overflow-hidden bg-gray-100">
+        <Image
+          src={`/images/projects/${project.id}.jpg`}
+          alt={`${lang === "en" ? project.titleEn : project.title} representative visual`}
+          width={1200}
+          height={800}
+          sizes="(min-width: 1280px) 33vw, (min-width: 1024px) 50vw, 100vw"
+          priority={index < 3}
+          className="h-40 w-full object-cover sm:h-44"
+        />
+      </div>
+
       {/* 헤더: 카테고리 배지 + Private 배지 + 연도 */}
       <div className="flex items-start justify-between gap-2">
         <div className="flex items-center gap-2 flex-wrap">

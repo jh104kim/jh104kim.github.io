@@ -34,10 +34,17 @@ npm run build
 ## 주요 기능
 
 - 한/영 전환 토글 (Navbar 지구본 버튼, 선택 언어 localStorage 유지)
+- 전문 이미지 기반 프로젝트 카드 (이미지 출처: `docs/ui-ux-improvement-2026-06.md`)
+- Private Access 게이트 — 연금/자산/건강 앱은 비밀번호 인증 후 접근
 - Surrogate Demo — AI Lab의 압축기 성능(냉력·소비전력·COP) 실시간 예측 데모
 - AI Q&A 챗봇 — 로컬 정적 응답 기본, Workers AI 연결 시 실시간 LLM 응답
 - 이력서 PDF 다운로드 (`public/resume.pdf`)
 - SEO: OG 이미지(1200×630), JSON-LD 인물 데이터, sitemap/robots
+
+## 최근 UI/UX 개선
+
+- 상세 기록: `docs/ui-ux-improvement-2026-06.md`
+- 검증 기준: `npm run lint`, `npm run build`, private access 인증 플로우 E2E
 
 ## 환경 변수 (선택)
 
