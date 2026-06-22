@@ -9,6 +9,7 @@ import {
 } from "@/data/private-access";
 
 const SESSION_KEY = "portfolio-private-access-ok";
+const PASSWORD_FALLBACK_CHECKSUM = "7f9dfcac";
 
 async function sha256(value: string) {
   const bytes = new TextEncoder().encode(value);
@@ -16,6 +17,27 @@ async function sha256(value: string) {
   return Array.from(new Uint8Array(hashBuffer))
     .map((byte) => byte.toString(16).padStart(2, "0"))
     .join("");
+}
+
+function checksum(value: string) {
+  let hash = 2166136261;
+  for (const char of value) {
+    hash ^= char.codePointAt(0) ?? 0;
+    hash = Math.imul(hash, 16777619) >>> 0;
+  }
+  return hash.toString(16).padStart(8, "0");
+}
+
+async function isPasswordAllowed(value: string) {
+  if (globalThis.crypto?.subtle) {
+    try {
+      return (await sha256(value)) === PRIVATE_ACCESS_PASSWORD_HASH;
+    } catch {
+      /* fallback below */
+    }
+  }
+
+  return checksum(value) === PASSWORD_FALLBACK_CHECKSUM;
 }
 
 export default function PrivateAccessGate() {
@@ -48,14 +70,17 @@ export default function PrivateAccessGate() {
       ...privateAccessApps.filter((app) => app.key !== selectedKey),
     ];
   }, [selectedKey]);
+  const selectedApp = selectedKey
+    ? privateAccessApps.find((app) => app.key === selectedKey)
+    : null;
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError("");
 
-    const hashed = await sha256(password);
-    if (hashed !== PRIVATE_ACCESS_PASSWORD_HASH) {
-      setError("비밀번호가 맞지 않습니다.");
+    const isAllowedPassword = await isPasswordAllowed(password.trim());
+    if (!isAllowedPassword) {
+      setError("비밀번호가 맞지 않습니다. 공백 없이 다시 입력해 주세요.");
       return;
     }
 
@@ -66,6 +91,10 @@ export default function PrivateAccessGate() {
     }
     setIsAllowed(true);
     setPassword("");
+
+    if (selectedApp) {
+      window.location.assign(selectedApp.demoUrl);
+    }
   };
 
   return (
@@ -107,9 +136,19 @@ export default function PrivateAccessGate() {
               {error ? <p className="mt-3 text-sm font-semibold text-red-600">{error}</p> : null}
             </form>
           ) : (
-            <div className="mt-8 inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
-              <ShieldCheck size={16} />
-              인증 완료
+            <div className="mt-8 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+              <div className="flex items-center gap-2">
+                <ShieldCheck size={16} />
+                인증 완료
+              </div>
+              {selectedApp ? (
+                <a
+                  href={selectedApp.demoUrl}
+                  className="mt-3 inline-flex rounded-lg bg-[#1428a0] px-3 py-2 text-xs font-bold text-white"
+                >
+                  이동이 안 되면 앱 열기
+                </a>
+              ) : null}
             </div>
           )}
         </div>

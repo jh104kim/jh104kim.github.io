@@ -3,6 +3,7 @@ import path from "node:path";
 
 const nextConfig: NextConfig = {
   output: "export",
+  allowedDevOrigins: ["10.44.19.235"],
   images: {
     unoptimized: true,
   },

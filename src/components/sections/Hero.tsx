@@ -12,12 +12,22 @@ type CounterStat = {
   en: { target: number; suffix?: string; prefix?: string };
   labelKo: string;
   labelEn: string;
+  detailKo?: string;
+  detailEn?: string;
 };
 type TextStat = { type: "text"; ko: string; en: string; labelKo: string; labelEn: string };
 type Stat = CounterStat | TextStat;
 
 const stats: Stat[] = [
-  { type: "counter", ko: { target: 26, suffix: "년" },  en: { target: 26, suffix: " yrs" }, labelKo: "경력",  labelEn: "Experience" },
+  {
+    type: "counter",
+    ko: { target: 26, suffix: "년" },
+    en: { target: 26, suffix: " yrs" },
+    labelKo: "경력",
+    labelEn: "Experience",
+    detailKo: "개발/품질그룹장",
+    detailEn: "Dev/Quality Lead",
+  },
   { type: "counter", ko: { target: 7,  suffix: "편" },  en: { target: 7  },                  labelKo: "발표",  labelEn: "Papers" },
   { type: "counter", ko: { target: 360, suffix: "억" }, en: { target: 36, prefix: "₩", suffix: "B" }, labelKo: "Sales", labelEn: "Sales" },
   { type: "text",    ko: "AI Crew",                     en: "AI Crew",                       labelKo: "리딩",  labelEn: "Leading" },
@@ -129,17 +139,24 @@ export default function Hero() {
               const labelText = lang === "en" ? stat.labelEn : stat.labelKo;
               return (
                 <div key={stat.labelKo} className="ui-card bg-white/80 px-4 py-4 backdrop-blur-sm">
-                  <div className="kpi-value font-extrabold text-[#1428a0]">
-                    {stat.type === "counter" ? (
-                      <AnimatedCounter
-                        target={lang === "en" ? stat.en.target : stat.ko.target}
-                        suffix={lang === "en" ? stat.en.suffix : stat.ko.suffix}
-                        prefix={lang === "en" ? stat.en.prefix : stat.ko.prefix}
-                        duration={1800}
-                      />
-                    ) : (
-                      lang === "en" ? stat.en : stat.ko
-                    )}
+                  <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                    <div className="kpi-value font-extrabold text-[#1428a0]">
+                      {stat.type === "counter" ? (
+                        <AnimatedCounter
+                          target={lang === "en" ? stat.en.target : stat.ko.target}
+                          suffix={lang === "en" ? stat.en.suffix : stat.ko.suffix}
+                          prefix={lang === "en" ? stat.en.prefix : stat.ko.prefix}
+                          duration={1800}
+                        />
+                      ) : (
+                        lang === "en" ? stat.en : stat.ko
+                      )}
+                    </div>
+                    {"detailKo" in stat && stat.detailKo ? (
+                      <span className="text-[10px] font-bold leading-4 text-gray-500">
+                        {lang === "en" ? stat.detailEn : stat.detailKo}
+                      </span>
+                    ) : null}
                   </div>
                   <div className="mt-1 text-xs text-gray-500">{labelText}</div>
                 </div>

@@ -29,23 +29,36 @@ export default function About() {
             </p>
             <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
               {tr(
-                "엔지니어링과 자동화를 하나의 가치로 연결합니다",
-                "Linking engineering and automation into a single value",
+                "Domain × AI Impact",
+                "Domain × AI Impact",
               )}
             </h2>
             <div className="section-copy mt-5 space-y-3 text-base leading-8 text-gray-600">
-              <p>
-                압축기 개발, 품질, 영업, 조직 리딩까지 이어지는 실무 경험으로 제품과
-                조직의 문제를 함께 해결해 왔습니다.
-              </p>
-              <p>
-                FSI와 GT-Suite 기반의 해석 역량, 국제 발표 경험을 통해 설계 판단의
-                근거를 데이터로 구조화해 왔습니다.
-              </p>
-              <p>
-                최근에는 AI Crew 리딩을 통해 반복 업무와 시뮬레이션 흐름을 자동화해
-                엔지니어링 생산성을 확장하고 있습니다.
-              </p>
+              {[
+                {
+                  keyword: "26년 도메인",
+                  text: "압축기 개발·품질·영업·조직 리딩 경험",
+                },
+                {
+                  keyword: "해석 기반 의사결정",
+                  text: "FSI·GT-Suite·국제 발표로 설계 판단 근거 구조화",
+                },
+                {
+                  keyword: "AI 자동화 실행",
+                  text: "반복 업무와 시뮬레이션 흐름을 생산성 자산으로 전환",
+                },
+              ].map((item) => (
+                <p key={item.keyword} className="flex gap-3">
+                  <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[#1428a0]" />
+                  <span>
+                    <span className="font-extrabold text-[#1428a0]">
+                      {item.keyword}
+                    </span>
+                    <span className="mx-2 text-gray-300">|</span>
+                    {item.text}
+                  </span>
+                </p>
+              ))}
             </div>
           </div>
 
