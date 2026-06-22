@@ -1,4 +1,5 @@
 // src/data/portfolio-context.ts → workers/portfolio-chat/src/context.js 동기화
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require("fs");
 const path = require("path");
 const root = path.join(__dirname, "..");

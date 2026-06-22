@@ -5,6 +5,8 @@ export type Project = {
   achievement: string;
   challenge: string;
   description: string;
+  summary: string;
+  proofPoints: { keyword: string; text: string }[];
   role: string;
   contribution: number;
   startDate: string;
@@ -17,6 +19,7 @@ export type Project = {
   demoUrl?: string;
   githubUrl?: string;
   isPrivate?: boolean;
+  privateAccessKey?: "life-os" | "pension-analyzer";
   /** 이 프로젝트가 본업(엔지니어링 자동화) 역량을 어떻게 증명하는지 한 줄 */
   domainLink?: string;
 };
@@ -31,6 +34,12 @@ export const projects: Project[] = [
       "친환경 냉매 전환 시점에서 고효율과 대용량 성능을 동시에 확보해야 하는 과제가 있었습니다.",
     description:
       "기구 설계와 성능 검증을 직접 리딩해 R600a 15cc 플랫폼의 양산 기반을 만들었습니다. 이후 파생 제품 대응이 가능한 대배기량 기준점을 확보했습니다.",
+    summary: "Global 최대 배기량 플랫폼을 만든 압축기 개발 초기 대표 성과",
+    proofPoints: [
+      { keyword: "최대 배기량", text: "R600a 15cc 기준 확보" },
+      { keyword: "기여도", text: "기구설계·성능검증 전담" },
+      { keyword: "확장성", text: "파생 모델 대응 기반" },
+    ],
     role: "개발 멤버 — 기구설계·성능검증 파트 전담",
     contribution: 100,
     startDate: "2002.08",
@@ -50,6 +59,12 @@ export const projects: Project[] = [
       "기존 AC 플랫폼에서 효율과 제어 안정성을 동시에 확보하며 BLDC 전환을 완수해야 했습니다.",
     description:
       "개발 멤버로 전환 핵심 이슈를 해결하며 시스템 안정성과 효율을 함께 고도화했습니다. 이후 6 Sigma BB 과제로 개발 단계별 신규 부품 적합성 평가를 수행해 소음 불량률 3.2%→0.4%, 원가 12억 절감, 시장 불량 3000ppm 개선을 달성했습니다.",
+    summary: "AC에서 BLDC로 전환한 국내 최초급 압축기 플랫폼 개발",
+    proofPoints: [
+      { keyword: "BLDC 전환", text: "효율·제어 안정성 확보" },
+      { keyword: "품질 개선", text: "소음 불량률 3.2%→0.4%" },
+      { keyword: "비용 효과", text: "원가 12억 절감" },
+    ],
     role: "개발 멤버 — 전환 핵심 파트 전담",
     contribution: 100,
     startDate: "2007.08",
@@ -69,6 +84,12 @@ export const projects: Project[] = [
       "기술 요구가 높은 일본 고객사와의 커뮤니케이션에서 영업과 기술 기준을 동시에 충족해야 했습니다.",
     description:
       "SEJ(도쿄 롯폰기·이이다바시) 근무 기간 동안 도시바·미츠비시·샤프와의 탑미팅을 주도하며 신규 Sales를 개시했습니다. 고객 요구사항을 기술 언어로 정리해 의사결정 속도를 높였고, 영업 성과와 기술 신뢰를 동시에 확보하며 큰 인정을 받았습니다.",
+    summary: "기술 커뮤니케이션으로 일본 고객 신뢰와 Sales 성과를 연결",
+    proofPoints: [
+      { keyword: "Sales", text: "누적 360억" },
+      { keyword: "고객", text: "도시바·미츠비시·샤프" },
+      { keyword: "역할", text: "기술 요구를 사업 언어로 정리" },
+    ],
     role: "리더 / 영업",
     contribution: 80,
     startDate: "2015.04",
@@ -88,6 +109,12 @@ export const projects: Project[] = [
       "복합 이슈 대응과 재발 방지 체계를 동시에 구축해 조직 전체의 품질 신뢰도를 끌어올려야 했습니다.",
     description:
       "품질 대응 체계를 표준화해 이슈 처리 리드타임을 단축하고 대응 일관성을 높였습니다. 조직 운영 관점에서 품질 안정화 문화를 정착시켰습니다.",
+    summary: "품질 이슈 대응을 표준화해 조직 신뢰도를 안정화",
+    proofPoints: [
+      { keyword: "표준화", text: "내외부 이슈 대응 체계 정리" },
+      { keyword: "속도", text: "처리 리드타임 단축" },
+      { keyword: "운영", text: "재발 방지 루틴 강화" },
+    ],
     role: "리더 / 품질",
     contribution: 100,
     startDate: "2019.03",
@@ -107,6 +134,12 @@ export const projects: Project[] = [
       "개발 일정, 성능 목표, 사업 확장 요구를 동시에 맞추는 조직 리딩이 필요했습니다.",
     description:
       "개발 리소스를 재정렬해 신모델 출시 일정을 안정화하고 대외 사업 기회를 확장했습니다. 기술팀 운영과 사업 성과를 함께 만든 리더십 사례입니다.",
+    summary: "개발 로드맵과 사업 확장을 동시에 끌고 간 조직 리딩 사례",
+    proofPoints: [
+      { keyword: "로드맵", text: "신모델 개발 우선순위 재정렬" },
+      { keyword: "리딩", text: "개발 리소스·일정 안정화" },
+      { keyword: "사업", text: "외판 확대 기반 확보" },
+    ],
     role: "개발 / 리더",
     contribution: 100,
     startDate: "2022.01",
@@ -126,6 +159,12 @@ export const projects: Project[] = [
       "사내망 제약(API 콘솔 차단) 환경에서 AI 자동화 도구를 실제 개발 워크플로우에 연결해야 했습니다.",
     description:
       "git diff → Claude API → Conventional Commits 메시지 자동 생성, prepare-commit-msg 훅 및 슬래시 커맨드(/commit-msg, /code-review)로 CI/CD 이전 단계를 자동화. fail-safe 설계로 키 없이도 커밋을 막지 않습니다.",
+    summary: "AI 에이전트로 커밋·리뷰 흐름을 자동화한 개발 생산성 실험",
+    proofPoints: [
+      { keyword: "자동화", text: "git diff 기반 커밋 메시지 생성" },
+      { keyword: "품질", text: "코드 리뷰 체크리스트 자동화" },
+      { keyword: "안정성", text: "fail-safe 훅 설계" },
+    ],
     role: "설계 / 구현",
     contribution: 100,
     startDate: "2026.06",
@@ -147,6 +186,12 @@ export const projects: Project[] = [
       "현업 흐름을 해치지 않으면서 실무팀이 바로 체감하는 자동화 성과를 만들어야 했습니다.",
     description:
       "보고·정리·분석 업무를 자동화해 반복 업무 부담을 줄이는 과제를 지속적으로 수행했습니다. GT-Suite 자동화와 포트폴리오 기반 Q&A 구조까지 확장해 AI 활용 기준을 정립했습니다.",
+    summary: "현업 반복 업무와 시뮬레이션 흐름을 AI 자동화로 연결",
+    proofPoints: [
+      { keyword: "AI Crew", text: "업무자동화 과제 발굴·실행" },
+      { keyword: "GT-Suite", text: "시뮬레이션 자동화 확장" },
+      { keyword: "RAG", text: "포트폴리오 Q&A 구조화" },
+    ],
     role: "리더 / AI",
     contribution: 100,
     startDate: "2024.09",
@@ -166,6 +211,12 @@ export const projects: Project[] = [
       "Samsung Galaxy 기반 개인 데이터를 Supabase RLS로 안전하게 통합 관리하면서, 스크롤 없는 단일 뷰포트에 모든 핵심 지표를 담아야 했습니다.",
     description:
       "Next.js 15 + ECharts + Supabase 기반 개인 운영체계(Life OS). 건강(Samsung Health), 자산, 투자, 소비, 연금, 세금을 Two-Zone 대시보드로 통합. CSV fallback → Supabase 3단계 데이터 추상화 설계.",
+    summary: "건강·자산·투자 데이터를 5초 안에 읽는 개인 Life OS",
+    proofPoints: [
+      { keyword: "5초 인지", text: "핵심 지표 단일 화면" },
+      { keyword: "데이터", text: "건강·자산·투자·소비 통합" },
+      { keyword: "보호", text: "개인정보 포함, 인증 후 접근" },
+    ],
     role: "설계 / 구현",
     contribution: 100,
     startDate: "2026.05",
@@ -175,9 +226,8 @@ export const projects: Project[] = [
     category: "ai",
     highlight: "✔ Personal Life OS 구축",
     year: "2026",
-    githubUrl: "https://github.com/jh104kim/dashboard-junghyoun",
-    demoUrl: "https://sapporo-polar.vercel.app/",
     isPrivate: true,
+    privateAccessKey: "life-os",
     domainLink:
       "시뮬레이션 결과 대시보드와 동일한 구조 — 다중 소스 데이터 수집→정규화→단일 화면 시각화 파이프라인을 단독 설계·배포한 증거",
   },
@@ -190,6 +240,12 @@ export const projects: Project[] = [
       "세금·건보료 계산 로직과 4개 절세 시나리오를 단일 뷰포트에서 실시간 비교하고, AI 챗봇으로 결과를 자연어로 해석할 수 있게 해야 했습니다.",
     description:
       "Vite + React 18 + Recharts 기반 은퇴 후 연금 수령 전략 분석 앱 (MVP 완성). IRP 분산 수령·국민연금 지연 수령 등 4개 시나리오 비교, 건보료 슬라이더 시뮬레이터, Cloudflare Workers AI 챗봇 탑재.",
+    summary: "연금 수령·세금·건보료를 한 화면에서 비교하는 절세 시뮬레이터",
+    proofPoints: [
+      { keyword: "9개 상품", text: "55~90세 수령 전략 비교" },
+      { keyword: "4개 시나리오", text: "IRP·국민연금 전략 분석" },
+      { keyword: "보호", text: "개인 재무정보, 인증 후 접근" },
+    ],
     role: "설계 / 구현",
     contribution: 100,
     startDate: "2026.06",
@@ -199,8 +255,8 @@ export const projects: Project[] = [
     category: "ai",
     highlight: "✔ 연금 절세 시뮬레이터",
     year: "2026",
-    githubUrl: "https://github.com/jh104kim/pension-private-after-retirements",
-    demoUrl: "https://pension-private-after-retirements.vercel.app/",
+    isPrivate: true,
+    privateAccessKey: "pension-analyzer",
     domainLink:
       "수치 모델링(세금·건보료 계산)과 시나리오 비교 설계 — GT-Suite 파라미터 스터디와 같은 사고방식의 생활 도메인 응용",
   },

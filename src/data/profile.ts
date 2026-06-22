@@ -7,7 +7,7 @@ export const profile = {
   email: "jh104.kim@gmail.com",
   github: "https://github.com/jh104kim",
   linkedin: "",
-  phone: "010-4740-3825",
+  phone: "",
   location: "수원시 매탄동, 삼성전자 DA사업부",
   notion: "https://www.notion.so/vita-0bc7ea7f5c5a83c882838195c39d45fd",
   resumePdfPath: "/resume.pdf",

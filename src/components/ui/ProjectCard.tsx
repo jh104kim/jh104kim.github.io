@@ -13,7 +13,11 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const { lang } = useLang();
   const colors = categoryColors[project.category];
-  const hasLinks = project.githubUrl || project.demoUrl;
+  const isProtected = Boolean(project.privateAccessKey);
+  const hasPublicLinks = !isProtected && (project.githubUrl || project.demoUrl);
+  const privateHref = project.privateAccessKey
+    ? `/private-access?app=${project.privateAccessKey}`
+    : undefined;
 
   return (
     <HoverCardMotion className="ui-card flex h-full flex-col gap-4 p-6">
@@ -35,16 +39,25 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         <span className="text-xs text-gray-400 shrink-0">{project.year}</span>
       </div>
 
-      <div>
+      <div className="space-y-2">
         <h3 className="text-lg font-bold text-gray-900 leading-snug mb-1">
           {lang === "en" ? project.titleEn : project.title}
         </h3>
-        <p className="text-sm font-semibold text-[#1428a0]">{project.achievement}</p>
+        <p className="text-sm font-extrabold leading-6 text-[#1428a0]">
+          {project.achievement}
+        </p>
+        <p className="text-sm leading-6 text-gray-600">{project.summary}</p>
       </div>
 
-      <div className="space-y-2 text-sm leading-6 text-gray-600">
-        <p>{project.challenge}</p>
-        <p>{project.description}</p>
+      <div className="space-y-2 rounded-2xl border border-gray-100 bg-gray-50 px-4 py-4">
+        {project.proofPoints.map((point) => (
+          <p key={`${project.id}-${point.keyword}`} className="text-sm leading-6 text-gray-700">
+            <span className="mr-2 inline-flex h-1.5 w-1.5 rounded-full bg-[#1428a0]" />
+            <span className="font-extrabold text-[#1428a0]">{point.keyword}</span>
+            <span className="mx-1 text-gray-300">|</span>
+            <span>{point.text}</span>
+          </p>
+        ))}
       </div>
 
       {project.domainLink && (
@@ -58,9 +71,9 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         </div>
       )}
 
-      <div className="rounded-xl border border-gray-100 bg-gray-50 px-3 py-3">
+      <div className="rounded-xl border border-[#1428a0]/10 bg-white px-3 py-3">
         <p className="text-xs text-gray-400">결과 / 숫자</p>
-        <p className="mt-1 text-sm font-semibold text-gray-800">{project.impact}</p>
+        <p className="mt-1 text-sm font-extrabold text-gray-900">{project.impact}</p>
       </div>
 
       <div className="pt-2 border-t border-gray-50 space-y-2">
@@ -97,8 +110,20 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           ))}
         </div>
 
+        {isProtected && privateHref && (
+          <div className="pt-2">
+            <a
+              href={privateHref}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-[#1428a0]/20 bg-[#1428a0] px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#0f207d]"
+            >
+              <Lock size={12} />
+              인증 후 접근
+            </a>
+          </div>
+        )}
+
         {/* GitHub / Demo 링크 버튼 */}
-        {hasLinks && (
+        {hasPublicLinks && (
           <div className="flex gap-2 pt-2">
             {project.githubUrl && (
               <a

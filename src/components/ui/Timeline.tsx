@@ -24,7 +24,7 @@ export default function Timeline({ items }: TimelineProps) {
         {items.map((item, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, x: -20 }}
+            initial={false}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: index * 0.07 }}
             viewport={{ once: true }}

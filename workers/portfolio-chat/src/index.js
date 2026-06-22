@@ -20,7 +20,7 @@ function corsHeaders(origin) {
   };
 }
 
-export default {
+const worker = {
   async fetch(request, env) {
     const origin = request.headers.get("Origin") ?? "";
     const headers = corsHeaders(origin);
@@ -67,3 +67,5 @@ export default {
     }
   },
 };
+
+export default worker;

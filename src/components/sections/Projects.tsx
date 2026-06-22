@@ -6,7 +6,7 @@ import { projects } from "@/data/projects";
 import { useLang } from "@/lib/i18n";
 
 const metrics = [
-  { label: "대표 프로젝트", value: "6" },
+  { label: "대표 프로젝트", value: String(projects.length) },
   { label: "최초 개발", value: "2" },
   { label: "최대 기여도", value: "100%" },
   { label: "글로벌 영업", value: "360억" },

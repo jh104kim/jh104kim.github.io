@@ -59,7 +59,7 @@ export default function Hero() {
       <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] w-full max-w-6xl items-center gap-16 px-4 md:px-8 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -70,7 +70,7 @@ export default function Hero() {
         </motion.div>
 
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-xs font-semibold tracking-[0.24em] text-gray-500 uppercase"
@@ -79,7 +79,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.16 }}
             className="mt-4 text-4xl font-extrabold tracking-tight text-gray-900 md:text-6xl"
@@ -88,7 +88,7 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 18 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.28 }}
             className="section-copy mt-5 text-base text-gray-600 md:text-lg"
@@ -100,7 +100,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             className="mt-10 flex flex-wrap gap-3"
@@ -120,7 +120,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.52 }}
             className="mt-12 grid max-w-2xl grid-cols-2 gap-4 md:grid-cols-4"
@@ -148,7 +148,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.p
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.7 }}
             className="mt-10 text-sm italic text-gray-400"
@@ -163,7 +163,7 @@ export default function Hero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
           className="relative hidden lg:block"

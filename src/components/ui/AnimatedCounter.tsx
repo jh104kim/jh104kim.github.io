@@ -26,15 +26,15 @@ export default function AnimatedCounter({
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-40px" });
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (!isInView) return;
 
-    const startTime = performance.now();
-
+    let startTime: number | null = null;
     const animate = (now: number) => {
+      if (startTime === null) startTime = now;
       const progress = Math.min((now - startTime) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3); // easeOut cubic
       setCount(Math.round(target * eased));

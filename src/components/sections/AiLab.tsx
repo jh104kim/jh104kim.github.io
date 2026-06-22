@@ -1,7 +1,7 @@
 "use client";
 
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import { Zap, Cpu, GitBranch, LayoutDashboard, PieChart, ArrowRight, CheckCircle2, GitFork, ExternalLink } from "lucide-react";
+import { Zap, Cpu, GitBranch, LayoutDashboard, PieChart, ArrowRight, CheckCircle2, Lock } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import SurrogateDemo from "@/components/ui/SurrogateDemo";
 
@@ -15,8 +15,7 @@ type Track = {
   output: string;
   tag: string;
   tagStyle: React.CSSProperties;
-  githubUrl?: string;
-  demoUrl?: string;
+  privateAccessPath?: string;
 };
 
 const currentTracks: Track[] = [
@@ -71,8 +70,7 @@ const currentTracks: Track[] = [
       color: "rgb(147,197,253)",
       border: "1px solid rgba(96,165,250,0.25)",
     },
-    githubUrl: "https://github.com/jh104kim/dashboard-junghyoun",
-    demoUrl: "https://sapporo-polar.vercel.app/",
+    privateAccessPath: "/private-access?app=life-os",
   },
   {
     Icon: PieChart,
@@ -86,8 +84,7 @@ const currentTracks: Track[] = [
       color: "rgb(110,231,183)",
       border: "1px solid rgba(52,211,153,0.25)",
     },
-    githubUrl: "https://github.com/jh104kim/pension-private-after-retirements",
-    demoUrl: "https://pension-private-after-retirements.vercel.app/",
+    privateAccessPath: "/private-access?app=pension-analyzer",
   },
 ];
 
@@ -245,7 +242,7 @@ export default function AiLab() {
         {/* ── 오른쪽 컬럼 — 트랙 카드 ── */}
         <div className="space-y-4">
           {currentTracks.map(
-            ({ Icon, title, input, process, output, tag, tagStyle, githubUrl, demoUrl }) => (
+            ({ Icon, title, input, process, output, tag, tagStyle, privateAccessPath }) => (
               <div key={title} className="p-5" style={CARD_STYLE}>
                 {/* 카드 헤더 */}
                 <div className="mb-4 flex items-start justify-between gap-3">
@@ -296,21 +293,13 @@ export default function AiLab() {
                   )}
                 </div>
 
-                {/* 링크 버튼 (있을 때만) */}
-                {(githubUrl || demoUrl) && (
+                {/* 인증 접근 버튼 */}
+                {privateAccessPath && (
                   <div className="mt-3 flex gap-2">
-                    {githubUrl && (
-                      <a href={githubUrl} target="_blank" rel="noopener noreferrer" style={LINK_BTN_STYLE}>
-                        <GitFork size={11} />
-                        GitHub
-                      </a>
-                    )}
-                    {demoUrl && (
-                      <a href={demoUrl} target="_blank" rel="noopener noreferrer" style={LINK_BTN_STYLE}>
-                        <ExternalLink size={11} />
-                        Live Demo
-                      </a>
-                    )}
+                    <a href={privateAccessPath} style={LINK_BTN_STYLE}>
+                      <Lock size={11} />
+                      인증 후 접근
+                    </a>
                   </div>
                 )}
               </div>

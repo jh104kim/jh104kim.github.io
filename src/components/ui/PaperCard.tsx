@@ -15,7 +15,7 @@ const typeLabels: Record<Paper["type"], string> = {
   thesis: "논문",
 };
 
-export default function PaperCard({ paper, index = 0 }: PaperCardProps) {
+export default function PaperCard({ paper }: PaperCardProps) {
   const hostLabel = paper.venue.replace(" (IIR)", "").replace("학회", " Forum");
 
   return (

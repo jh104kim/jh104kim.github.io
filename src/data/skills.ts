@@ -6,69 +6,30 @@ export type Skill = {
 };
 
 export const skills: Skill[] = [
-  // AI Tools
   {
-    name: "Claude Code",
+    name: "Claude Code / ChatGPT / Grok",
     level: 5,
     category: "ai-tool",
-    description: "AI 에이전트 자동화, 슬래시 커맨드, 워크플로우 구성",
+    description: "AI 에이전트 활용, 가설 검증, 팩트체크, 워크플로우 자동화",
   },
   {
-    name: "Python",
-    level: 4,
+    name: "Python / SDK 자동화",
+    level: 5,
     category: "ai-tool",
-    description: "자동화 스크립트, 데이터 처리, Anthropic SDK 연동",
+    description: "자동화 스크립트, 데이터 처리, AI API 연동",
   },
   {
     name: "GitHub Actions",
-    level: 3,
-    category: "ai-tool",
-    description: "CI/CD 파이프라인, 자동 배포, PR 자동화",
-  },
-  {
-    name: "ChatGPT",
     level: 5,
     category: "ai-tool",
-    description: "AI 활용, 가설검증",
+    description: "CI/CD, 자동 배포, PR 자동화",
   },
   {
-    name: "Grok",
-    level: 4,
-    category: "ai-tool",
-    description: "팩트체크, 이미지 레퍼런스 확인",
-  },
-  {
-    name: "Midjourney",
-    level: 4,
-    category: "ai-tool",
-    description: "AI 이미지/영상 생성, 디자인 레퍼런스 제작",
-  },
-  // Design
-  {
-    name: "Canva",
+    name: "Figma / Canva / Claude Design",
     level: 5,
     category: "design",
-    description: "발표자료 디자인, 브랜드 디자인",
+    description: "웹페이지 디자인, 발표자료, 브랜드 디자인, AI 기반 디자인 시안 제작",
   },
-  {
-    name: "Photoshop",
-    level: 5,
-    category: "design",
-    description: "이미지 편집, 누끼, AI 활용",
-  },
-  {
-    name: "Illustrator",
-    level: 4,
-    category: "design",
-    description: "벡터 디자인, 아이콘 제작",
-  },
-  {
-    name: "Figma",
-    level: 4,
-    category: "design",
-    description: "디자인 협업, 웹페이지 디자인",
-  },
-  // Engineering
   {
     name: "GT-Suite",
     level: 5,
@@ -82,35 +43,22 @@ export const skills: Skill[] = [
     description: "FSI, CAE 구조해석",
   },
   {
-    name: "6 Sigma BB",
+    name: "6 Sigma BB / Data Science Lv3 / GenPower Lv4",
     level: 5,
     category: "engineering",
-    description: "BLDC 신규 부품 적합성 평가 · 원가 12억 절감",
+    description: "품질 혁신, 데이터 분석, 삼성 사내 AI 역량 인증",
   },
-  // Office
   {
-    name: "Excel",
+    name: "Excel / PowerPoint / Notion",
     level: 5,
     category: "office",
-    description: "데이터 관리, 차트 제작",
-  },
-  {
-    name: "Notion",
-    level: 5,
-    category: "office",
-    description: "템플릿, DB, 프로젝트 운용",
-  },
-  {
-    name: "PowerPoint",
-    level: 4,
-    category: "office",
-    description: "프레젠테이션 제작",
+    description: "데이터 관리, 차트, 프레젠테이션, 프로젝트 운영",
   },
 ];
 
 export const categoryLabels: Record<Skill["category"], string> = {
-  "ai-tool": "AI 도구",
-  design: "디자인",
+  "ai-tool": "AI / 자동화",
+  design: "디자인 / 콘텐츠 제작",
   engineering: "엔지니어링",
   office: "Office / 협업",
 };
