@@ -45,8 +45,8 @@ const stats: Stat[] = [
 const loopStages = [
   { label: "Domain", detail: "Compressor", x: "4%", y: "8%" },
   { label: "Simulation", detail: "GT-Suite / FSI", x: "56%", y: "8%" },
-  { label: "AI Agent", detail: "RAG / Reasoning", x: "64%", y: "47%" },
-  { label: "Automation", detail: "Scripts / Actions", x: "28%", y: "67%" },
+  { label: "AI Agent", detail: "RAG / Reasoning", x: "64%", y: "46%" },
+  { label: "Automation", detail: "Scripts / Actions", x: "30%", y: "69%" },
   { label: "Quality Loop", detail: "Decision feedback", x: "2%", y: "46%" },
 ];
 
@@ -204,20 +204,20 @@ export default function Hero() {
             <p className="mt-2 text-sm font-semibold text-gray-900">
               Agentic workflow <span className="text-[#ff5a5f]">(loop engineering)</span>
             </p>
-            <div className="relative mt-5 h-[285px] overflow-hidden rounded-3xl border border-gray-100 bg-white/80 p-4">
+            <div className="relative mt-5 h-[300px] overflow-hidden rounded-3xl border border-gray-100 bg-white/80 p-4">
               <svg
-                viewBox="0 0 520 285"
+                viewBox="0 0 520 300"
                 className="absolute inset-0 h-full w-full"
                 aria-hidden="true"
               >
                 <path
-                  d="M95 62 C215 6 392 28 420 86 C456 162 364 230 246 234 C118 238 58 178 72 104 C75 88 82 74 95 62"
+                  d="M95 62 C215 6 392 28 420 86 C456 168 364 240 246 246 C118 250 58 178 72 104 C75 88 82 74 95 62"
                   fill="none"
                   stroke="rgba(20,40,160,0.12)"
                   strokeWidth="2"
                 />
                 <motion.path
-                  d="M95 62 C215 6 392 28 420 86 C456 162 364 230 246 234 C118 238 58 178 72 104 C75 88 82 74 95 62"
+                  d="M95 62 C215 6 392 28 420 86 C456 168 364 240 246 246 C118 250 58 178 72 104 C75 88 82 74 95 62"
                   fill="none"
                   stroke="#ff5a5f"
                   strokeLinecap="round"
@@ -231,7 +231,7 @@ export default function Hero() {
               {loopStages.map((stage, idx) => (
                 <motion.div
                   key={stage.label}
-                  className={`absolute w-[138px] rounded-2xl border px-3 py-3 shadow-sm ${
+                  className={`absolute z-10 w-[138px] rounded-2xl border px-3 py-3 shadow-sm ${
                     idx === 2
                       ? "border-[#ff5a5f]/40 bg-[#ff5a5f]/8 text-[#b4232b]"
                       : "border-[#1428a0]/15 bg-white text-[#1428a0]"
@@ -247,12 +247,12 @@ export default function Hero() {
                   </p>
                 </motion.div>
               ))}
+            </div>
 
-              <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-[#1428a0]/10 bg-[#1428a0]/5 px-4 py-3">
-                <p className="text-[11px] font-bold text-[#1428a0]">
-                  Problem → Model → Agent → Action → Learning
-                </p>
-              </div>
+            <div className="mt-3 rounded-2xl border border-[#1428a0]/10 bg-[#1428a0]/5 px-4 py-3">
+              <p className="text-[11px] font-bold leading-5 text-[#1428a0]">
+                Problem → Model → Agent → Action → Learning
+              </p>
             </div>
 
             <div className="mt-5 rounded-2xl border border-gray-100 bg-white p-4">

@@ -6,10 +6,10 @@ import { projects } from "@/data/projects";
 import { useLang } from "@/lib/i18n";
 
 const metrics = [
-  { label: "대표 프로젝트", value: String(projects.length) },
-  { label: "최초 개발", value: "2" },
-  { label: "최대 기여도", value: "100%" },
-  { label: "글로벌 영업", value: "360억" },
+  { label: "대표 프로젝트", shortLabel: "대표 PJT", value: String(projects.length) },
+  { label: "최초 개발", shortLabel: "최초 개발", value: "2" },
+  { label: "최대 기여도", shortLabel: "기여도", value: "100%" },
+  { label: "글로벌 영업", shortLabel: "글로벌", value: "360억" },
 ];
 
 export default function Projects() {
@@ -36,17 +36,21 @@ export default function Projects() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-4 md:max-w-[30rem] md:shrink-0">
           {metrics.map((metric) => (
             <div
               key={metric.label}
-              className="ui-card px-4 py-4 text-center"
+              className="ui-card min-w-0 px-2 py-4 text-center sm:px-3"
             >
               <p className="kpi-value font-bold text-[#1428a0]">
                 {metric.value}
               </p>
-              <p className="mt-1 text-xs whitespace-nowrap text-gray-500">
-                {metric.label}
+              <p
+                className="mt-1 break-keep text-[clamp(0.62rem,1.2vw,0.75rem)] leading-tight text-gray-500"
+                title={metric.label}
+                aria-label={metric.label}
+              >
+                {metric.shortLabel}
               </p>
             </div>
           ))}
