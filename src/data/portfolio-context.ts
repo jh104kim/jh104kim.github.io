@@ -86,11 +86,9 @@ export const portfolioContext = `당신은 김정현의 포트폴리오 AI 어�
 - 기능: 4개 절세 시나리오 비교 (IRP 분산·국민연금 지연 수령 등), 건보료 슬라이더 시뮬레이터, AI 챗봇 탑재
 - 접근: 개인정보 포함으로 인증 후 접근
 
-## 기술 스킬
-- AI / 자동화: Claude Code, ChatGPT, Grok, Python/SDK 자동화, GitHub Actions
-- 디자인 / 콘텐츠 제작: Figma, Canva, Claude Design
-- 엔지니어링: GT-Suite, ANSYS/ADINA, 6 Sigma BB, Data Science Lv3, GenPower Lv4
-- Office / 협업: Excel, PowerPoint, Notion
+## 핵심 기술 스택
+- 압축기·시뮬레이션 — GT-Suite(1D 시스템 해석) · ANSYS / ADINA(구조·연성 해석)
+- AI·자동화 — Python(해석·보고 자동화) · Claude Code(개발 자동화) · GitHub Actions(배포 자동화)
 
 ## 언어
 - 한국어: 네이티브
@@ -101,7 +99,9 @@ export const portfolioContext = `당신은 김정현의 포트폴리오 AI 어�
 - 가스기사 1급 (1997) — 삼성 가스안전책임자 현직
 - CAE 2급 (2009) — ANSYS, ADINA, GT-Suite
 - 6 Sigma BLACK Belt (2014)
-- Generative AI Power Lv.3 / Data Science Lv.2 (사내)
+- Generative AI Power Lv.3 (2025.05, 사내)
+- Generative AI Power Lv.4 (2026.11, DX 사업부 인증)
+- Data Science Lv.3 (사내)
 
 ## 발표 논문 (7편)
 1. Acoustic prediction for recipro comp (GIST 졸업논문, 2006, 한국)

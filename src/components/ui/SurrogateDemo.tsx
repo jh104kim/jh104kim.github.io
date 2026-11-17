@@ -1,7 +1,5 @@
 "use client";
 
-// Surrogate Modeling 컨셉 데모 — 브라우저에서 즉시 실행되는 간이 물리 모델.
-// (실제 Surrogate는 GT-Suite 해석 데이터 학습 기반으로 확장 예정)
 import { useMemo, useState } from "react";
 import { Gauge, Zap, TrendingUp } from "lucide-react";
 import { useLang } from "@/lib/i18n";
@@ -90,64 +88,15 @@ export default function SurrogateDemo() {
 
   return (
     <div className="p-6" style={PANEL_STYLE}>
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <p className="text-sm font-semibold text-white">
-            {tr(
-              "Surrogate Demo — 압축기 성능 즉시 예측",
-              "Surrogate Demo — Instant Compressor Performance Prediction",
-            )}
-          </p>
-          <p className="mt-1 text-xs leading-5 text-white/50">
-            {tr(
-              "GT-Suite 해석(수 분~수 시간)을 밀리초 단위 근사로 대체하는 Surrogate 개념 시연",
-              "Concept demo replacing GT-Suite runs (minutes–hours) with millisecond approximation",
-            )}
-          </p>
-        </div>
-        <span
-          className="shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-semibold"
-          style={{
-            background: "rgba(96,165,250,0.15)",
-            color: "rgb(147,197,253)",
-            border: "1px solid rgba(96,165,250,0.25)",
-          }}
-        >
-          {tr("실시간 데모", "Live Demo")}
-        </span>
-      </div>
-
-      {/* 모델 단계 구분 — 현재 vs 확장 계획 */}
-      <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px]">
-        <span
-          className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-semibold"
-          style={{
-            background: "rgba(52,211,153,0.15)",
-            color: "rgb(110,231,183)",
-            border: "1px solid rgba(52,211,153,0.25)",
-          }}
-        >
-          <span
-            className="h-1.5 w-1.5 rounded-full"
-            style={{ background: "rgb(52,211,153)" }}
-          />
-          {tr("현재 — Physics-based Model (간이 물리 모델)", "Now — Physics-based Model (simplified)")}
-        </span>
-        <span className="text-white/30">→</span>
-        <span
-          className="inline-flex items-center rounded-full px-2.5 py-1 font-medium"
-          style={{
-            background: "rgba(255,255,255,0.05)",
-            color: "rgba(255,255,255,0.45)",
-            border: "1px dashed rgba(255,255,255,0.2)",
-          }}
-        >
-          {tr(
-            "다음 — GT-Suite 데이터 학습 Surrogate (확장 예정)",
-            "Next — Learned Surrogate from GT-Suite dataset (planned)",
-          )}
-        </span>
-      </div>
+      <h3 className="text-sm font-semibold text-white">
+        {tr("압축기 성능 계산 데모", "Compressor Performance Demo")}
+      </h3>
+      <p className="mt-1 text-sm leading-6 text-white/70">
+        {tr(
+          "간이 R600a 물리 모델로 운전 조건별 냉력, 소비 전력, COP를 계산합니다.",
+          "A simplified R600a physics model calculates cooling capacity, input power, and COP for the selected conditions.",
+        )}
+      </p>
 
       <div className="mt-5 grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
         {/* 입력 슬라이더 */}
@@ -201,14 +150,20 @@ export default function SurrogateDemo() {
               </div>
             ))}
           </div>
-          <p className="text-[11px] leading-5 text-white/40">
+          <p className="text-xs leading-5 text-white/60">
             {tr(
-              `압력비 ${result.pr.toFixed(1)} · 체적효율 ${(result.etaV * 100).toFixed(0)}% — 입력을 바꾸면 결과가 즉시 갱신됩니다. 이것이 Forward Plan 01(Surrogate Modeling)이 지향하는 사용자 경험입니다.`,
-              `Pressure ratio ${result.pr.toFixed(1)} · volumetric efficiency ${(result.etaV * 100).toFixed(0)}% — results update instantly. This is the UX that Forward Plan 01 (Surrogate Modeling) aims for.`,
+              `압력비 ${result.pr.toFixed(1)} · 체적효율 ${(result.etaV * 100).toFixed(0)}%`,
+              `Pressure ratio ${result.pr.toFixed(1)} · volumetric efficiency ${(result.etaV * 100).toFixed(0)}%`,
             )}
           </p>
         </div>
       </div>
+      <p className="mt-5 text-xs leading-5 text-white/60">
+        {tr(
+          "향후 GT-Suite 해석 데이터로 대리 모델을 학습하고 검증할 계획입니다.",
+          "Next step: train and validate a surrogate model using GT-Suite simulation data.",
+        )}
+      </p>
     </div>
   );
 }

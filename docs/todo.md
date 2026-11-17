@@ -15,15 +15,15 @@
 
 ## 🟡 MED
 
-- [x] **04. GT-Suite 자동화 상세** — input/process/output 구체화 완료 ✅
+- [x] **04. GT-Suite 자동화 상세** — AI Lab 첫 사례로 수행 내용과 결과 요약 ✅
 - [x] **05. 6 Sigma BB 성과** — R600a BLDC 단계별 신규 부품 적합성 평가 (불량률 3.2%→0.4%, 원가 12억, 3000ppm) ✅
 - [x] **06. Research 섹션 보강** — 논문 7편 contribution 컨텍스트 추가 완료 ✅
-- [x] **07. Skills Progress Bar** — About SkillBar.tsx 적용 완료
+- [x] **07. 핵심 기술 스택** — 소개에서 압축기·시뮬레이션과 AI·자동화 두 줄로 정리 ✅
 
 ## 🟢 LOW
 
 - [x] **08. 일본어/영어 실전 사례** — JLPT 1급·北海道大·SEJ 탑미팅(도시바·미츠비시·샤프) / Purdue 3회 발표 ✅
-- [x] **09. AI Crew 자동화 예시** — AiLab 입력/처리/결과 파이프라인 구체화 완료 ✅
+- [x] **09. AI Crew 자동화 예시** — AI Lab에서 운영 사례와 구축 중인 사례 구분 ✅
 - [x] **10. OG 이미지 / SEO 메타** — og-image.png + sitemap + robots 완료
 - [x] **11. 다크/라이트 모드 토글** — next-themes + Moon/Sun 버튼 + CSS 다크 재정의 ✅
 - [x] **12. Sitemap + robots.txt** — 완료
@@ -35,4 +35,4 @@
 |------|---------|------|
 | 13 / 15 | 0 / 15 | 2 / 15 |
 
-_업데이트: 2026-06-22_
+_업데이트: 2026-11-17_

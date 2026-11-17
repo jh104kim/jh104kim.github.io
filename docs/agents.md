@@ -31,7 +31,7 @@
 | 04 | GT-Suite 자동화 상세 | ✅ DONE |
 | 05 | 6 Sigma BB 성과 | ✅ DONE |
 | 06 | Research 섹션 보강 | ✅ DONE |
-| 07 | Skills Progress Bar | ✅ DONE |
+| 07 | 핵심 기술 스택 두 줄 요약 | ✅ DONE |
 | 08 | 일본어/영어 실전 사례 | ✅ DONE |
 | 09 | AI Crew 자동화 예시 | ✅ DONE |
 | 10 | OG 이미지 / SEO 메타 | ✅ DONE |
