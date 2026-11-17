@@ -1,4 +1,9 @@
-import { portfolioKnowledge } from "@/data/portfolio-context";
+import { personalProjectAnswers, portfolioKnowledge } from "@/data/portfolio-context";
+
+const personalProjectQuestions = [
+  { pattern: /\blife[\s-]*os\b|\bdashboard\b|대시보드/i, answer: personalProjectAnswers.lifeOs },
+  { pattern: /\bpension\b|연금/i, answer: personalProjectAnswers.pension },
+];
 
 function classifyQuestion(question: string) {
   const normalized = question.toLowerCase();
@@ -43,6 +48,13 @@ function classifyQuestion(question: string) {
 
 /** GitHub Pages 등 정적 호스팅에서 사용하는 포트폴리오 기반 로컬 응답 */
 export function localPortfolioAnswer(question: string): string {
+  const projectAnswers = personalProjectQuestions
+    .filter(({ pattern }) => pattern.test(question))
+    .map(({ answer }) => answer);
+  if (projectAnswers.length > 0) {
+    return projectAnswers.join("\n\n");
+  }
+
   const questionType = classifyQuestion(question);
 
   if (questionType === "project") {

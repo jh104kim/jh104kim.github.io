@@ -262,11 +262,11 @@ export const projects: Project[] = [
   },
 ];
 
-export const categoryLabels: Record<Project["category"], string> = {
-  engineering: "엔지니어링",
-  leadership: "리더십",
-  ai: "AI",
-  quality: "품질",
+export const categoryLabels: Record<Project["category"], { ko: string; en: string }> = {
+  engineering: { ko: "엔지니어링", en: "Engineering" },
+  leadership: { ko: "리더십", en: "Leadership" },
+  ai: { ko: "AI", en: "AI" },
+  quality: { ko: "품질", en: "Quality" },
 };
 
 export const categoryColors: Record<

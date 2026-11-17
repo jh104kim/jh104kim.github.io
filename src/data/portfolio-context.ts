@@ -1,3 +1,10 @@
+export const personalProjectAnswers = {
+	lifeOs:
+		"Personal Life OS Dashboard는 건강·자산·투자·소비 지표를 한 화면에 모은 개인 대시보드입니다. Next.js 15, ECharts, Supabase를 사용하며 인증 후 접근할 수 있습니다.",
+	pension:
+		"은퇴 연금 분석 웹앱은 9개 연금 상품의 수령 전략과 4개 절세 시나리오를 비교합니다. 세금과 건강보험료를 반영한 실수령액을 확인할 수 있으며 Vite, React, Recharts를 사용합니다. 앱은 인증 후 접근할 수 있습니다.",
+} as const;
+
 export const portfolioKnowledge = {
 	profile: {
 		name: "김정현",
@@ -25,8 +32,8 @@ export const portfolioKnowledge = {
 		"R600a BLDC 최초 개발 (기여도 100%)",
 		"일본 Sales 360억 달성",
 		"GT-Suite 자동화 및 AI 업무자동화",
-		"Personal Life OS Dashboard — 건강·자산·투자·소비 데이터를 통합한 개인 대시보드. 개인정보 포함으로 인증 후 접근.",
-		"은퇴 연금 분석 웹앱 — 9개 연금 상품과 절세 시나리오를 비교하는 개인 재무 앱. 개인정보 포함으로 인증 후 접근.",
+		personalProjectAnswers.lifeOs,
+		personalProjectAnswers.pension,
 	],
 	research: [
 		"FSI for valve dynamics",
