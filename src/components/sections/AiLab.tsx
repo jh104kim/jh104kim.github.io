@@ -1,7 +1,7 @@
 "use client";
 
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import { Zap, Cpu, GitBranch, LayoutDashboard, PieChart, ArrowRight, CheckCircle2, Lock } from "lucide-react";
+import { Zap, Cpu, GitBranch, ArrowRight, CheckCircle2 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import SurrogateDemo from "@/components/ui/SurrogateDemo";
 
@@ -15,7 +15,6 @@ type Track = {
   output: string;
   tag: string;
   tagStyle: React.CSSProperties;
-  privateAccessPath?: string;
 };
 
 const currentTracks: Track[] = [
@@ -58,34 +57,6 @@ const currentTracks: Track[] = [
       border: "1px solid rgba(96,165,250,0.25)",
     },
   },
-  {
-    Icon: LayoutDashboard,
-    title: "Personal Life OS Dashboard",
-    input: "건강·자산·투자·소비 데이터",
-    process: "Next.js 15 + ECharts + Supabase Two-Zone 대시보드",
-    output: "5초 내 삶 전체 상태 인지",
-    tag: "개발 중",
-    tagStyle: {
-      background: "rgba(96,165,250,0.15)",
-      color: "rgb(147,197,253)",
-      border: "1px solid rgba(96,165,250,0.25)",
-    },
-    privateAccessPath: "/private-access?app=life-os",
-  },
-  {
-    Icon: PieChart,
-    title: "은퇴 연금 분석 웹앱",
-    input: "9개 연금 상품 수령 데이터",
-    process: "4개 절세 시나리오 비교 + 건보료 시뮬레이터",
-    output: "세후 실수령액 최적화 전략",
-    tag: "MVP 완성",
-    tagStyle: {
-      background: "rgba(52,211,153,0.15)",
-      color: "rgb(110,231,183)",
-      border: "1px solid rgba(52,211,153,0.25)",
-    },
-    privateAccessPath: "/private-access?app=pension-analyzer",
-  },
 ];
 
 const roadmap = [
@@ -96,7 +67,7 @@ const roadmap = [
 ];
 
 const metrics = [
-  { v: "5", l: "자동화 트랙" },
+  { v: currentTracks.length, l: "자동화 트랙" },
   { v: "4", l: "Forward Plan" },
   { v: "26년", l: "도메인 경험" },
 ];
@@ -150,21 +121,6 @@ const STEP_BADGE_STYLE: React.CSSProperties = {
   fontWeight: 700,
   padding: "1px 6px",
   marginTop: "1px",
-};
-
-const LINK_BTN_STYLE: React.CSSProperties = {
-  display: "inline-flex",
-  alignItems: "center",
-  gap: "4px",
-  padding: "3px 10px",
-  borderRadius: "6px",
-  fontSize: "11px",
-  fontWeight: 500,
-  background: "rgba(255,255,255,0.07)",
-  border: "1px solid rgba(255,255,255,0.12)",
-  color: "rgba(255,255,255,0.65)",
-  textDecoration: "none",
-  transition: "background 0.15s",
 };
 
 // ── 컴포넌트 ───────────────────────────────────────────────────────────────
@@ -242,7 +198,7 @@ export default function AiLab() {
         {/* ── 오른쪽 컬럼 — 트랙 카드 ── */}
         <div className="space-y-4">
           {currentTracks.map(
-            ({ Icon, title, input, process, output, tag, tagStyle, privateAccessPath }) => (
+            ({ Icon, title, input, process, output, tag, tagStyle }) => (
               <div key={title} className="p-5" style={CARD_STYLE}>
                 {/* 카드 헤더 */}
                 <div className="mb-4 flex items-start justify-between gap-3">
@@ -293,15 +249,6 @@ export default function AiLab() {
                   )}
                 </div>
 
-                {/* 인증 접근 버튼 */}
-                {privateAccessPath && (
-                  <div className="mt-3 flex gap-2">
-                    <a href={privateAccessPath} style={LINK_BTN_STYLE}>
-                      <Lock size={11} />
-                      인증 후 접근
-                    </a>
-                  </div>
-                )}
               </div>
             ),
           )}
