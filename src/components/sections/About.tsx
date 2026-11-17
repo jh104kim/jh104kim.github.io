@@ -1,7 +1,6 @@
 "use client";
 
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import SkillBar from "@/components/ui/SkillBar";
 import Timeline from "@/components/ui/Timeline";
 import {
   career,
@@ -9,16 +8,12 @@ import {
   education,
   languages as languageSkills,
 } from "@/data/career";
-import { categoryLabels, skills } from "@/data/skills";
+import { skillGroups } from "@/data/skills";
 import { useLang } from "@/lib/i18n";
 
 export default function About() {
   const { tr } = useLang();
   const loopSteps = ["Problem", "Model", "Agent", "Action", "Learning"];
-  const groupedSkills = Object.entries(categoryLabels).map(([key, label]) => ({
-    label,
-    items: skills.filter((skill) => skill.category === key),
-  }));
 
   return (
     <SectionWrapper id="about" className="bg-white">
@@ -174,23 +169,17 @@ export default function About() {
           </div>
 
           <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
-            <p className="text-sm font-semibold text-gray-900">
-              핵심 기술 스택
-            </p>
-            <div className="mt-6 space-y-6">
-              {groupedSkills.map((group) => (
-                <div key={group.label}>
-                  <p className="mb-3 text-xs font-semibold tracking-[0.18em] text-gray-400 uppercase">
-                    {group.label}
-                  </p>
-                  <div>
-                    {group.items.map((skill, index) => (
-                      <SkillBar key={skill.name} skill={skill} index={index} />
-                    ))}
-                  </div>
+            <h3 className="text-sm font-semibold text-gray-900">
+              {tr("핵심 기술 스택", "Core Technical Skills")}
+            </h3>
+            <dl className="mt-4 divide-y divide-gray-100">
+              {skillGroups.map(({ label, tools }) => (
+                <div key={label[0]} className="grid gap-1 py-3 first:pt-0 last:pb-0 sm:grid-cols-[8rem_minmax(0,1fr)] sm:gap-3">
+                  <dt className="text-sm font-semibold text-gray-900">{tr(label[0], label[1])}</dt>
+                  <dd className="text-sm leading-6 text-gray-600">{tr(tools[0], tools[1])}</dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </div>
         </div>
       </div>
