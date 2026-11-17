@@ -97,11 +97,11 @@ export default function AiChat() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-3 rounded-full border border-gray-200 bg-white/90 px-4 py-3 text-sm font-semibold text-gray-700 shadow-lg backdrop-blur transition hover:-translate-y-0.5 hover:bg-white"
+        className="fixed right-4 bottom-6 z-40 inline-flex size-11 items-center justify-center gap-2 rounded-full border border-gray-200 bg-white/90 text-sm font-semibold text-gray-700 shadow-lg backdrop-blur transition hover:-translate-y-0.5 hover:bg-white sm:right-6 sm:h-auto sm:w-auto sm:px-4 sm:py-3"
         aria-label="포트폴리오 AI 채팅 열기"
       >
-        <Bot size={18} />
-        AI Q&A (선택)
+        <Bot size={18} aria-hidden="true" />
+        <span className="hidden sm:inline">AI Q&amp;A</span>
       </button>
 
       {open ? (

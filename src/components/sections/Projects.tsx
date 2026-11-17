@@ -1,9 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import ProjectCard from "@/components/ui/ProjectCard";
-import { projects } from "@/data/projects";
+import { categoryLabels, projects } from "@/data/projects";
 import { useLang } from "@/lib/i18n";
+
+const filters = ["all", "engineering", "quality", "leadership", "ai"] as const;
 
 const metrics = [
   { label: "대표 프로젝트", shortLabel: "대표 PJT", value: String(projects.length) },
@@ -13,7 +16,10 @@ const metrics = [
 ];
 
 export default function Projects() {
-  const { tr } = useLang();
+  const { lang, tr } = useLang();
+  const [category, setCategory] = useState<(typeof filters)[number]>("all");
+  const visibleProjects =
+    category === "all" ? projects : projects.filter((project) => project.category === category);
 
   return (
     <SectionWrapper id="projects" className="bg-gray-50">
@@ -57,8 +63,30 @@ export default function Projects() {
         </div>
       </div>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
-        {projects.map((project, index) => (
+      <div
+        role="group"
+        aria-label={tr("프로젝트 분야 필터", "Filter projects by category")}
+        className="mt-10 flex flex-wrap gap-2"
+      >
+        {filters.map((filter) => (
+          <button
+            key={filter}
+            type="button"
+            aria-pressed={filter === category}
+            aria-controls="project-list"
+            onClick={() => setCategory(filter)}
+            className="min-h-11 cursor-pointer rounded-full border border-border bg-card px-4 text-sm font-semibold text-card-foreground transition-colors hover:border-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 aria-pressed:border-blue-500 aria-pressed:bg-[#1428a0] aria-pressed:text-white"
+          >
+            {filter === "all" ? tr("전체", "All") : categoryLabels[filter][lang]}
+          </button>
+        ))}
+      </div>
+      <p role="status" className="sr-only">
+        {tr(`프로젝트 ${visibleProjects.length}개 표시 중`, `Projects shown: ${visibleProjects.length}`)}
+      </p>
+
+      <div id="project-list" className="mt-6 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+        {visibleProjects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}
       </div>

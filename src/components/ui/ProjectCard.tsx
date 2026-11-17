@@ -12,7 +12,9 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
-  const { lang } = useLang();
+  const { lang, tr } = useLang();
+  const title = lang === "en" ? project.titleEn : project.title;
+  const privateAccessLabel = tr("인증 후 접근", "Access with password");
   const colors = categoryColors[project.category];
   const isProtected = Boolean(project.privateAccessKey);
   const hasPublicLinks = !isProtected && (project.githubUrl || project.demoUrl);
@@ -25,7 +27,7 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       <div className="relative -mx-6 -mt-6 overflow-hidden bg-gray-100">
         <Image
           src={`/images/projects/${project.id}.jpg`}
-          alt={`${lang === "en" ? project.titleEn : project.title} representative visual`}
+          alt={`${title} ${tr("대표 이미지", "representative visual")}`}
           width={1200}
           height={800}
           sizes="(min-width: 1280px) 33vw, (min-width: 1024px) 50vw, 100vw"
@@ -41,7 +43,7 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           <span
             className={`inline-block px-2.5 py-1 text-xs font-medium rounded-full border ${colors.bg} ${colors.text} ${colors.border}`}
           >
-            {categoryLabels[project.category]}
+            {categoryLabels[project.category][lang]}
           </span>
           {project.isPrivate && (
             <span className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full border bg-gray-100 text-gray-500 border-gray-200">
@@ -55,7 +57,7 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
 
       <div className="space-y-2">
         <h3 className="text-lg font-bold text-gray-900 leading-snug mb-1">
-          {lang === "en" ? project.titleEn : project.title}
+          {title}
         </h3>
         <p className="rounded-xl border-l-4 border-[#ff5a5f] bg-[#ff5a5f]/5 px-3 py-2 text-sm font-extrabold leading-6 text-[#1428a0] transition-colors duration-300 group-hover:bg-[#ff5a5f]/8">
           {project.achievement}
@@ -131,10 +133,11 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           <div className="pt-2">
             <a
               href={privateHref}
+              aria-label={`${privateAccessLabel} — ${title}`}
               className="inline-flex items-center gap-1.5 rounded-lg border border-[#1428a0]/20 bg-[#1428a0] px-3 py-1.5 text-xs font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#0f207d]"
             >
               <Lock size={12} />
-              인증 후 접근
+              {privateAccessLabel}
             </a>
           </div>
         )}
@@ -167,8 +170,6 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           </div>
         )}
       </div>
-
-      <span className="sr-only">index: {index}</span>
     </HoverCardMotion>
   );
 }
