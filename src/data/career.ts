@@ -99,6 +99,7 @@ export const certifications = [
   "CAE 2급 (2009.11) — ANSYS, ADINA, GT-Suite",
   "6 Sigma BLACK Belt (2014.10)",
   "Generative AI Power Lv.3 (2025.05, 사내)",
+  "Generative AI Power Lv.4 (2026.11, DX 사업부 인증)",
   "Data Science Lv.2 (사내)",
 ];
 
